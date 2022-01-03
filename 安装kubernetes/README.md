@@ -186,6 +186,23 @@ Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
 1. 在主节点执行 `kubectl get nodes` 可以查看集群节点状态
 2. 运行中的应用在 docker 里面叫容器，在k8s里面叫Pod，在主节点中使用 `kubectl get pods -A` 可查看运行中的应用。若所有应用 STATUS 为 Running ，则表示这一步成功。在这一步，我遇到过 [ImagePullBackOff](#ImagePullBackOff) 
 
+
+
+# 部署 dashboard
+
+1. kubernetes 官方提供的可视化界面，https://github.com/kubernetes/dashboard 
+2. 在主节点部署 dashboard 
+
+```sh
+# 如有必要,科学上网
+# 实在不行，找到这个文件再上传到主节点
+wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.3.1/aio/deploy/recommended.yaml
+
+kubectl apply -f recommended.yaml
+```
+
+
+
 # 错误处理
 
 ## ImagePullBackOff
