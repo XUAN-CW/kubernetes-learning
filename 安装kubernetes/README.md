@@ -95,9 +95,9 @@ echo "172.31.0.2  cluster-endpoint" >> /etc/hosts
 ### 主节点初始化
 
 ```sh
-#主节点初始化
+#主节点初始化,我的 master 节点为 172.31.0.2 
 kubeadm init \
---apiserver-advertise-address=172.31.0.4 \
+--apiserver-advertise-address=172.31.0.2 \
 --control-plane-endpoint=cluster-endpoint \
 --image-repository registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images \
 --kubernetes-version v1.20.9 \
