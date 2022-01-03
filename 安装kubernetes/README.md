@@ -274,10 +274,8 @@ kubectl apply -f dash.yaml
 
 主节点中获取访问令牌
 
-```
-[root@k8s-master ~]# kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/admin-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
-eyJhbGciOiJSUzI1NiIsImtpZCI6IkNZUmptRjM0MWV4Z094bEVGM1FVbWJ0MU5EeFhmd3FGRDBva0oyLThPOEEifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhZG1pbi11c2VyLXRva2VuLWZyNmJoIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImFkbWluLXVzZXIiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiJmYTY0MDE5MS04Y2M4LTQxMzktYjU3Ny1iYzZiNmE4MmVjZDIiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZXJuZXRlcy1kYXNoYm9hcmQ6YWRtaW4tdXNlciJ9.bwunPxCczzICUEMsD0SoZwIEXR6tHtSMwJVkuvkNVfmAtEdk_GGjA9kk9UNxUuKgZgsNtjWwFZPLgQ0Z0mKmp8Km674Pmwjtl_w6PwxVrUwRy6qKe4ibEsysezjUc33zFbwmTTcXfhmqHKoXDtNbNdU4EKvaqPBwVWHaAM_z1ueKFJHe1XZ1Wt-UAermNtngz7lGS1fXtDlu7tckghaDiVfcbLXSznq-vJGYr-jbCzNfxvRGZH99p5EOZzeKJWN5f6karpT0sTmodh00AenjqjFOAriMbedqx83NeuJz0tYEomSmOx7tid_B_A38LZ0eNjtuBFu16q_mNAqNrbv1hg[root@k8s-master ~]# 
-
+```sh
+kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/admin-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
 ```
 
 
