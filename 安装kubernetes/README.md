@@ -228,7 +228,7 @@ kubernetes-dashboard   kubernetes-dashboard        NodePort    10.96.186.152   <
 
 ## 访问
 
-
+ https://172.31.0.2:31634 
 
 
 
