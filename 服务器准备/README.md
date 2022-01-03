@@ -12,14 +12,14 @@ id: 1641215162829355800
 
 对于一个初学者来说，一定不要自作聪明，下面的配置一个都不能错！（高手当我放屁）
 
-|          | k8s-master | k8s-node1  | k8s-node2  |
-| -------- | ---------- | ---------- | ---------- |
-| 系统     | CentOS 7.9 | CentOS 7.9 | CentOS 7.9 |
-| IP       | 172.31.0.2 | 172.31.0.3 | 172.31.0.4 |
-| hostname | k8s-master | k8s-node1  | k8s-node2  |
-| 内存     | 4G 以上    | 4G 以上    | 4G 以上    |
-| 登录用户 | root       | root       | root       |
-| docker   |            |            |            |
+|          | k8s-master     | k8s-node1      | k8s-node2      |
+| -------- | -------------- | -------------- | -------------- |
+| 系统     | CentOS 7.9     | CentOS 7.9     | CentOS 7.9     |
+| IP       | 172.31.0.2     | 172.31.0.3     | 172.31.0.4     |
+| hostname | k8s-master     | k8s-node1      | k8s-node2      |
+| 内存     | 4G 以上        | 4G 以上        | 4G 以上        |
+| 登录用户 | root           | root           | root           |
+| docker   | Docker 20.10.7 | Docker 20.10.7 | Docker 20.10.7 |
 
 # 提示
 
