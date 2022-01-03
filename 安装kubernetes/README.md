@@ -193,6 +193,7 @@ Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
 
 1. kubernetes 官方提供的可视化界面，https://github.com/kubernetes/dashboard 
 2. 在主节点部署 dashboard 
+3. recommended.yaml 实在下载不下来，我这里有一份  [recommended.yaml](assets/data/recommended.yaml) 
 
 ```sh
 # 如有必要,科学上网
