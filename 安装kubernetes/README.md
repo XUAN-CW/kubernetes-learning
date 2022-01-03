@@ -112,12 +112,25 @@ kubeadm init \
 ```
 ... ...
 Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ... ...
 ```
 
+### 设置.kube/config
 
+1. 根据安装成功的提示，我们需要运行下面的命令
+2. 只有主节点需要运行下面的命令
 
-
+```sh
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
 
 
 
