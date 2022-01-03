@@ -40,7 +40,7 @@ sudo sysctl --system
 ## 安装kubelet、kubeadm、kubectl
 
 ```sh
-# 设置 yum y
+# 设置 yum 源
 cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
@@ -55,6 +55,7 @@ EOF
 
 # 安装
 sudo yum install -y kubelet-1.20.9 kubeadm-1.20.9 kubectl-1.20.9 --disableexcludes=kubernetes
+
 # 启动
 sudo systemctl enable --now kubelet
 
