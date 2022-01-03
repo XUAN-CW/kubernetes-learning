@@ -19,6 +19,7 @@ id: 1641215162829355800
 | hostname | k8s-master | k8s-node1  | k8s-node2  |
 | 内存     | 4G 以上    | 4G 以上    | 4G 以上    |
 | 登录用户 | root       | root       | root       |
+| docker   |            |            |            |
 
 # 提示
 
@@ -34,9 +35,31 @@ hostnamectl set-hostname k8s-node1
 hostnamectl set-hostname k8s-node2
 ```
 
+## docker-ce-20.10.7
 
+```sh
+#################### 安装docker ####################
+# 移除之前安装好的 docker
+sudo yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine
+# 配置 yum 源
+sudo yum install -y yum-utils
+sudo yum-config-manager \
+--add-repo \
+http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 
-
+# s安装指定版本 docker 
+sudo yum install -y docker-ce-20.10.7 docker-ce-cli-20.10.7  containerd.io-1.4.6
+# 启动 docker
+sudo systemctl start docker
+sudo systemctl enable docker
+```
 
 
 
