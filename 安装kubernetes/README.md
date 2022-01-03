@@ -179,7 +179,9 @@ Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
 [root@k8s-node1 ~]# 
 ```
 
+### 错误处理
 
+`kubectl get pods -A`  出现 `Init:ImagePullBackOff` 或`Init:ErrImagePull` 就是说你镜像拉取失败了，你可以用 `kubectl get pods -A -o wide` 来看看是哪台机器拉取失败
 
 
 
