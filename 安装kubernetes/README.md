@@ -148,18 +148,24 @@ kubectl apply -f calico.yaml
 
 ## node 加入集群
 
-之前初始化成功出现的东西之中有：
+### 创建令牌
+
+主节点中创建令牌：
 
 ```
-kubeadm join cluster-endpoint:6443 --token ob55n2.owwcbxxjdix40zgu \
-    --discovery-token-ca-cert-hash sha256:212a1f282b6ecbc35656702bc6c75c8638c66f6f5823b7bff49448f43b64ea30
+[root@k8s-master ~]# kubeadm token create --print-join-command
+kubeadm join cluster-endpoint:6443 --token 9kto10.1u0e74ypj3ag4rix     --discovery-token-ca-cert-hash sha256:dd4160970cd55d5687d16ee417adad3e697dc189911d3f06a7e4dbf1066934c9 
+[root@k8s-master ~]# 
 ```
+
+从节点加入集群
+
+
 
 那么你应该复制这一段（不要复制这篇文章里的，要复制你 Linux 里输出的！），然后在 **所有从节点** 中执行，从节点执行成功后，你可以看到：
 
 ```
-[root@k8s-node1 ~]# kubeadm join cluster-endpoint:6443 --token ob55n2.owwcbxxjdix40zgu \
->     --discovery-token-ca-cert-hash sha256:212a1f282b6ecbc35656702bc6c75c8638c66f6f5823b7bff49448f43b64ea30
+[root@k8s-node1 ~]# kubeadm join cluster-endpoint:6443 --token 9kto10.1u0e74ypj3ag4rix     --discovery-token-ca-cert-hash sha256:dd4160970cd55d5687d16ee417adad3e697dc189911d3f06a7e4dbf1066934c9 
 [preflight] Running pre-flight checks
 	[WARNING IsDockerSystemdCheck]: detected "cgroupfs" as the Docker cgroup driver. The recommended driver is "systemd". Please follow the guide at https://kubernetes.io/docs/setup/cri/
 	[WARNING SystemVerification]: this Docker version is not on the list of validated versions: 20.10.7. Latest validated version: 19.03
@@ -179,9 +185,19 @@ Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
 [root@k8s-node1 ~]# 
 ```
 
-### 错误处理
 
-`kubectl get pods -A`  出现 `Init:ImagePullBackOff` 或`Init:ErrImagePull` 就是说你镜像拉取失败了，你可以用 `kubectl get pods -A -o wide` 来看看是哪台机器拉取失败
+
+
+
+
+
+
+
+# 错误处理
+
+## ImagePullBackOff
+
+`kubectl get pods -A`  出现 `Init:ImagePullBackOff` 或`Init:ErrImagePull` 就是说你镜像拉取失败了。你可以用 `kubectl get pods -A -o wide` 来看看是哪台机器拉取失败
 
 
 
