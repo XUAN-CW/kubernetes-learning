@@ -230,16 +230,55 @@ kubernetes-dashboard   kubernetes-dashboard        NodePort    10.96.186.152   <
 
 1.  https://集群任意IP:端口 。我这里用主节点 IP `172.31.0.2` ，端口用上面的 `31634` ，则有  https://172.31.0.2:31634 
 2. 面临潜在的安全风险。不理他，直接继续就好
+3. 看到下图，表示到目前为止是成功的
 
+![image-20220104014153882](assets/images/image-20220104014153882.png)
 
+## 创建访问账号
 
+### dash.yaml
 
+主节点中创建 dash.yaml ：
 
+```yaml
+# 创建访问账号，准备一个yaml文件； vi dash.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: admin-user
+  namespace: kubernetes-dashboard
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: admin-user
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: admin-user
+  namespace: kubernetes-dashboard
+```
 
+### kubectl apply
 
+主节点中 kubectl apply 
 
+```
+kubectl apply -f dash.yaml
+```
 
+### 获取访问令牌
 
+主节点中获取访问令牌
+
+```
+[root@k8s-master ~]# kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/admin-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
+eyJhbGciOiJSUzI1NiIsImtpZCI6IkNZUmptRjM0MWV4Z094bEVGM1FVbWJ0MU5EeFhmd3FGRDBva0oyLThPOEEifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlcm5ldGVzLWRhc2hib2FyZCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJhZG1pbi11c2VyLXRva2VuLWZyNmJoIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImFkbWluLXVzZXIiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiJmYTY0MDE5MS04Y2M4LTQxMzktYjU3Ny1iYzZiNmE4MmVjZDIiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZXJuZXRlcy1kYXNoYm9hcmQ6YWRtaW4tdXNlciJ9.bwunPxCczzICUEMsD0SoZwIEXR6tHtSMwJVkuvkNVfmAtEdk_GGjA9kk9UNxUuKgZgsNtjWwFZPLgQ0Z0mKmp8Km674Pmwjtl_w6PwxVrUwRy6qKe4ibEsysezjUc33zFbwmTTcXfhmqHKoXDtNbNdU4EKvaqPBwVWHaAM_z1ueKFJHe1XZ1Wt-UAermNtngz7lGS1fXtDlu7tckghaDiVfcbLXSznq-vJGYr-jbCzNfxvRGZH99p5EOZzeKJWN5f6karpT0sTmodh00AenjqjFOAriMbedqx83NeuJz0tYEomSmOx7tid_B_A38LZ0eNjtuBFu16q_mNAqNrbv1hg[root@k8s-master ~]# 
+
+```
 
 
 
