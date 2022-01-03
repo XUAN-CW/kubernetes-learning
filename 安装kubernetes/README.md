@@ -270,6 +270,8 @@ subjects:
 kubectl apply -f dash.yaml
 ```
 
+## 登录
+
 ### 获取访问令牌
 
 主节点中获取访问令牌
@@ -278,9 +280,9 @@ kubectl apply -f dash.yaml
 kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/admin-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
 ```
 
+### token 登录
 
-
-
+输入 token 后登录即可
 
 # 错误处理
 
