@@ -155,7 +155,7 @@ kubeadm join cluster-endpoint:6443 --token ob55n2.owwcbxxjdix40zgu \
     --discovery-token-ca-cert-hash sha256:212a1f282b6ecbc35656702bc6c75c8638c66f6f5823b7bff49448f43b64ea30
 ```
 
-那么你应该复制这一段（不要复制这篇文章里的，要复制你 Linux 里输出的！），然后在从节点中执行，从节点执行成功后，你可以看到：
+那么你应该复制这一段（不要复制这篇文章里的，要复制你 Linux 里输出的！），然后在 **所有从节点** 中执行，从节点执行成功后，你可以看到：
 
 ```
 [root@k8s-node1 ~]# kubeadm join cluster-endpoint:6443 --token ob55n2.owwcbxxjdix40zgu \
