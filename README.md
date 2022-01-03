@@ -63,7 +63,7 @@ cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
 EOF
-# 配置s
+# 配置生效
 sudo sysctl --system
 
 #################### 安装kubelet、kubeadm、kubectl ####################
@@ -83,6 +83,30 @@ EOF
 sudo yum install -y kubelet-1.20.9 kubeadm-1.20.9 kubectl-1.20.9 --disableexcludes=kubernetes
 
 sudo systemctl enable --now kubelet
+
+
+
+
+# 下载镜像
+sudo tee ./images.sh <<-'EOF'
+#!/bin/bash
+images=(
+kube-apiserver:v1.20.9
+kube-proxy:v1.20.9
+kube-controller-manager:v1.20.9
+kube-scheduler:v1.20.9
+coredns:1.7.0
+etcd:3.4.13-0
+pause:3.2
+)
+for imageName in ${images[@]} ; do
+docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/$imageName
+done
+EOF
+   
+chmod +x ./images.sh && ./images.sh
+
+
 ```
 
 ---
