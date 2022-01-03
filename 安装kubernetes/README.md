@@ -139,6 +139,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 1. 这里选择 [calico](https://docs.projectcalico.org/getting-started/kubernetes/self-managed-onprem/onpremises#install-calico-with-kubernetes-api-datastore-more-than-50-nodes) 
 2. 只有主节点需要安装网络组件
+2. calico.yaml 实在下载不下来，我这里有一份  [calico.yaml](assets/data/calico.yaml) 
 
 ```bash
 curl https://docs.projectcalico.org/manifests/calico.yaml -O
@@ -195,7 +196,7 @@ Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
 
 ```sh
 # 如有必要,科学上网
-# 实在不行，找到这个文件再上传到主节点
+# 实在不行，找到这个文件再上传到主节点即可
 wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.3.1/aio/deploy/recommended.yaml
 
 kubectl apply -f recommended.yaml
