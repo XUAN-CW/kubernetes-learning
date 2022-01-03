@@ -107,7 +107,7 @@ kubeadm init \
 --pod-network-cidr=192.168.0.0/16
 ```
 
-如果初始化成功，你应该能够看到：
+如果初始化成功，你应该能够看到类似于下面这样的东西：
 
 ```
 ... ...
@@ -119,6 +119,8 @@ To start using your cluster, you need to run the following as a regular user:
   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
   sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ... ...
+kubeadm join cluster-endpoint:6443 --token ob55n2.owwcbxxjdix40zgu \
+    --discovery-token-ca-cert-hash sha256:212a1f282b6ecbc35656702bc6c75c8638c66f6f5823b7bff49448f43b64ea30
 ```
 
 ### 设置.kube/config
@@ -143,6 +145,12 @@ curl https://docs.projectcalico.org/manifests/calico.yaml -O
 kubectl apply -f calico.yaml
 
 ```
+
+## node 加入集群
+
+
+
+
 
 
 
