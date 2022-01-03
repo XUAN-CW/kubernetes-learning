@@ -216,6 +216,12 @@ kubectl edit svc kubernetes-dashboard -n kubernetes-dashboard
 type: ClusterIP 改为 type: NodePort
 ```
 
+## 查看访问端口
+
+```
+kubectl get svc -A |grep kubernetes-dashboard
+```
+
 
 
 # 错误处理
