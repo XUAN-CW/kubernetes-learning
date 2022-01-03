@@ -38,7 +38,7 @@ sudo sysctl --system
 
 ```
 
-## 安装kubelet、kubeadm、kubectl
+## 安装 kubelet、kubeadm、kubectl
 
 ```sh
 # 设置 yum 源
