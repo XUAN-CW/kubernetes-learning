@@ -228,6 +228,8 @@ kubernetes-dashboard   kubernetes-dashboard        NodePort    10.96.186.152   <
 
 ## 访问
 
+https://集群任意IP:端口 ，我这里用主节点 IP `172.31.0.2` ，端口用上面的 `31634` 
+
  https://172.31.0.2:31634 
 
 
