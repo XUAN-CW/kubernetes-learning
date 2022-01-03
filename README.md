@@ -10,16 +10,14 @@ id: 1641199849546655200
 
 # 环境
 
-## VirtualBox 6.1.26 
-
-## Vagrant 2.2.18 
-
 ## CentOS 
 
 ```
 [root@10 ~]# cat /etc/redhat-release
 CentOS Linux release 7.9.2009 (Core)
 ```
+
+VirtualBox 6.1.26 + Vagrant 2.2.18 
 
 ## Docker 
 
