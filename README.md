@@ -13,7 +13,7 @@ id: 1641199849546655200
 - VirtualBox 6.1.26 
 - Vagrant 2.2.18 
 - CentOS Linux release 7.9.2009 (Core) 
-- Docker version 20.10.12, build e91ed57
+- Docker version 20.10.12, build e91ed57 
 
 # 参考
 
