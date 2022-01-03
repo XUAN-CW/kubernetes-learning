@@ -14,6 +14,7 @@ id: 1641199849546655200
 - Vagrant 2.2.18 
 - CentOS Linux release 7.9.2009 (Core) 
 - Docker version 20.10.12, build e91ed57 
+- IP ： 172.31.0.2、172.31.0.3、172.31.0.4 
 
 # 参考
 
