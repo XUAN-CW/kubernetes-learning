@@ -185,7 +185,7 @@ Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
 ```
 
 1. 在主节点执行 `kubectl get nodes` 可以查看集群节点状态
-2. 运行中的应用在 docker 里面叫容器，在k8s里面叫Pod，在主节点中使用 `kubectl get pods -A` 可查看运行中的应用。若所有应用 STATUS 为 Running ，则表示这一步成功。在这一步，我遇到过 [ImagePullBackOff](#ImagePullBackOff) \
+2. 运行中的应用在 docker 里面叫容器，在k8s里面叫Pod，在主节点中使用 `kubectl get pods -A` 可查看运行中的应用。若所有应用 STATUS 为 Running ，则表示这一步成功。在这一步，我遇到过 [ImagePullBackOff](#ImagePullBackOff) 
 
 # 部署 dashboard 
 
