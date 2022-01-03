@@ -35,7 +35,7 @@ hostnamectl set-hostname k8s-node1
 hostnamectl set-hostname k8s-node2
 ```
 
-## docker-ce-20.10.7
+## docker-ce-20.10.7 安装
 
 ```sh
 #################### 安装docker ####################
