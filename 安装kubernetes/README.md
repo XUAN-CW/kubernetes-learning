@@ -175,6 +175,8 @@ This node has joined the cluster:
 * The Kubelet was informed of the new secure connection details.
 
 Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
+
+[root@k8s-node1 ~]# 
 ```
 
 
