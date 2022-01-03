@@ -158,11 +158,9 @@ kubeadm join cluster-endpoint:6443 --token 9kto10.1u0e74ypj3ag4rix     --discove
 [root@k8s-master ~]# 
 ```
 
-从节点加入集群
+### 从节点加入集群
 
-
-
-那么你应该复制这一段（不要复制这篇文章里的，要复制你 Linux 里输出的！），然后在 **所有从节点** 中执行，从节点执行成功后，你可以看到：
+复制主节点中的令牌，然后在所有从节点中执行，从节点执行成功后，你可以看到：
 
 ```
 [root@k8s-node1 ~]# kubeadm join cluster-endpoint:6443 --token 9kto10.1u0e74ypj3ag4rix     --discovery-token-ca-cert-hash sha256:dd4160970cd55d5687d16ee417adad3e697dc189911d3f06a7e4dbf1066934c9 
