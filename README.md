@@ -103,7 +103,7 @@ for imageName in ${images[@]} ; do
 docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/$imageName
 done
 EOF
-   
+
 chmod +x ./images.sh && ./images.sh
 
 #所有机器添加master域名映射，以下需要修改为自己的
