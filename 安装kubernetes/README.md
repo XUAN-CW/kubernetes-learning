@@ -83,7 +83,7 @@ docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/pause:3.2
 
 ### 添加域名映射
 
-1. 主从节点都要添加域名映射
+主从节点都要添加域名映射
 
 ```sh
 # 所有机器添加 master 域名映射，我这里的 master 为 172.31.0.2
