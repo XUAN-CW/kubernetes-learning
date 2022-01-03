@@ -197,7 +197,7 @@ Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
 
 ```sh
 # 如有必要,科学上网
-# 实在不行，找到这个文件再上传到主节点即可
+
 wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.3.1/aio/deploy/recommended.yaml
 
 kubectl apply -f recommended.yaml
