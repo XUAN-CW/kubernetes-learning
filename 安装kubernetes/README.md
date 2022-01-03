@@ -224,7 +224,7 @@ kubernetes-dashboard   dashboard-metrics-scraper   ClusterIP   10.96.193.91    <
 kubernetes-dashboard   kubernetes-dashboard        NodePort    10.96.186.152   <none>        443:31634/TCP            19m
 ```
 
-由此可知，访问端口为 `31634` 
+由此可知，访问端口为 `31634` ，注意。端口每次都不一样，我这里是 `31634` 
 
 ## 访问
 
