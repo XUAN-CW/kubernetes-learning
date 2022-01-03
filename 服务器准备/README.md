@@ -20,6 +20,7 @@ id: 1641215162829355800
 | 内存     | 4G 以上        | 4G 以上        | 4G 以上        |
 | 登录用户 | root           | root           | root           |
 | docker   | Docker 20.10.7 | Docker 20.10.7 | Docker 20.10.7 |
+| CPU      | 至少两个       |                |                |
 
 # 提示
 
