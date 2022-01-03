@@ -19,7 +19,19 @@ id: 1641215162829355800
 | hostname | k8s-master | k8s-node1  | k8s-node2  |
 | 内存     | 4G 以上    | 4G 以上    | 4G 以上    |
 
+# 提示
 
+## hostname 设置方法
+
+```sh
+# hostname set-hostname [想要设置名称]
+#设置 hostname 为 k8s-master
+hostnamectl set-hostname k8s-master
+#设置 hostname 为 k8s-node1
+hostnamectl set-hostname k8s-node1
+#设置 hostname 为 k8s-node2
+hostnamectl set-hostname k8s-node2
+```
 
 
 
