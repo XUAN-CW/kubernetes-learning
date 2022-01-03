@@ -107,13 +107,13 @@ kubeadm init \
 --pod-network-cidr=192.168.0.0/16
 ```
 
+如果初始化成功，你应该能够看到：
 
-
-
-
-
-
-
+```
+... ...
+Your Kubernetes control-plane has initialized successfully!
+... ...
+```
 
 
 
