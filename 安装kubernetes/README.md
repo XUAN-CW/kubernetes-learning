@@ -94,6 +94,8 @@ echo "172.31.0.2  cluster-endpoint" >> /etc/hosts
 
 ### 主节点初始化
 
+只有主节点需要初始化
+
 ```sh
 #主节点初始化,我的 master 节点为 172.31.0.2 
 kubeadm init \
