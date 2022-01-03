@@ -79,9 +79,31 @@ docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/etcd:3.4.13-0
 docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/pause:3.2
 ```
 
+## 初始化主节点
 
+### 添加域名映射
 
+1. 主从节点都要添加域名映射
 
+```sh
+# 所有机器添加 master 域名映射，我这里的 master 为 172.31.0.2
+echo "172.31.0.2  cluster-endpoint" >> /etc/hosts
+```
+
+所有节点都能使用 `ping cluster-endpoint` 命令 PING 通 master 节点为配置成功
+
+### 主节点初始化
+
+```sh
+#主节点初始化
+kubeadm init \
+--apiserver-advertise-address=172.31.0.4 \
+--control-plane-endpoint=cluster-endpoint \
+--image-repository registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images \
+--kubernetes-version v1.20.9 \
+--service-cidr=10.96.0.0/16 \
+--pod-network-cidr=192.168.0.0/16
+```
 
 
 
