@@ -109,14 +109,6 @@ chmod +x ./images.sh && ./images.sh
 #所有机器添加master域名映射，以下需要修改为自己的
 echo "172.31.0.2  cluster-endpoint" >> /etc/hosts
 
-kubeadm init \
---apiserver-advertise-address=172.31.0.2 \
---control-plane-endpoint=cluster-endpoint \
---image-repository registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images \
---kubernetes-version v1.20.9 \
---service-cidr=10.96.0.0/16 \
---pod-network-cidr=192.168.0.0/16
-
 
 ```
 
@@ -134,7 +126,17 @@ hostnamectl set-histname k8s-node1
 hostnamectl set-histname k8s-node2
 ```
 
-# 
+# 主节点
+
+```
+kubeadm init \
+--apiserver-advertise-address=172.31.0.2 \
+--control-plane-endpoint=cluster-endpoint \
+--image-repository registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images \
+--kubernetes-version v1.20.9 \
+--service-cidr=10.96.0.0/16 \
+--pod-network-cidr=192.168.0.0/16
+```
 
 
 
