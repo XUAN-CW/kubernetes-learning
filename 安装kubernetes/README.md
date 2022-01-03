@@ -219,8 +219,28 @@ type: ClusterIP 改为 type: NodePort
 ## 查看访问端口
 
 ```
-kubectl get svc -A |grep kubernetes-dashboard
+[root@k8s-master ~]# kubectl get svc -A |grep kubernetes-dashboard
+kubernetes-dashboard   dashboard-metrics-scraper   ClusterIP   10.96.193.91    <none>        8000/TCP                 19m
+kubernetes-dashboard   kubernetes-dashboard        NodePort    10.96.186.152   <none>        443:31634/TCP            19m
 ```
+
+由此可知，访问端口为 `31634` 
+
+## 访问
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
