@@ -50,11 +50,11 @@ sudo systemctl enable docker
 sudo setenforce 0
 sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
-#关闭swap
+# 关闭swap
 swapoff -a
 sed -ri 's/.*swap.*/#&/' /etc/fstab
 
-#允许 iptables 检查桥接流量
+# 允许 iptables 检查桥接流量
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 br_netfilter
 EOF
