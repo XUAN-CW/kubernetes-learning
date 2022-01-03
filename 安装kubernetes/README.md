@@ -148,11 +148,24 @@ kubectl apply -f calico.yaml
 
 ## node 加入集群
 
+之前初始化成功出现的东西之中有：
 
+```
+kubeadm join cluster-endpoint:6443 --token ob55n2.owwcbxxjdix40zgu \
+    --discovery-token-ca-cert-hash sha256:212a1f282b6ecbc35656702bc6c75c8638c66f6f5823b7bff49448f43b64ea30
+```
 
+那么你应该复制这一段（不要复制这篇文章里的，要复制你 Linux 里输出的！），然后在从节点中执行，从节点执行成功后，你可以看到：
 
+```
+... ...
+This node has joined the cluster:
+* Certificate signing request was sent to apiserver and a response was received.
+* The Kubelet was informed of the new secure connection details.
 
+Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
 
+```
 
 
 
