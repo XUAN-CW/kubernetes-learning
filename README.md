@@ -23,12 +23,8 @@ VirtualBox 6.1.26 + Vagrant 2.2.18
 
 ## Docker 
 
-```
-[root@10 ~]# docker -v
-Docker version 20.10.7
-```
-
 ```sh
+#################### 安装docker ####################
 # 移除之前安装好的 docker
 sudo yum remove docker \
                   docker-client \
@@ -44,19 +40,18 @@ sudo yum-config-manager \
 --add-repo \
 http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 
-#安装指定版本 docker 
-syum install -y docker-ce-20.10.7 docker-ce-cli-20.10.7  containerd.io-1.4.6
-```
-
-# 设置
-
-```sh
+# s安装指定版本 docker 
+sudo yum install -y docker-ce-20.10.7 docker-ce-cli-20.10.7  containerd.io-1.4.6
+# 启动 docker
+sudo systemctl start docker
+sudo systemctl enable docker
+#################### 设置k8s 基础环境 ####################
 # 将 SELinux 设置为 permissive 模式（相当于将其禁用）
 sudo setenforce 0
 sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
 #关闭swap
-swapoff -a  
+swapoff -a
 sed -ri 's/.*swap.*/#&/' /etc/fstab
 
 #允许 iptables 检查桥接流量
@@ -70,7 +65,7 @@ net.bridge.bridge-nf-call-iptables = 1
 EOF
 sudo sysctl --system
 
-
+#################### 安装kubelet、kubeadm、kubectl ####################
 cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
