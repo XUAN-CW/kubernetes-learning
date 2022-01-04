@@ -92,7 +92,7 @@ docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/etcd:3.4.13-0
 docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/pause:3.2
 ```
 
-如果你想知道原来的镜像是什么，你可以运行 `kubeadm config images list` 命令查看：
+如果你想知道原来的镜像是什么，你可以运行 `kubeadm config images list [--kubernetes-version <version>]` 命令查看：
 
 ```
 [root@k8s-master ~]# kubeadm config images list --kubernetes-version v1.20.9
