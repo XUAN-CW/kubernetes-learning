@@ -136,8 +136,6 @@ kubeadm join cluster-endpoint:6443 --token ob55n2.owwcbxxjdix40zgu \
     --discovery-token-ca-cert-hash sha256:212a1f282b6ecbc35656702bc6c75c8638c66f6f5823b7bff49448f43b64ea30
 ```
 
-
-
 ### 设置.kube/config
 
 1. 根据安装成功的提示，我们需要运行下面的命令
