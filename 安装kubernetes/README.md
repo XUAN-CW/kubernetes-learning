@@ -92,7 +92,18 @@ docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/etcd:3.4.13-0
 docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/pause:3.2
 ```
 
-如果你想知道原来的镜像是什么，你可以运行 `kubeadm config images list` 命令查看
+如果你想知道原来的镜像是什么，你可以运行 `kubeadm config images list` 命令查看：
+
+```
+[root@k8s-master ~]# kubeadm config images list --kubernetes-version v1.20.9
+k8s.gcr.io/kube-apiserver:v1.20.9
+k8s.gcr.io/kube-controller-manager:v1.20.9
+k8s.gcr.io/kube-scheduler:v1.20.9
+k8s.gcr.io/kube-proxy:v1.20.9
+k8s.gcr.io/pause:3.2
+k8s.gcr.io/etcd:3.4.13-0
+k8s.gcr.io/coredns:1.7.0
+```
 
 ### 主节点初始化
 
