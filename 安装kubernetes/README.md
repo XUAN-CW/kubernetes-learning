@@ -83,13 +83,13 @@ echo "172.31.0.2  cluster-endpoint" >> /etc/hosts
 2. 主从节点都要安装下面的镜像
 
 ```sh
-docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/kube-apiserver:v1.20.9
-docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/kube-proxy:v1.20.9
-docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/kube-controller-manager:v1.20.9
-docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/kube-scheduler:v1.20.9
-docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/coredns:1.7.0
-docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/etcd:3.4.13-0
-docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/pause:3.2
+docker pull registry.aliyuncs.com/google_containers/kube-apiserver:v1.20.9
+docker pull registry.aliyuncs.com/google_containers/kube-controller-manager:v1.20.9
+docker pull registry.aliyuncs.com/google_containers/kube-scheduler:v1.20.9
+docker pull registry.aliyuncs.com/google_containers/kube-proxy:v1.20.9
+docker pull registry.aliyuncs.com/google_containers/pause:3.2
+docker pull registry.aliyuncs.com/google_containers/etcd:3.4.13-0
+docker pull registry.aliyuncs.com/google_containers/coredns:1.7.0
 ```
 
 如果你想知道原来的镜像是什么，你可以运行 `kubeadm config images list [--kubernetes-version <version>]` 命令查看：
