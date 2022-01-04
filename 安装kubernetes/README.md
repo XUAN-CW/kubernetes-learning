@@ -104,7 +104,7 @@ kubeadm init \
 --image-repository registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images \
 --kubernetes-version v1.20.9 \
 --service-cidr=10.96.0.0/16 \
---pod-network-cidr=192.168.0.0/16 | tee kubeadm-init.txt
+--pod-network-cidr=192.168.0.0/16 
 ```
 
 如果初始化成功，你应该能够看到类似于下面这样的东西：
