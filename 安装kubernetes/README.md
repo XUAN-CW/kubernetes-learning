@@ -64,21 +64,6 @@ sudo systemctl enable --now kubelet
 
 ```
 
-## 安装相关镜像
-
-1. 其实这一步不是必须的，因为后面会自动下载这些镜像，但由于可能出现网络问题，不知道卡在哪里了，所以我们先准备好镜像
-2. 主从节点都要安装下面的镜像
-
-```sh
-docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/kube-apiserver:v1.20.9
-docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/kube-proxy:v1.20.9
-docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/kube-controller-manager:v1.20.9
-docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/kube-scheduler:v1.20.9
-docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/coredns:1.7.0
-docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/etcd:3.4.13-0
-docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/pause:3.2
-```
-
 ## 初始化主节点
 
 ### 添加域名映射
@@ -91,6 +76,23 @@ echo "172.31.0.2  cluster-endpoint" >> /etc/hosts
 ```
 
 所有节点都能使用 `ping cluster-endpoint` 命令 PING 通 master 节点为配置成功
+
+### 安装相关镜像
+
+1. 其实这一步不是必须的，因为后面会自动下载这些镜像，但由于可能出现网络问题，不知道卡在哪里了，所以我们先准备好镜像。这里我们使用阿里云的镜像
+2. 主从节点都要安装下面的镜像
+
+```sh
+docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/kube-apiserver:v1.20.9
+docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/kube-proxy:v1.20.9
+docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/kube-controller-manager:v1.20.9
+docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/kube-scheduler:v1.20.9
+docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/coredns:1.7.0
+docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/etcd:3.4.13-0
+docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/pause:3.2
+```
+
+如果你想知道原来的镜像是什么，你可以运行 `kubeadm config images list` 命令查看
 
 ### 主节点初始化
 
@@ -122,6 +124,8 @@ To start using your cluster, you need to run the following as a regular user:
 kubeadm join cluster-endpoint:6443 --token ob55n2.owwcbxxjdix40zgu \
     --discovery-token-ca-cert-hash sha256:212a1f282b6ecbc35656702bc6c75c8638c66f6f5823b7bff49448f43b64ea30
 ```
+
+
 
 ### 设置.kube/config
 
