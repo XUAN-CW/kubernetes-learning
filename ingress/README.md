@@ -6,6 +6,20 @@ id: 1641283867823595200
 ---
 # 摘要
 
+## 准备镜像
+
+
+
+```
+
+```
+
+
+
+
+
+
+
 1. deploy.yaml 实在下载不下来，我这里有一份 [deploy.yaml](assets\data\deploy.yaml) 
 
 ```sh
