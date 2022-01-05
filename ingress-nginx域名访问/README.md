@@ -26,7 +26,7 @@ kubectl get deployment
 ```
 
 kubectl expose deployment service1 --port=80 --target-port=80 --type=NodePort 
-kubectl expose deployment service2 --port=8080 --target-port=80 --type=NodePort 
+kubectl expose deployment service2 --port=80 --target-port=8080 --type=NodePort 
 
 
 
@@ -36,16 +36,16 @@ kubectl get svc
 
 ### Resource backends
 
- [ingress-resource-backend.yaml](assets/data/ingress-resource-backend.yaml) 
+ [ingress-wildcard-host.yaml](assets/data/ingress-wildcard-host.yaml) 
 
 ```sh
-kubectl apply -f ingress-resource-backend.yaml
+kubectl apply -f ingress-wildcard-host.yaml
 ```
 
 
 
 ```sh
-describe ingress ingress-resource-backend
+describe ingress ingress-wildcard-host.yaml
 ```
 
 
