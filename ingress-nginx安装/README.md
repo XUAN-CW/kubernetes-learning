@@ -1,6 +1,8 @@
 ---
-title: ingress
+title: ingress-nginx安装
 tags: 
+- ingress-nginx
+- 安装
 date: 2022-01-04 16:11:07
 id: 1641283867823595200
 ---
