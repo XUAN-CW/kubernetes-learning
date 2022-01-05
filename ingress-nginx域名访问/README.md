@@ -119,7 +119,7 @@ ingress-nginx-controller                80:32485/TCP,443:31259/TCP
 ingress-nginx-controller-admission      443/TCP
 ```
 
-
+记住 **ingress-nginx-controller** 的 **32485** 
 
 ## 访问
 
