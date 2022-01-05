@@ -10,5 +10,6 @@ id: 1641283867823595200
 
 ```sh
 wget https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.47.0/deploy/static/provider/baremetal/deploy.yaml
+
 ```
 
