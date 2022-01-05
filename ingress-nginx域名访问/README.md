@@ -69,9 +69,11 @@ http://k8s.example.com:32485
 
 
 
+# 参考
 
+ [Ingress _ Kubernetes.html](assets/references/Ingress _ Kubernetes.html) 
 
-
+ [Kubernetes进阶之Ingress.html](assets/references/Kubernetes进阶之Ingress.html) 
 
 
 
