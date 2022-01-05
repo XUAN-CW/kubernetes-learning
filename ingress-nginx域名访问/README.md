@@ -117,11 +117,15 @@ ingress-nginx-controller-admission   ClusterIP   10.96.103.198   <none>        4
 
 ## 访问
 
+### server1
 
+1. http://foo.bar.com:32485/bar 
 
-http://foo.bar.com:32485/bar
+### server2
 
-http://bar.foo.com:32485/foo
+1. http://bar.foo.com:32485/foo 
+2. http://baz.bar.foo.com:32485/foo (nginx 404 Not Found) 
+3. http://foo.com:32485/foo (nginx 404 Not Found) 
 
 
 
