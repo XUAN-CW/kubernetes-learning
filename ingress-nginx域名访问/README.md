@@ -125,11 +125,11 @@ ingress-nginx-controller-admission      443/TCP
 
 ### server1
 
-1. http://foo.bar.com:32485/bar 
+1. http://foo.bar.com:32485/bar (访问成功)
 
 ### server2
 
-1. http://bar.foo.com:32485/foo 
+1. http://bar.foo.com:32485/foo (访问成功)
 2. http://baz.bar.foo.com:32485/foo (nginx 404 Not Found) 
 3. http://foo.com:32485/foo (nginx 404 Not Found) 
 
