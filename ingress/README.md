@@ -30,19 +30,14 @@ k8s.gcr.io/ingress-nginx/controller:v0.46.0@sha256:52f0058bed0a17ab0fb35628ba97e
 docker.io/jettech/kube-webhook-certgen:v1.5.1
 ```
 
-因此，使用 docker pull 拉取镜像：
+如果你要搞到内网上，那你可以参考  [离线部署kubernetes ingress nginx controller.html](assets\references\离线部署kubernetes ingress nginx controller.html) ，如果你有网络那你更换镜像源即可：
 
 ```sh
 # 在 master 节点运行
 
-# k8s.gcr.io 由于墙的原因访问不了，因此使用代替方案
-# 下载镜像
-docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/ingress-nginx-controller:v0.46.0
-# 打标签
-docker tag registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/ingress-nginx-controller:v0.46.0 k8s.gcr.io/ingress-nginx/controller:v0.46.0@sha256:52f0058bed0a17ab0fb35628ba97e8d52b5d32299fbc03cc0f6c7b9ff036b61a
-
-
-docker pull jettech/kube-webhook-certgen:v1.5.1
+# 1. 编辑 deploy.yaml
+vi deploy.yaml
+# 2. 把 k8s.gcr.io/ingress-nginx/controller:v0.46.0@sha256:52f0058bed0a17ab0fb35628ba97e8d52b5d32299fbc03cc0f6c7b9ff036b61a 修改为 registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/ingress-nginx-controller:v0.46.0
 ```
 
 ## 安装
