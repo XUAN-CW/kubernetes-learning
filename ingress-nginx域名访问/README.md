@@ -64,19 +64,40 @@ service2     NodePort    10.96.116.154   <none>        80:31920/TCP   14m
 
 ## Hostname wildcards
 
- [ingress-wildcard-host.yaml](assets/data/ingress-wildcard-host.yaml) 
+###  [ingress-wildcard-host.yaml](assets/data/ingress-wildcard-host.yaml) 
+
+上传  [ingress-wildcard-host.yaml](assets/data/ingress-wildcard-host.yaml) 到主节点
+
+### apply
 
 ```sh
+# 在主节点执行
+
 kubectl apply -f ingress-wildcard-host.yaml
 ```
 
+查看是否完成 "网关" 设置：
 
-
-```sh
-kubectl describe ingress ingress-wildcard-host
 ```
-
-
+[root@k8s-master ~]# kubectl describe ingress ingress-wildcard-host
+Name:             ingress-wildcard-host
+Namespace:        default
+Address:          10.0.2.15
+Default backend:  default-http-backend:80 (<error: endpoints "default-http-backend" not found>)
+Rules:
+  Host         Path  Backends
+  ----         ----  --------
+  foo.bar.com  
+               /bar   service1:80 (192.168.169.138:8080)
+  *.foo.com    
+               /foo   service2:80 (192.168.36.73:8080)
+Annotations:   <none>
+Events:
+  Type    Reason  Age                From                      Message
+  ----    ------  ----               ----                      -------
+  Normal  Sync    15m (x2 over 15m)  nginx-ingress-controller  Scheduled for sync
+[root@k8s-master ~]#
+```
 
 # 测试
 
