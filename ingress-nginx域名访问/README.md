@@ -103,6 +103,13 @@ Events:
 
 ##  [hosts](C:\Windows\System32\drivers\etc\hosts) 
 
+```
+172.31.0.2 foo.bar.com
+172.31.0.2 bar.foo.com
+172.31.0.2 baz.bar.foo.com
+172.31.0.2 foo.com
+```
+
 ## 查看端口
 
 ```
