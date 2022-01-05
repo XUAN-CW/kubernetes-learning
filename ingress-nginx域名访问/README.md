@@ -67,7 +67,7 @@ kubectl get svc -n ingress-nginx
 
 http://foo.bar.com:32485/bar
 
-http://bar.foo.com:32485
+http://bar.foo.com:32485/foo
 
 
 
