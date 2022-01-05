@@ -106,7 +106,11 @@ Events:
 ## 查看端口
 
 ```
-kubectl get svc -n ingress-nginx
+[root@k8s-master ~]# kubectl get svc -n ingress-nginx
+NAME                                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+ingress-nginx-controller             NodePort    10.96.213.191   <none>        80:32485/TCP,443:31259/TCP   13h
+ingress-nginx-controller-admission   ClusterIP   10.96.103.198   <none>        443/TCP                      13h
+[root@k8s-master ~]# 
 ```
 
 
