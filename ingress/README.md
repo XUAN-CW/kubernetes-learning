@@ -43,6 +43,17 @@ docker pull jettech/kube-webhook-certgen:v1.5.1
 
 ## 安装
 
+```sh
+# 在 master 节点运行
+
+kubectl apply -f deploy.yaml
+
+```
+
+
+
+
+
 
 
 
