@@ -14,7 +14,7 @@ id: 1641393112526808400
 
 ```sh
 # 建议先把需要的 tomcat 镜像拉取下来
-kubectl create deployment service1 --image=tomcat8.5.46-jdk8-corretto --port=8080 
+kubectl create deployment service1 --image=tomcat:8.5.46-jdk8-corretto --port=8080 
 kubectl create deployment service2 --image=tomcat:9.0.45-jdk8-corretto --port=8080 
 
 
@@ -65,7 +65,7 @@ kubectl get svc -n ingress-nginx
 
 
 
-http://foo.bar.com:32485 
+http://foo.bar.com:32485/bar
 
 http://bar.foo.com:32485
 
