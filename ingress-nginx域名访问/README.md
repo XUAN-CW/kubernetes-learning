@@ -47,8 +47,8 @@ service2   1/1     1            1           13m
 ```sh
 # 在主节点执行
 
-kubectl expose deployment service1 --port=80 --target-port=8080 --type=NodePort 
-kubectl expose deployment service2 --port=80 --target-port=8080 --type=NodePort 
+kubectl expose deployment service1 --port=80 --target-port=8080
+kubectl expose deployment service2 --port=80 --target-port=8080
 ```
 
 查看是否暴露端口：
