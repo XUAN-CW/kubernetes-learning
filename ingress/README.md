@@ -61,6 +61,8 @@ pod/ingress-nginx-controller-65bf56f7fc-lsc7t   1/1     Running     0          9
 NAME                                         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
 service/ingress-nginx-controller             NodePort    10.96.213.191   <none>        80:32485/TCP,443:31259/TCP   95s
 service/ingress-nginx-controller-admission   ClusterIP   10.96.103.198   <none>        443/TCP                      95s
+[root@k8s-master ~]# 
+
 ```
 
 
