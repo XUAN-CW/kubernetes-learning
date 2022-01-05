@@ -49,9 +49,19 @@ kubectl apply -f deploy.yaml
 
 ```
 
+# 查看
 
+```
+[root@k8s-master ~]# kubectl get pod,svc -n ingress-nginx
+NAME                                            READY   STATUS      RESTARTS   AGE
+pod/ingress-nginx-admission-create-zlrs7        0/1     Completed   0          95s
+pod/ingress-nginx-admission-patch-ffg2z         0/1     Completed   0          95s
+pod/ingress-nginx-controller-65bf56f7fc-lsc7t   1/1     Running     0          95s
 
-
+NAME                                         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+service/ingress-nginx-controller             NodePort    10.96.213.191   <none>        80:32485/TCP,443:31259/TCP   95s
+service/ingress-nginx-controller-admission   ClusterIP   10.96.103.198   <none>        443/TCP                      95s
+```
 
 
 
