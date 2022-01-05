@@ -31,10 +31,9 @@ kubectl expose deployment service2 --port=80 --target-port=8080 --type=NodePort
 
 
 kubectl get svc
-
 ```
 
-### Resource backends
+## Hostname wildcards
 
  [ingress-wildcard-host.yaml](assets/data/ingress-wildcard-host.yaml) 
 
@@ -45,16 +44,14 @@ kubectl apply -f ingress-wildcard-host.yaml
 
 
 ```sh
-describe ingress ingress-wildcard-host.yaml
+kubectl describe ingress ingress-wildcard-host
 ```
 
 
 
 # 测试
 
-## hosts
-
-
+##  [hosts](C:\Windows\System32\drivers\etc\hosts) 
 
 ## 查看端口
 
