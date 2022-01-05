@@ -76,7 +76,7 @@ service2     NodePort    10.96.116.154   <none>        80:31920/TCP   14m
 kubectl apply -f ingress-wildcard-host.yaml
 ```
 
-查看是否完成 "网关" 设置：
+查看是否完成 ingress-wildcard-host 设置：
 
 ```
 [root@k8s-master ~]# kubectl describe ingress ingress-wildcard-host
