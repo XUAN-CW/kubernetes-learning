@@ -12,25 +12,54 @@ id: 1641393112526808400
 
 ## create deployment
 
+### 准备镜像
+
+为了避免出现由于网络原因导致的镜像拉取错误，建议先把需要的 tomcat 镜像拉取下来
+
 ```sh
-# 建议先把需要的 tomcat 镜像拉取下来
+# 在从节点执行
+
+docker pull tomcat:8.5.46-jdk8-corretto
+docker pull tomcat:9.0.45-jdk8-corretto
+```
+
+### deployment
+
+```sh
+# 在主节点执行
+
 kubectl create deployment service1 --image=tomcat:8.5.46-jdk8-corretto --port=8080 
 kubectl create deployment service2 --image=tomcat:9.0.45-jdk8-corretto --port=8080 
 
+```
 
-kubectl get deployment 
+查看是否部署成功：
+
+```
+[root@k8s-master ~]# kubectl get deployment 
+NAME       READY   UP-TO-DATE   AVAILABLE   AGE
+service1   1/1     1            1           6m21s
+service2   1/1     1            1           13m
 ```
 
 ## expose deployment
 
-```
+```sh
+# 在主节点执行
 
 kubectl expose deployment service1 --port=80 --target-port=8080 --type=NodePort 
 kubectl expose deployment service2 --port=80 --target-port=8080 --type=NodePort 
+```
 
+查看是否暴露端口：
 
-
-kubectl get svc
+```
+[root@k8s-master ~]# kubectl get svc
+NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+kubernetes   ClusterIP   10.96.0.1       <none>        443/TCP        47h
+service1     NodePort    10.96.96.245    <none>        80:32626/TCP   14m
+service2     NodePort    10.96.116.154   <none>        80:31920/TCP   14m
+[root@k8s-master ~]# 
 ```
 
 ## Hostname wildcards
