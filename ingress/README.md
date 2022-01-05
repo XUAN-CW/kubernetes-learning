@@ -36,7 +36,11 @@ docker.io/jettech/kube-webhook-certgen:v1.5.1
 # 在 master 节点运行
 
 # k8s.gcr.io 由于墙的原因访问不了，因此使用代替方案
+# 下载镜像
 docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/ingress-nginx-controller:v0.46.0
+# 打标签
+docker tag registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/ingress-nginx-controller:v0.46.0 k8s.gcr.io/ingress-nginx/controller:v0.46.0
+
 
 docker pull jettech/kube-webhook-certgen:v1.5.1
 ```
