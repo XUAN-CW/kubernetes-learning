@@ -39,7 +39,7 @@ docker.io/jettech/kube-webhook-certgen:v1.5.1
 # 下载镜像
 docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/ingress-nginx-controller:v0.46.0
 # 打标签
-docker tag registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/ingress-nginx-controller:v0.46.0 k8s.gcr.io/ingress-nginx/controller:v0.46.0
+docker tag registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/ingress-nginx-controller:v0.46.0 k8s.gcr.io/ingress-nginx/controller:v0.46.0@sha256:52f0058bed0a17ab0fb35628ba97e8d52b5d32299fbc03cc0f6c7b9ff036b61a
 
 
 docker pull jettech/kube-webhook-certgen:v1.5.1
