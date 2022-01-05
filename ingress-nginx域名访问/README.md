@@ -13,9 +13,9 @@ id: 1641393112526808400
 ## create deployment
 
 ```sh
-# 建议先把需要的 nginx、tomcat 镜像拉取下来
-kubectl create deployment service1 --image=tomcat --port=8080 
-kubectl create deployment service2 --image=nginx --port=80 
+# 建议先把需要的 tomcat 镜像拉取下来
+kubectl create deployment service1 --image=tomcat8.5.46-jdk8-corretto --port=8080 
+kubectl create deployment service2 --image=tomcat:9.0.45-jdk8-corretto --port=8080 
 
 
 kubectl get deployment 
@@ -26,7 +26,7 @@ kubectl get deployment
 ```
 
 kubectl expose deployment service1 --port=80 --target-port=8080 --type=NodePort 
-kubectl expose deployment service2 --port=80 --target-port=80 --type=NodePort 
+kubectl expose deployment service2 --port=80 --target-port=8080 --type=NodePort 
 
 
 
