@@ -8,6 +8,10 @@ id: 1641393112526808400
 
 
 
+# 前提
+
+安装好  **ingress-nginx:0.47** 
+
 # 步骤
 
 ## create deployment
