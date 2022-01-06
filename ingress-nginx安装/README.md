@@ -67,17 +67,16 @@ kubectl apply -f deploy.yaml
 # 查看
 
 ```
-[root@k8s-master ~]# kubectl get pod -n ingress-nginx
-NAME                                        READY   STATUS         RESTARTS   AGE
-ingress-nginx-admission-create-59sxq        0/1     Completed      0          63s
-ingress-nginx-admission-patch-bldnf         0/1     Completed      1          63s
-ingress-nginx-controller-6cb6fdd64b-6x757   0/1     ErrImagePull   0          63s
-[root@k8s-master ~]# kubectl get svc -n ingress-nginx
-NAME                                 TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)                      AGE
-ingress-nginx-controller             NodePort    10.96.39.94   <none>        80:31457/TCP,443:32306/TCP   68s
-ingress-nginx-controller-admission   ClusterIP   10.96.208.5   <none>        443/TCP                      68s
-[root@k8s-master ~]# 
-
+[root@k8s-master ~]# kubectl get pod -n ingress-nginx 
+NAME                                        READY   STATUS      RESTARTS   AGE
+ingress-nginx-admission-create-wbrpm        0/1     Completed   0          2m16s
+ingress-nginx-admission-patch-qlqr8         0/1     Completed   0          2m16s
+ingress-nginx-controller-65bf56f7fc-jv7jx   1/1     Running     0          2m16s
+[root@k8s-master ~]# kubectl get svc -n ingress-nginx 
+NAME                                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+ingress-nginx-controller             NodePort    10.96.192.37    <none>        80:30886/TCP,443:31693/TCP   2m25s
+ingress-nginx-controller-admission   ClusterIP   10.96.195.108   <none>        443/TCP                      2m26s
+[root@k8s-master ~]#
 ```
 
 
