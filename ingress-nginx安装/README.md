@@ -49,7 +49,7 @@ vi deploy.yaml
 安装前，建议你先拉取需要的镜像：
 
 ```sh
-# 在从节点运行
+# 从节点运行
 
 docker pull docker.io/jettech/kube-webhook-certgen:v1.5.1
 docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/ingress-nginx-controller:v0.46.0
@@ -67,15 +67,15 @@ kubectl apply -f deploy.yaml
 # 查看
 
 ```
-[root@k8s-master ~]# kubectl get pod,svc -n ingress-nginx
-NAME                                            READY   STATUS      RESTARTS   AGE
-pod/ingress-nginx-admission-create-zlrs7        0/1     Completed   0          95s
-pod/ingress-nginx-admission-patch-ffg2z         0/1     Completed   0          95s
-pod/ingress-nginx-controller-65bf56f7fc-lsc7t   1/1     Running     0          95s
-
-NAME                                         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
-service/ingress-nginx-controller             NodePort    10.96.213.191   <none>        80:32485/TCP,443:31259/TCP   95s
-service/ingress-nginx-controller-admission   ClusterIP   10.96.103.198   <none>        443/TCP                      95s
+[root@k8s-master ~]# kubectl get pod -n ingress-nginx
+NAME                                        READY   STATUS         RESTARTS   AGE
+ingress-nginx-admission-create-59sxq        0/1     Completed      0          63s
+ingress-nginx-admission-patch-bldnf         0/1     Completed      1          63s
+ingress-nginx-controller-6cb6fdd64b-6x757   0/1     ErrImagePull   0          63s
+[root@k8s-master ~]# kubectl get svc -n ingress-nginx
+NAME                                 TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)                      AGE
+ingress-nginx-controller             NodePort    10.96.39.94   <none>        80:31457/TCP,443:32306/TCP   68s
+ingress-nginx-controller-admission   ClusterIP   10.96.208.5   <none>        443/TCP                      68s
 [root@k8s-master ~]# 
 
 ```
