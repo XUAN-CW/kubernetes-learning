@@ -20,7 +20,7 @@ id: 1641393112526808400
 # 在从节点执行
 
 docker pull tomcat:8.5.73-jre8-openjdk-slim-bullseye
-docker pull tomcat:9.0.45-jdk8-corretto
+docker pull tomcat:9.0.56-jre8-openjdk-slim-bullseye
 ```
 
 ### deployment
