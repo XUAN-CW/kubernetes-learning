@@ -34,7 +34,7 @@ docker pull tomcat:9.0.56-jre8-openjdk-slim-bullseye
 
 kubectl create deployment service1 --image=tomcat:8.5.73-jre8-openjdk-slim-bullseye
 
-kubectl create deployment service2 --image=tomcat:9.0.56-jre8-openjdk-slim-bullseye -
+kubectl create deployment service2 --image=tomcat:9.0.56-jre8-openjdk-slim-bullseye
 
 ```
 
@@ -124,7 +124,7 @@ ingress-nginx-controller                80:32485/TCP,443:31259/TCP
 ingress-nginx-controller-admission      443/TCP
 ```
 
-记住 **ingress-nginx-controller** 的 **32485** 
+记住 **ingress-nginx-controller** 对外暴露的端口 **32485** 
 
 ## 访问
 
