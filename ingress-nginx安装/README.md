@@ -32,7 +32,7 @@ k8s.gcr.io/ingress-nginx/controller:v0.46.0@sha256:52f0058bed0a17ab0fb35628ba97e
 docker.io/jettech/kube-webhook-certgen:v1.5.1
 ```
 
-由于 **k8s.gcr.io** 无法访问，所以我们需要更换镜像：
+由于 **k8s.gcr.io** 无法访问，所以我们需要更换镜像源：
 
 ```sh
 # 在 master 节点运行
