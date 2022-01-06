@@ -29,9 +29,8 @@ docker pull tomcat:9.0.56-jre8-openjdk-slim-bullseye
 # 在主节点执行
 
 kubectl create deployment service1 --image=tomcat:8.5.73-jre8-openjdk-slim-bullseye
- --port=8080 
 
-kubectl create deployment service2 --image=tomcat:9.0.56-jre8-openjdk-slim-bullseye --port=8080 
+kubectl create deployment service2 --image=tomcat:9.0.56-jre8-openjdk-slim-bullseye --
 
 ```
 
