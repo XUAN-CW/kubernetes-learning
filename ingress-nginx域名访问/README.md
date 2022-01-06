@@ -19,7 +19,7 @@ id: 1641393112526808400
 ```sh
 # 在从节点执行
 
-docker pull 8.5.73-jre8-openjdk-slim-bullseye
+docker pull tomcat:8.5.73-jre8-openjdk-slim-bullseye
 docker pull tomcat:9.0.45-jdk8-corretto
 ```
 
