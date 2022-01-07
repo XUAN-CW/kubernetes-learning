@@ -8,7 +8,67 @@ id: 1641218567019044600
 
 安装 kubernetes:v1.20.9
 
-# 安装步骤
+
+
+# 服务器准备
+
+准备三台 **centOS 7.9** 服务器
+
+## 服务器要求
+
+对于一个初学者来说，一定不要自作聪明，下面的配置一个都不能错！（高手当我放屁）
+
+|          | k8s-master     | k8s-node1      | k8s-node2      |
+| -------- | -------------- | -------------- | -------------- |
+| 系统     | CentOS 7.9     | CentOS 7.9     | CentOS 7.9     |
+| IP       | 172.31.0.2     | 172.31.0.3     | 172.31.0.4     |
+| hostname | k8s-master     | k8s-node1      | k8s-node2      |
+| 内存     | 4G 以上        | 4G 以上        | 4G 以上        |
+| 登录用户 | root           | root           | root           |
+| docker   | Docker 20.10.7 | Docker 20.10.7 | Docker 20.10.7 |
+| CPU      | 至少两个       | 至少两个       | 至少两个       |
+
+## 提示
+
+### hostname 设置方法
+
+```sh
+# hostname set-hostname [想要设置名称]
+#设置 hostname 为 k8s-master
+hostnamectl set-hostname k8s-master
+#设置 hostname 为 k8s-node1
+hostnamectl set-hostname k8s-node1
+#设置 hostname 为 k8s-node2
+hostnamectl set-hostname k8s-node2
+```
+
+### docker-ce-20.10.7 安装
+
+```sh
+#################### 安装docker ####################
+# 移除之前安装好的 docker
+sudo yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine
+# 配置 yum 源
+sudo yum install -y yum-utils
+sudo yum-config-manager \
+--add-repo \
+http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+
+# s安装指定版本 docker 
+sudo yum install -y docker-ce-20.10.7 docker-ce-cli-20.10.7  containerd.io-1.4.6
+# 启动 docker
+sudo systemctl start docker
+sudo systemctl enable docker
+```
+
+# 正式安装
 
 ## 环境准备
 
@@ -200,102 +260,7 @@ Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
 1. 在主节点执行 `kubectl get nodes` 可以查看集群节点状态
 2. 运行中的应用在 docker 里面叫容器，在k8s里面叫Pod，在主节点中使用 `kubectl get pods -A` 可查看运行中的应用。若所有应用 STATUS 为 Running ，则表示这一步成功。在这一步，我遇到过 [ImagePullBackOff](#ImagePullBackOff) 
 
-# 部署 dashboard 
 
-## 安装
-
-1. kubernetes 官方提供的可视化界面，https://github.com/kubernetes/dashboard 
-2. recommended.yaml 实在下载不下来，我这里有一份  [recommended.yaml](assets/data/recommended.yaml) 
-3. 在主节点部署 dashboard 
-
-```sh
-# 如有必要,科学上网
-wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.3.1/aio/deploy/recommended.yaml
-
-kubectl apply -f recommended.yaml
-```
-
-## 设置访问端口
-
-在主节点中运行：
-
-```sh
-kubectl edit svc kubernetes-dashboard -n kubernetes-dashboard
-```
-
-然后在出现的文本中做出如下修改
-
-```
-type: ClusterIP 改为 type: NodePort
-```
-
-## 查看访问端口
-
-```
-[root@k8s-master ~]# kubectl get svc -A |grep kubernetes-dashboard
-kubernetes-dashboard   dashboard-metrics-scraper   ClusterIP   10.96.193.91    <none>        8000/TCP                 19m
-kubernetes-dashboard   kubernetes-dashboard        NodePort    10.96.186.152   <none>        443:31634/TCP            19m
-```
-
-由此可知，访问端口为 `31634` ，注意。端口每次都不一样，我这里是 `31634` 
-
-## 访问
-
-1.  https://集群任意IP:端口 。我这里用主节点 IP `172.31.0.2` ，端口用上面的 `31634` ，则有  https://172.31.0.2:31634 
-2. 面临潜在的安全风险。不理他，直接继续就好
-3. 看到下图，表示到目前为止是成功的
-
-![image-20220104014153882](assets/images/image-20220104014153882.png)
-
-## 创建访问账号
-
-### dash.yaml
-
-主节点中创建 dash.yaml ：
-
-```yaml
-# 创建访问账号，准备一个yaml文件； vi dash.yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: admin-user
-  namespace: kubernetes-dashboard
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: admin-user
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: cluster-admin
-subjects:
-- kind: ServiceAccount
-  name: admin-user
-  namespace: kubernetes-dashboard
-```
-
-### kubectl apply
-
-主节点中 kubectl apply 
-
-```
-kubectl apply -f dash.yaml
-```
-
-## 登录
-
-### 获取访问令牌
-
-主节点中获取访问令牌
-
-```sh
-kubectl -n kubernetes-dashboard get secret $(kubectl -n kubernetes-dashboard get sa/admin-user -o jsonpath="{.secrets[0].name}") -o go-template="{{.data.token | base64decode}}"
-```
-
-### token 登录
-
-输入 token 后登录即可
 
 # 错误处理
 
