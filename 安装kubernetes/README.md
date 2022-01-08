@@ -25,7 +25,6 @@ id: 1641218567019044600
 | hostname | k8s-master | k8s-node1  | k8s-node2  |
 | 内存     | 4G 以上    | 4G 以上    | 4G 以上    |
 | 登录用户 | root       | root       | root       |
-|          |            |            |            |
 | CPU      | 至少两个   | 至少两个   | 至少两个   |
 
 ## 提示
@@ -241,17 +240,7 @@ docker pull registry.aliyuncs.com/google_containers/kube-proxy:v1.20.9
 docker pull registry.aliyuncs.com/google_containers/pause:3.2
 ```
 
-
-
-
-
-
-
-
-
-
-
-## node 加入集群
+## 从节点加入集群
 
 ### 创建令牌
 
