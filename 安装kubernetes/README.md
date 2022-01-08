@@ -221,7 +221,7 @@ kubectl apply -f calico.yaml
 
 ### 初始化
 
-参考主节点：
+跟主节点一模一样：
 
 1. [docker-ce-20.10.7 安装](#docker-ce-20.10.7 安装) 
 2. [环境准备](#环境准备) 
