@@ -19,6 +19,11 @@ kubernetes 官方提供的可视化界面，https://github.com/kubernetes/dashbo
 # 如有必要,科学上网
 wget https://raw.githubusercontent.com/kubernetes/dashboard/v2.3.1/aio/deploy/recommended.yaml
 
+```
+
+## apply
+
+```sh
 kubectl apply -f recommended.yaml
 ```
 
