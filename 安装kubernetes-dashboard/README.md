@@ -1,6 +1,9 @@
 ---
 title: 安装kubernetes-dashboard
 tags: 
+- kubernetes
+- dashboard
+- 安装
 date: 2022-01-07 20:25:14
 id: 1641558314499927500
 ---
