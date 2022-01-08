@@ -293,7 +293,7 @@ Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
 
 
 
-# 错误处理
+# error
 
 ## ImagePullBackOff
 
