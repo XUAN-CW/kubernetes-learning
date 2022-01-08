@@ -6,15 +6,14 @@ id: 1641558314499927500
 ---
 # 摘要
 
-
+kubernetes 官方提供的可视化界面，https://github.com/kubernetes/dashboard 
 
 # 部署 dashboard 
 
 ## 下载  [recommended.yaml](assets/data/recommended.yaml) 
 
-1. kubernetes 官方提供的可视化界面，https://github.com/kubernetes/dashboard 
-2. recommended.yaml 实在下载不下来，我这里有一份  [recommended.yaml](assets/data/recommended.yaml) 
-3. 在主节点部署 dashboard 
+1. recommended.yaml 实在下载不下来，我这里有一份  [recommended.yaml](assets/data/recommended.yaml) 
+2. 在主节点部署 dashboard 
 
 ```sh
 # 如有必要,科学上网
