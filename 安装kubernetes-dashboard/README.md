@@ -35,11 +35,7 @@ kubectl apply -f recommended.yaml
 kubectl edit svc kubernetes-dashboard -n kubernetes-dashboard
 ```
 
-然后在出现的文本中做出如下修改
-
-```
-type: ClusterIP 改为 type: NodePort
-```
+然后在出现的文本中，`type: ClusterIP`  改为 `type: NodePort` 
 
 ## 查看访问端口
 
