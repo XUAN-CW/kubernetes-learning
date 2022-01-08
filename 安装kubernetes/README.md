@@ -18,15 +18,15 @@ id: 1641218567019044600
 
 对于一个初学者来说，一定不要自作聪明，下面的配置一个都不能错！（高手当我放屁）
 
-|          | k8s-master     | k8s-node1      | k8s-node2      |
-| -------- | -------------- | -------------- | -------------- |
-| 系统     | CentOS 7.9     | CentOS 7.9     | CentOS 7.9     |
-| IP       | 172.31.0.2     | 172.31.0.3     | 172.31.0.4     |
-| hostname | k8s-master     | k8s-node1      | k8s-node2      |
-| 内存     | 4G 以上        | 4G 以上        | 4G 以上        |
-| 登录用户 | root           | root           | root           |
-| docker   | Docker 20.10.7 | Docker 20.10.7 | Docker 20.10.7 |
-| CPU      | 至少两个       | 至少两个       | 至少两个       |
+|          | k8s-master | k8s-node1  | k8s-node2  |
+| -------- | ---------- | ---------- | ---------- |
+| 系统     | CentOS 7.9 | CentOS 7.9 | CentOS 7.9 |
+| IP       | 172.31.0.2 | 172.31.0.3 | 172.31.0.4 |
+| hostname | k8s-master | k8s-node1  | k8s-node2  |
+| 内存     | 4G 以上    | 4G 以上    | 4G 以上    |
+| 登录用户 | root       | root       | root       |
+|          |            |            |            |
+| CPU      | 至少两个   | 至少两个   | 至少两个   |
 
 ## 提示
 
@@ -41,6 +41,12 @@ hostnamectl set-hostname k8s-node1
 #设置 hostname 为 k8s-node2
 hostnamectl set-hostname k8s-node2
 ```
+
+
+
+# kubeadm 式安装
+
+## 主节点
 
 ### docker-ce-20.10.7 安装
 
@@ -61,19 +67,17 @@ sudo yum-config-manager \
 --add-repo \
 http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 
-# s安装指定版本 docker 
+# 安装指定版本 docker 
 sudo yum install -y docker-ce-20.10.7 docker-ce-cli-20.10.7  containerd.io-1.4.6
 # 启动 docker
 sudo systemctl start docker
 sudo systemctl enable docker
+
 ```
 
-# kubeadm 式安装
-
-## 环境准备
+### 环境准备
 
 1. 安装 kubernetes 需要进行以下设置，我也不知道为什么，官网就是这么说的，跟着做吧
-2. 主从节点都要进行下面的设置
 
 ```sh
 # 将 SELinux 设置为 permissive 模式（相当于将其禁用）
@@ -98,9 +102,7 @@ sudo sysctl --system
 
 ```
 
-## 安装 kubelet、kubeadm、kubectl 
-
-主从节点都要安装 kubelet、kubeadm、kubectl 
+### 安装 kubelet、kubeadm、kubectl 
 
 ```sh
 # 设置 yum 源
@@ -124,23 +126,19 @@ sudo systemctl enable --now kubelet
 
 ```
 
-## 初始化主节点
-
 ### 添加域名映射
 
-主从节点都要添加域名映射
+节点都使用 `ping cluster-endpoint` 命令 PING 通 master 节点为配置成功
 
 ```sh
-# 所有机器添加 master 域名映射，我这里的 master 为 172.31.0.2
+# 添加 master 域名映射，我这里的 master 为 172.31.0.2
 echo "172.31.0.2  cluster-endpoint" >> /etc/hosts
 ```
 
-所有节点都能使用 `ping cluster-endpoint` 命令 PING 通 master 节点为配置成功
-
 ### 安装相关镜像
 
-1. 其实这一步不是必须的，因为后面会自动下载这些镜像，但由于可能出现网络问题，不知道卡在哪里了，所以我们先准备好镜像。这里我们使用阿里云的镜像
-2. 主从节点都要安装下面的镜像
+1. 这一步在国外不是必须的，因为后面会自动下载这些镜像
+2. 这里我们使用阿里云的镜像来代替原来的镜像
 
 ```sh
 docker pull registry.aliyuncs.com/google_containers/kube-apiserver:v1.20.9
@@ -220,6 +218,38 @@ curl https://docs.projectcalico.org/manifests/calico.yaml -O
 kubectl apply -f calico.yaml
 
 ```
+
+## 从节点
+
+### 初始化
+
+参考主节点：
+
+1. [docker-ce-20.10.7 安装](#docker-ce-20.10.7 安装) 
+2. [环境准备](#环境准备) 
+3. [安装 kubelet、kubeadm、kubectl](安装 kubelet、kubeadm、kubectl) 
+4. [添加域名映射](#添加域名映射) 
+
+### 安装相关镜像
+
+1. 这一步在国外不是必须的，因为后面会自动下载这些镜像
+2. 这里我们使用阿里云的镜像来代替原来的镜像
+
+```
+docker pull calico/node:v3.21.2
+docker pull registry.aliyuncs.com/google_containers/kube-proxy:v1.20.9
+docker pull registry.aliyuncs.com/google_containers/pause:3.2
+```
+
+
+
+
+
+
+
+
+
+
 
 ## node 加入集群
 
