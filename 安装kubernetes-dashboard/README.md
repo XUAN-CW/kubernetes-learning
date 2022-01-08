@@ -58,19 +58,22 @@ spec:
 ... ...
 ```
 
+# 访问
+
 ## 查看访问端口
 
 ```
 [root@k8s-master ~]# kubectl get svc -A |grep kubernetes-dashboard
-kubernetes-dashboard   dashboard-metrics-scraper   ClusterIP   10.96.193.91    <none>        8000/TCP                 19m
-kubernetes-dashboard   kubernetes-dashboard        NodePort    10.96.186.152   <none>        443:31634/TCP            19m
+kubernetes-dashboard   dashboard-metrics-scraper   ClusterIP   10.96.36.254    <none>        8000/TCP                 10m
+kubernetes-dashboard   kubernetes-dashboard        NodePort    10.96.129.202   <none>        443:30001/TCP            10m
+[root@k8s-master ~]#
 ```
 
-由此可知，访问端口为 `31634` ，注意。端口每次都不一样，我这里是 `31634` 
+由此可知，访问端口为 `30001` 
 
-# 访问
+## 初次访问
 
-1.  https://集群任意IP:端口 。我这里用主节点 IP `172.31.0.2` ，端口用上面的 `31634` ，则有  https://172.31.0.2:31634 
+1.  https://集群任意IP:nortPort 。我这里用主节点 IP `172.31.0.2` ，端口用上面的 `31634` ，则有  https://172.31.0.2:31634 
 2.  面临潜在的安全风险。不理他，直接继续就好
 3.  看到下图，表示到目前为止是成功的
 
