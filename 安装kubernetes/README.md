@@ -25,7 +25,7 @@ id: 1641218567019044600
 | hostname | k8s-master | k8s-node1  | k8s-node2  |
 | 内存     | 4G 以上    | 4G 以上    | 4G 以上    |
 | 登录用户 | root       | root       | root       |
-| CPU      | 至少两个   | 至少两个   | 至少两个   |
+| CPU      | 至少两个   | 至少一个   | 至少一个   |
 
 ## 提示
 
