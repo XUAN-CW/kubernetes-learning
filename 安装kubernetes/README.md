@@ -153,7 +153,7 @@ docker pull registry.aliyuncs.com/google_containers/coredns:1.7.0
 如果你有离线 docker 镜像，你也可以使用下面的命令把镜像批量加载进来：
 
 ```sh
-ls *docker_image* |sed -r 's#(.*)#docker load -i \1#' |bash
+ls *docker_image* |sed -r 's#(.*)#docker load -i \1#' | bash
 ```
 
 如果你想知道原来的镜像是什么，你可以运行 `kubeadm config images list [--kubernetes-version <version>]` 命令查看：
