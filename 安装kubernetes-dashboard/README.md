@@ -107,7 +107,7 @@ subjects:
   namespace: kubernetes-dashboard
 ```
 
-### kubectl apply
+### apply
 
 主节点中 kubectl apply 
 
