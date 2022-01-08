@@ -50,7 +50,6 @@ hostnamectl set-hostname k8s-node2
 ### docker-ce-20.10.7 安装
 
 ```sh
-#################### 安装docker ####################
 # 移除之前安装好的 docker
 sudo yum remove docker \
                   docker-client \
