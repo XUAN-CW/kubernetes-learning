@@ -22,10 +22,10 @@ id: 1641218567019044600
 | -------- | ---------- | ---------- | ---------- |
 | 系统     | CentOS 7.9 | CentOS 7.9 | CentOS 7.9 |
 | IP       | 172.31.0.2 | 172.31.0.3 | 172.31.0.4 |
-| hostname | k8s-master | k8s-node1  | k8s-node2  |
 | 内存     | 4G 以上    | 4G 以上    | 4G 以上    |
 | 登录用户 | root       | root       | root       |
 | CPU      | 至少两个   | 至少一个   | 至少一个   |
+| hostname | k8s-master | k8s-node1  | k8s-node2  |
 
 ## 提示
 
