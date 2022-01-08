@@ -44,7 +44,7 @@ vi deploy.yaml
 
 如果你要搞到内网上，那你可以参考  [离线部署kubernetes ingress nginx controller.html](assets\references\离线部署kubernetes ingress nginx controller.html) 
 
-## 安装
+## 准备镜像
 
 安装前，建议你先拉取需要的镜像：
 
@@ -54,6 +54,8 @@ vi deploy.yaml
 docker pull docker.io/jettech/kube-webhook-certgen:v1.5.1
 docker pull registry.cn-hangzhou.aliyuncs.com/lfy_k8s_images/ingress-nginx-controller:v0.46.0
 ```
+
+## apply
 
 拉取完毕后再运行：
 
