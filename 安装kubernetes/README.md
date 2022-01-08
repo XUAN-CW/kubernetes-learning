@@ -303,7 +303,9 @@ Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
 
 ### 解决方案
 
-你可以用 `kubectl get pods -A -o wide` 来看看是哪台机器哪个镜像拉取失败，然后自行 docker pull 缺失的 image 可以了。
+1. 主节点执行 `kubectl get pods -A -o wide` ，查看是哪台机器哪个 pod 拉取失败
+2. 主节点 [describe](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#describe) 拉取失败的 pod ，查看是哪个 image 缺失
+3. 自行 docker pull 缺失的 image 
 
 当时我是有一台服务器成功拉取下来了，然后我 docker save 了镜像，再上传到拉取失败的服务器上
 
