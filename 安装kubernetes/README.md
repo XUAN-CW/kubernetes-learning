@@ -243,7 +243,7 @@ kubectl apply -f calico.yaml
 2. 这里我们使用阿里云的镜像来代替原来的镜像
 
 ```sh
-# 再从节点安装镜像
+# 在从节点安装镜像
 docker pull calico/node:v3.21.2
 docker pull registry.aliyuncs.com/google_containers/kube-proxy:v1.20.9
 docker pull registry.aliyuncs.com/google_containers/pause:3.2
