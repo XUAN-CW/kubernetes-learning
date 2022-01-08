@@ -35,7 +35,28 @@ kubectl apply -f recommended.yaml
 kubectl edit svc kubernetes-dashboard -n kubernetes-dashboard
 ```
 
-然后在出现的文本中，`type: ClusterIP`  改为 `type: NodePort` 
+修改：
+
+1.  `type: ClusterIP`  改为 `type: NodePort` 。`ClusterIP` 表示只能在集群内访问到，现在我想让它能通过节点 IP 访问
+2. 添加 `nodePort: 30001` 。如果你不指定 `nodePort` ，那它就会随机生成
+
+```yaml
+... ...
+spec:
+  clusterIP: 10.96.129.202
+  clusterIPs:
+  - 10.96.129.202
+  ports:
+  - port: 443
+    protocol: TCP
+    targetPort: 8443
+    nodePort: 30001
+  selector:
+    k8s-app: kubernetes-dashboard
+  sessionAffinity: None
+  type: NodePort
+... ...
+```
 
 ## 查看访问端口
 
