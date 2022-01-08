@@ -133,6 +133,7 @@ sudo systemctl enable --now kubelet
 ```sh
 # 添加 master 域名映射，我这里的 master 为 172.31.0.2
 echo "172.31.0.2  cluster-endpoint" >> /etc/hosts
+
 ```
 
 ### 安装相关镜像
