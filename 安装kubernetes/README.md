@@ -248,6 +248,7 @@ kubectl apply -f calico.yaml
 docker pull calico/node:v3.21.2
 docker pull registry.aliyuncs.com/google_containers/kube-proxy:v1.20.9
 docker pull registry.aliyuncs.com/google_containers/pause:3.2
+docker pull calico/pod2daemon-flexvol:v3.21.2
 ```
 
 ## 从节点加入集群
