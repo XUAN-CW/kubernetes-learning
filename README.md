@@ -6,7 +6,10 @@ id: 1641199849546655200
 ---
 # 概述
 
-
+1. [安装kubernetes ](安装kubernetes) 
+2. [安装kubernetes-dashboard](安装kubernetes-dashboard) 
+3. [ingress-nginx安装](ingress-nginx安装) 
+4. [ingress-nginx域名访问](ingress-nginx域名访问) 
 
 # 命令
 
