@@ -68,7 +68,7 @@ sudo systemctl start docker
 sudo systemctl enable docker
 ```
 
-# 正式安装
+# kubeadm 式安装
 
 ## 环境准备
 
