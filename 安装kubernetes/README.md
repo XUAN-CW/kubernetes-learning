@@ -116,8 +116,11 @@ gpgkey=http://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg
 exclude=kubelet kubeadm kubectl
 EOF
 
-# 安装
-sudo yum install -y kubelet-1.20.9 kubeadm-1.20.9 kubectl-1.20.9 --disableexcludes=kubernetes
+# 安装 kubelet、kubeadm、kubectl,这里我们先下载离线 rpm ,然后再安装
+sudo yum install -y kubelet-1.20.9 kubeadm-1.20.9 kubectl-1.20.9 --disableexcludes=kubernetes --downloadonly --downloaddir=/rpm/kubelet-kubeadm-kubectl
+cd /rpm/kubelet-kubeadm-kubectl
+rpm -ivh *.rpm
+
 
 # 启动
 sudo systemctl enable --now kubelet
