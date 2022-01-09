@@ -41,8 +41,6 @@ hostnamectl set-hostname k8s-node1
 hostnamectl set-hostname k8s-node2
 ```
 
-
-
 # kubeadm 式安装
 
 ## 主节点
