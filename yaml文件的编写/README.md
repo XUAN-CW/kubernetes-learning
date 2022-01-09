@@ -8,9 +8,9 @@ id: 1641709280025393800
 ---
 # 摘要
 
-介绍两种 yaml 文件的编写方法
+介绍两种 yaml 文件模板的获取方法
 
-1. kubectl create
+1. kubectl create 
 2. kubectl get
 
 # 环境
@@ -18,6 +18,8 @@ id: 1641709280025393800
 -  kubernetes:v1.20.9 
 
 # 实践
+
+
 
 原来的命令：
 
