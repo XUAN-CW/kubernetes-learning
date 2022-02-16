@@ -153,7 +153,7 @@ spec.common.openldap.enabled: true
 spec.alerting.enabled: true
 spec.auditing.enabled: true
 spec.devops.enabled: true
-spec.events.enabled: false
+spec.events.enabled: true
 spec.logging.enabled: true
 spec.network.networkpolicy.enabled: true
 spec.network.ippool.type: calico
@@ -161,7 +161,7 @@ spec.openpitrix.store.enabled: true
 spec.servicemesh.enabled: true
 ```
 
-
+修改完毕后： [cluster-configuration-modified.yaml](assets\data\cluster-configuration-modified.yaml) 
 
 
 
