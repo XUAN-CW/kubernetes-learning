@@ -33,6 +33,8 @@ kubernetes:v1.20.9
 
 ## nfs文件系统
 
+### 安装nfs-server
+
 ```sh
 # 在每个机器
 yum install -y nfs-utils
@@ -61,7 +63,7 @@ exportfs -r
 exportfs
 ```
 
-## 配置nfs-client
+### 配置nfs-client
 
 ```sh
 # 在从节点执行
@@ -72,6 +74,24 @@ mkdir -p /nfs/data
 
 mount -t nfs 172.31.0.4:/nfs/data /nfs/data
 ```
+
+### 配置默认存储
+
+ [sc.yaml](assets\data\sc.yaml) 需要修改两个地方，其他不用修改：
+
+```yaml
+# 1. 指定自己nfs服务器地址
+spec.template.spec.containers[0].env[1].value: 172.31.0.4
+
+# 2. 指定自己nfs服务器地址
+spec.template.spec.volumes[0].nfs.server: 172.31.0.4
+```
+
+
+
+
+
+
 
 
 
