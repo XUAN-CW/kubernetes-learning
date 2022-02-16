@@ -179,11 +179,15 @@ kubectl -n kubesphere-monitoring-system create secret generic kube-etcd-client-c
 
 ### 访问
 
- http://集群任意IP:30880 
+ **http://集群任意IP:30880** ，比如 http://172.31.0.2:30880 
 
+### 重新设置密码
 
+如果你忘记密码，可以在主节点执行以下命令重新设置密码：
 
-
+```sh
+kubectl patch users <username> -p '{"spec":{"password":"<password>"}}' --type='merge' && kubectl annotate users <username> iam.kubesphere.io/password-encrypted-
+```
 
 
 
