@@ -84,10 +84,14 @@ mount -t nfs 172.31.0.2:/nfs/data /nfs/data
 spec.template.spec.containers[0].env[1].value: 172.31.0.2
 
 # 2. 指定自己nfs服务器地址
-spec.template.spec.volumes[0].nfs.server: 172.31.0.4
+spec.template.spec.volumes[0].nfs.server: 172.31.0.2
 ```
 
+然后 apply ： 
 
+```sh
+kubectl apply -f sc.yaml
+```
 
 
 
