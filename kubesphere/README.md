@@ -163,6 +163,27 @@ spec.servicemesh.enabled: true
 
 修改完毕后： [cluster-configuration-modified.yaml](assets\data\cluster-configuration-modified.yaml) 
 
+### apply
+
+```sh
+kubectl apply -f kubesphere-installer.yaml
+kubectl apply -f cluster-configuration.yaml
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
