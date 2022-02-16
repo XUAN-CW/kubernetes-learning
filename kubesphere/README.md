@@ -93,9 +93,28 @@ spec.template.spec.volumes[0].nfs.server: 172.31.0.2
 kubectl apply -f sc.yaml
 ```
 
+### 测试
 
+新创建 pvc.yaml 文件：
 
+```yaml
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nginx-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 200Mi
+```
 
+然后：
+
+```yaml
+kubectl apply -f pvc.yaml
+```
 
 
 
