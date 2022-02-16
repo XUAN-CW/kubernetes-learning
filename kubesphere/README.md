@@ -170,7 +170,16 @@ kubectl apply -f kubesphere-installer.yaml
 kubectl apply -f cluster-configuration.yaml
 ```
 
+### 解决etcd监控证书找不到问题
 
+```sh
+# 主节点运行
+kubectl -n kubesphere-monitoring-system create secret generic kube-etcd-client-certs  --from-file=etcd-client-ca.crt=/etc/kubernetes/pki/etcd/ca.crt  --from-file=etcd-client.crt=/etc/kubernetes/pki/apiserver-etcd-client.crt  --from-file=etcd-client.key=/etc/kubernetes/pki/apiserver-etcd-client.key
+```
+
+### 访问
+
+ http://集群任意IP:30880 
 
 
 
