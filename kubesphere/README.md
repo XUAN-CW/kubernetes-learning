@@ -122,6 +122,18 @@ kubectl apply -f pvc.yaml
 kubectl get pvc
 ```
 
+## metrics-server
+
+安装集群指标监控组件 [metrics-server.yaml](assets\data\metrics-server.yaml) ：
+
+```sh
+kubectl apply -f metrics-server.yaml
+```
+
+
+
+
+
 
 
 
