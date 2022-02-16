@@ -149,6 +149,10 @@ wget https://github.com/kubesphere/ks-installer/releases/download/v3.1.1/cluster
 spec.etcd.monitoring=true
 # 我的 master 节点为 172.31.0.2 
 spec.etcd.endpointIps=172.31.0.2
+# redis
+spec.common.redis.enabled=true
+# openldap
+spec.common.openldap.enabled=true
 ```
 
 
