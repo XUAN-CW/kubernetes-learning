@@ -112,7 +112,7 @@ spec:
 
 然后：
 
-```yaml
+```sh
 kubectl apply -f pvc.yaml
 ```
 
