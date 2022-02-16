@@ -67,12 +67,12 @@ exportfs
 
 ```sh
 # 在从节点执行
-# 我的主节点是 172.31.0.4 
-showmount -e 172.31.0.4
+# 我的主节点是 172.31.0.2
+showmount -e 172.31.0.2 
 
 mkdir -p /nfs/data
 
-mount -t nfs 172.31.0.4:/nfs/data /nfs/data
+mount -t nfs 172.31.0.2:/nfs/data /nfs/data
 ```
 
 ### 配置默认存储
@@ -81,7 +81,7 @@ mount -t nfs 172.31.0.4:/nfs/data /nfs/data
 
 ```yaml
 # 1. 指定自己nfs服务器地址
-spec.template.spec.containers[0].env[1].value: 172.31.0.4
+spec.template.spec.containers[0].env[1].value: 172.31.0.2
 
 # 2. 指定自己nfs服务器地址
 spec.template.spec.volumes[0].nfs.server: 172.31.0.4
