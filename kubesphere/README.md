@@ -93,9 +93,9 @@ spec.template.spec.volumes[0].nfs.server: 172.31.0.2
 kubectl apply -f sc.yaml
 ```
 
-### 测试
+### 测试(选做)
 
-新创建 pvc.yaml 文件：
+1. 新创建 pvc.yaml 文件：
 
 ```yaml
 kind: PersistentVolumeClaim
@@ -110,13 +110,17 @@ spec:
       storage: 200Mi
 ```
 
-然后：
+2. 然后 apply：
 
 ```sh
 kubectl apply -f pvc.yaml
 ```
 
+3. 最后查看 pvc ：
 
+```sh
+kubectl get pvc
+```
 
 
 
