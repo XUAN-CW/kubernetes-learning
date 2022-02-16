@@ -132,6 +132,8 @@ kubectl apply -f metrics-server.yaml
 
 ## 部署 KubeSphere
 
+### 下载
+
 参考 [在 Kubernetes 上最小化安装 KubeSphere](https://kubesphere.io/zh/docs/quick-start/minimal-kubesphere-on-k8s/) ，可以知道安装 KubeSphere 需要 [kubesphere-installer.yaml](assets\data\kubesphere-installer.yaml) 、 [cluster-configuration.yaml](assets\data\cluster-configuration.yaml) 两个文件，我们先把它们下载下来：
 
 ```sh
@@ -140,7 +142,7 @@ wget https://github.com/kubesphere/ks-installer/releases/download/v3.1.1/kubesph
 wget https://github.com/kubesphere/ks-installer/releases/download/v3.1.1/cluster-configuration.yaml
 ```
 
-
+### 修改
 
 
 
