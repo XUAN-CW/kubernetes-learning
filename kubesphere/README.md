@@ -77,7 +77,7 @@ mount -t nfs 172.31.0.2:/nfs/data /nfs/data
 
 ### 配置默认存储
 
- [sc.yaml](assets\data\sc.yaml) 需要修改两个地方，其他不用修改：
+主节点中 apply [sc.yaml](assets\data\sc.yaml) ，需要修改两个地方，其他不用修改：
 
 ```yaml
 # 1. 指定自己nfs服务器地址
@@ -142,7 +142,7 @@ wget https://github.com/kubesphere/ks-installer/releases/download/v3.1.1/kubesph
 wget https://github.com/kubesphere/ks-installer/releases/download/v3.1.1/cluster-configuration.yaml
 ```
 
-### 修改
+### 修改 cluster-configuration.yaml
 
 ```yaml
 spec.etcd.monitoring: true
