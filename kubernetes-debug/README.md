@@ -41,6 +41,12 @@ kubectl get svc -n ingress-nginx | awk '{printf "%-40s%-15s\n",$1,$5}'
 kubectl describe ingress ingress-wildcard-host
 ```
 
+# debug 手段
+
+[查看所有镜像](https://kubernetes.io/docs/tasks/access-application-cluster/list-all-running-container-images/#list-all-container-images-in-all-namespaces) 
+
+
+
 # error
 
 ## ImagePullBackOff
