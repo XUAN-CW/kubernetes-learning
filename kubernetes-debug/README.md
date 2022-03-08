@@ -45,6 +45,11 @@ kubectl describe ingress ingress-wildcard-host
 
 [查看所有镜像](https://kubernetes.io/docs/tasks/access-application-cluster/list-all-running-container-images/#list-all-container-images-in-all-namespaces) 
 
+```
+kubectl get pods --all-namespaces -o jsonpath="{.items[*].spec.containers[*].image}" |\
+tr -s '[[:space:]]' '\n'
+```
+
 
 
 # error
