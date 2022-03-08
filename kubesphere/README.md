@@ -24,7 +24,7 @@ kubernetes:v1.20.9
 | -------- | ---------- | ---------- | ---------- |
 | 系统     | CentOS 7.9 | CentOS 7.9 | CentOS 7.9 |
 | IP       | 172.31.0.2 | 172.31.0.3 | 172.31.0.4 |
-| 内存     | 16G        | 4GG        | 46G        |
+| 内存     | 16G        | 16G        | 16G        |
 | 登录用户 | root       | root       | root       |
 | CPU      | 4          | 4          | 4          |
 | hostname | k8s-master | k8s-node1  | k8s-node2  |
