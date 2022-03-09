@@ -123,12 +123,18 @@ kubectl logs his-mysql-0 -n his
 
 ## 修复方案
 
+### 编辑 10-kubeadm.conf
+
+
+
 ### 添加域名解析
 
 ```
-[root@k8s-node1 ~]# echo "172.31.0.3  k8s-node1" >> /etc/hosts
-[root@k8s-node1 ~]# echo "172.31.0.4  k8s-node2" >> /etc/hosts
+[root@k8s-master ~]# echo "172.31.0.3  k8s-node1" >> /etc/hosts
+[root@k8s-master ~]# echo "172.31.0.4  k8s-node2" >> /etc/hosts
 ```
+
+
 
 ## 参考
 
