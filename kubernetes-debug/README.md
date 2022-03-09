@@ -93,7 +93,7 @@ tr -s '[[:space:]]' '\n'
 # pod does not exist
 
 ```
-[root@k8s-master system]# kubectl exec his-mysql-0 -it -n his   --  /bin/sh
+[root@k8s-master system]# kubectl exec his-mysql-0 -it -n his -- /bin/sh
 error: unable to upgrade connection: pod does not exist
 ```
 
@@ -102,7 +102,35 @@ error: unable to upgrade connection: pod does not exist
 /usr/lib/systemd/system/kubelet.service.d/10-kubeadm.conf
 ```
 
+```
+kubectl logs his-mysql-0 -n his
+```
 
+
+
+```
+[root@k8s-master ~]# kubectl get nodes k8s-node1 -o yaml | grep address
+        f:addresses:
+            f:address: {}
+            f:address: {}
+  addresses:
+  - address: 10.0.2.15
+  - address: k8s-node1
+
+```
+
+
+
+## 修复方案
+
+### 添加域名解析
+
+```
+[root@k8s-node1 ~]# echo "172.31.0.3  k8s-node1" >> /etc/hosts
+[root@k8s-node1 ~]# echo "172.31.0.4  k8s-node2" >> /etc/hosts
+```
+
+## 参考
 
 https://medium.com/@joatmon08/playing-with-kubeadm-in-vagrant-machines-part-2-bac431095706
 
