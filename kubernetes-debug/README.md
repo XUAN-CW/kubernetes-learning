@@ -134,16 +134,8 @@ kubectl logs his-mysql-0 -n his
 [root@k8s-master ~]# echo "172.31.0.4  k8s-node2" >> /etc/hosts
 ```
 
-
-
 ## 参考
 
-https://medium.com/@joatmon08/playing-with-kubeadm-in-vagrant-machines-part-2-bac431095706
+ [kubectl logs、exec、port-forward 执行失败问题解决.html](assets\references\kubectl logs、exec、port-forward 执行失败问题解决.html) 
 
-https://medium.com/@mukesh.yadav_86837/how-to-fix-error-unable-to-upgrade-connection-pod-does-not-exist-fa90b7d1e44b
-
-https://github.com/kubernetes/kubernetes/issues/63702 
-
-
-
-[kubectl logs、exec、port-forward 执行失败问题解决](https://www.jianshu.com/p/fd9941c21e55) 
+ [Playing with kubeadm in Vagrant Machines, Part 2.html](assets\references\Playing with kubeadm in Vagrant Machines, Part 2.html) 
