@@ -92,19 +92,20 @@ tr -s '[[:space:]]' '\n'
 
 # pod does not exist
 
+## 问题描述
+
 ```
-[root@k8s-master system]# kubectl exec his-mysql-0 -it -n his -- /bin/sh
+[root@k8s-master ~]# kubectl get pod -n default                                NAME                                      READY   STATUS    RESTARTS   AGE
+nfs-client-provisioner-786945db78-8pm25   1/1     Running   4          37m
+[root@k8s-master ~]# kubectl exec nfs-client-provisioner-786945db78-8pm25 -it -n default -- /bin/sh
+error: unable to upgrade connection: pod does not exist
+[root@k8s-master ~]#
 error: unable to upgrade connection: pod does not exist
 ```
 
-```
-[root@k8s-node1 ~]# find /  -name "10-kubeadm.conf"
-/usr/lib/systemd/system/kubelet.service.d/10-kubeadm.conf
-```
 
-```
-kubectl logs his-mysql-0 -n his
-```
+
+
 
 
 
