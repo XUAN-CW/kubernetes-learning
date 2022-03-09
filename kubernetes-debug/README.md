@@ -17,7 +17,20 @@ kubectl get pod -n ingress-nginx
 
 ```sh
 # 进入pod
-kubectl exec -i <your-pod-name>  -n <your-namespace>  -- /bin/sh
+kubectl exec -it <your-pod-name>  -n <your-namespace>  -- /bin/sh
+```
+
+```sh
+# 查看指定pod的日志
+kubectl logs <pod_name>
+kubectl logs -f <pod_name> #类似tail -f的方式查看(tail -f 实时查看日志文件 tail -f 日志文件log)
+
+# 查看指定pod中指定容器的日志
+kubectl logs <pod_name> -c <container_name>
+#  (一次性查看)
+kubectl logs <pod_name> -c <container_name> -n <your-namespace>
+# (tail -f方式实时查看)
+kubectl logs -f <pod_name> -n <your-namespace>
 ```
 
 ## deployment
