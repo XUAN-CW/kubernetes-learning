@@ -186,12 +186,14 @@ kubectl -n kubesphere-monitoring-system create secret generic kube-etcd-client-c
 如果你忘记密码，可以在主节点执行以下命令重新设置密码：
 
 ```sh
+# 语法
 kubectl patch users <username> -p '{"spec":{"password":"<password>"}}' --type='merge' && kubectl annotate users <username> iam.kubesphere.io/password-encrypted-
 ```
 
-
-
-
+```sh
+# 重置 admin 账户密码为 admin
+kubectl patch users admin -p '{"spec":{"password":"admin"}}' --type='merge' && kubectl annotate users admin iam.kubesphere.io/password-encrypted-
+```
 
 
 
