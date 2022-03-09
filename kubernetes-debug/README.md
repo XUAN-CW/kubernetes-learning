@@ -127,9 +127,11 @@ error: unable to upgrade connection: pod does not exist
 
 ### 编辑 10-kubeadm.conf
 
-```sh
+```
 # 从节点中查找 10-kubeadm.conf 
-find /  -name "10-kubeadm.conf"
+[root@k8s-node1 ~]# find /  -name "10-kubeadm.conf"
+/usr/lib/systemd/system/kubelet.service.d/10-kubeadm.conf
+[root@k8s-node1 ~]#
 ```
 
 编辑 `10-kubeadm.conf` ，添加下面的配置：
