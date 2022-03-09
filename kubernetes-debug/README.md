@@ -15,6 +15,11 @@ id: 1646752089900710500
 kubectl get pod -n ingress-nginx 
 ```
 
+```sh
+# 进入pod
+kubectl exec -i <your-pod-name>  -n <your-namespace>  -- /bin/sh
+```
+
 ## deployment
 
 ```sh
