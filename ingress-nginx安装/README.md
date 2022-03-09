@@ -37,7 +37,7 @@ vi deploy.yaml
 
 修改后： [deploy-modified.yaml](assets\data\deploy-modified.yaml) 
 
-这里可以使用 `cat deploy.yaml | grep image:` 命令查看需要哪些镜像：
+此外，这里可以使用 `cat deploy.yaml | grep image:` 命令查看需要哪些镜像：
 
 ```
 k8s.gcr.io/ingress-nginx/controller:v0.46.0@sha256:52f0058bed0a17ab0fb35628ba97e8d52b5d32299fbc03cc0f6c7b9ff036b61a
