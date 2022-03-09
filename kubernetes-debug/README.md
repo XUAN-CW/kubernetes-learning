@@ -136,7 +136,13 @@ find /  -name "10-kubeadm.conf"
 Environment="KUBELET_EXTRA_ARGS=--node-ip=<worker IP address>"
 ```
 
+这里我的从节点 IP 地址是 `172.31.0.3` ，因此我添加下面的配置：
 
+```
+Environment="KUBELET_EXTRA_ARGS=--node-ip=172.31.0.3"
+```
+
+如果有多个从节点，那就需要像这个节点一样编辑 `10-kubeadm.conf` ，方法都是一样的
 
 ### 添加域名解析
 
