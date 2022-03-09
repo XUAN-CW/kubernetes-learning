@@ -90,7 +90,22 @@ tr -s '[[:space:]]' '\n'
 
  [ImagePullBackOff 错误处理.html](assets\references\ImagePullBackOff 错误处理.html) 
 
+# pod does not exist
+
+```
+[root@k8s-master system]# kubectl exec his-mysql-0 -it -n his   --  /bin/sh
+error: unable to upgrade connection: pod does not exist
+```
+
+```
+[root@k8s-node1 ~]# find /  -name "10-kubeadm.conf"
+/usr/lib/systemd/system/kubelet.service.d/10-kubeadm.conf
+```
 
 
 
+https://medium.com/@joatmon08/playing-with-kubeadm-in-vagrant-machines-part-2-bac431095706
 
+https://medium.com/@mukesh.yadav_86837/how-to-fix-error-unable-to-upgrade-connection-pod-does-not-exist-fa90b7d1e44b
+
+https://github.com/kubernetes/kubernetes/issues/63702 
