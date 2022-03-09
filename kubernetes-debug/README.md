@@ -125,6 +125,17 @@ kubectl logs his-mysql-0 -n his
 
 ### 编辑 10-kubeadm.conf
 
+```sh
+# 从节点中查找 10-kubeadm.conf 
+find /  -name "10-kubeadm.conf"
+```
+
+编辑 `10-kubeadm.conf` ，添加下面的配置：
+
+```
+Environment="KUBELET_EXTRA_ARGS=--node-ip=<worker IP address>"
+```
+
 
 
 ### 添加域名解析
