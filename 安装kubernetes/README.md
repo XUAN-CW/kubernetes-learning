@@ -45,6 +45,35 @@ hostnamectl set-hostname k8s-node2
 
 ## 主节点
 
+### 添加 cluster-endpoint 映射
+
+节点都使用 `ping cluster-endpoint` 命令 PING 通 master 节点为配置成功
+
+```sh
+# 添加 master 域名映射，我这里的 master 为 172.31.0.2
+echo "172.31.0.2  cluster-endpoint" >> /etc/hosts
+
+```
+
+### 添加 hostname 映射
+
+这里要求各主机能 ping 通自己的 hostname 
+
+```sh
+# k8s-master 节点运行
+echo "172.31.0.2  k8s-master" >> /etc/hosts
+```
+
+```sh
+# k8s-node2 节点运行
+echo "172.31.0.3  k8s-node1" >> /etc/hosts
+```
+
+```sh
+# k8s-node2 节点运行
+echo "172.31.0.4  k8s-node2" >> /etc/hosts
+```
+
 ### docker-ce-20.10.7 安装
 
 ```sh
@@ -121,37 +150,6 @@ sudo yum install -y kubelet-1.20.9 kubeadm-1.20.9 kubectl-1.20.9 --disableexclud
 sudo systemctl enable --now kubelet
 
 ```
-
-### 添加 cluster-endpoint 映射
-
-节点都使用 `ping cluster-endpoint` 命令 PING 通 master 节点为配置成功
-
-```sh
-# 添加 master 域名映射，我这里的 master 为 172.31.0.2
-echo "172.31.0.2  cluster-endpoint" >> /etc/hosts
-
-```
-
-### 添加 hostname 映射
-
-这里要求各主机能 ping 通自己的 hostname 
-
-```sh
-# k8s-master 节点运行
-echo "172.31.0.2  k8s-master" >> /etc/hosts
-```
-
-```sh
-# k8s-node2 节点运行
-echo "172.31.0.3  k8s-node1" >> /etc/hosts
-```
-
-```sh
-# k8s-node2 节点运行
-echo "172.31.0.4  k8s-node2" >> /etc/hosts
-```
-
-
 
 ### 安装相关镜像
 
@@ -250,11 +248,11 @@ kubectl apply -f calico.yaml
 
 跟主节点一模一样：
 
-1. [docker-ce-20.10.7 安装](#docker-ce-20.10.7 安装) 
-2. [环境准备](#环境准备) 
-3. [安装 kubelet、kubeadm、kubectl](#安装 kubelet、kubeadm、kubectl) 
-4. [添加 cluster-endpoint 映射](#添加 cluster-endpoint 映射) 
-4. [添加 hostname 映射](#添加 hostname 映射) 
+1. [添加 cluster-endpoint 映射](#添加 cluster-endpoint 映射) 
+2. [添加 hostname 映射](#添加 hostname 映射) 
+3. [docker-ce-20.10.7 安装](#docker-ce-20.10.7 安装) 
+4. [环境准备](#环境准备) 
+5. [安装 kubelet、kubeadm、kubectl](#安装 kubelet、kubeadm、kubectl) 
 
 ### 安装相关镜像
 
