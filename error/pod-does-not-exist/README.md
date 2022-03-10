@@ -55,8 +55,6 @@ error: unable to upgrade connection: pod does not exist
 [root@k8s-node2 ~]# echo "172.31.0.4  k8s-node2" >> /etc/hosts
 ```
 
-
-
 ## 重启
 
 ```
