@@ -63,6 +63,22 @@ systemctl daemon-reload && \
 systemctl start kubelet.service
 ```
 
+## 查看(选做)
+
+```
+[root@localhost ~]# kubectl get nodes k8s-node1 -o yaml | grep address
+        f:addresses:
+            f:address: {}
+            f:address: {}
+  addresses:
+  - address: 172.31.0.3
+  - address: k8s-node1
+[root@localhost ~]#
+
+```
+
+
+
 # 参考
 
  [kubectl logs、exec、port-forward 执行失败问题解决.html](assets\references\kubectl logs、exec、port-forward 执行失败问题解决.html) 
