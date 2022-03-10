@@ -64,7 +64,7 @@ echo "172.31.0.2  k8s-master" >> /etc/hosts
 ```
 
 ```sh
-# k8s-node2 节点运行
+# k8s-node1 节点运行
 echo "172.31.0.3  k8s-node1" >> /etc/hosts
 
 ```
@@ -172,6 +172,7 @@ docker pull registry.aliyuncs.com/google_containers/kube-proxy:v1.20.9
 docker pull registry.aliyuncs.com/google_containers/pause:3.2
 docker pull registry.aliyuncs.com/google_containers/etcd:3.4.13-0
 docker pull registry.aliyuncs.com/google_containers/coredns:1.7.0
+
 ```
 
 如果你有离线 docker 镜像，你也可以使用下面的命令把镜像批量加载进来：
@@ -205,6 +206,7 @@ docker pull calico/node:v3.21.2
 docker pull registry.aliyuncs.com/google_containers/kube-proxy:v1.20.9
 docker pull registry.aliyuncs.com/google_containers/pause:3.2
 docker pull calico/pod2daemon-flexvol:v3.21.2
+
 ```
 
 ## 主节点初始化
