@@ -160,6 +160,14 @@ Environment="KUBELET_EXTRA_ARGS=--node-ip=172.31.0.3"
 [root@k8s-master ~]# echo "172.31.0.4  k8s-node2" >> /etc/hosts
 ```
 
+### 重启
+
+```
+systemctl stop kubelet.service && \
+systemctl daemon-reload && \
+systemctl start kubelet.service
+```
+
 ## 参考
 
  [kubectl logs、exec、port-forward 执行失败问题解决.html](assets\references\kubectl logs、exec、port-forward 执行失败问题解决.html) 
