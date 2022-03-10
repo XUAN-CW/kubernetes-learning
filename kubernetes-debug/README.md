@@ -92,16 +92,21 @@ tr -s '[[:space:]]' '\n'
 
 # pod does not exist
 
+
+
+```
+kubectl create deployment service1 --image=tomcat:8.5.73-jre8-openjdk-slim-bullseye
+
+```
+
+
+
 ## 问题描述
 
 ```
-[root@k8s-master ~]# kubectl get pod -n default
-NAME                                      READY   STATUS    RESTARTS   AGE
-nfs-client-provisioner-786945db78-8pm25   1/1     Running   4          39m
-[root@k8s-master ~]# kubectl exec nfs-client-provisioner-786945db78-8pm25 -it -n default -- /bin/sh
+[root@k8s-master ~]# kubectl exec service1-8fc6694c9-8pm25 -it -n default -- /bin/sh
 error: unable to upgrade connection: pod does not exist
 [root@k8s-master ~]#
-
 ```
 
 
