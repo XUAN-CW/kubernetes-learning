@@ -43,19 +43,16 @@ hostnamectl set-hostname k8s-node2
 
 # kubeadm 式安装
 
-## 主节点
-
-### 添加 cluster-endpoint 映射
+## 添加 cluster-endpoint 映射
 
 节点都使用 `ping cluster-endpoint` 命令 PING 通 master 节点为配置成功
 
 ```sh
-# 添加 master 域名映射，我这里的 master 为 172.31.0.2
+# 主节点、从节点都添加 master 域名映射，我这里的 master 为 172.31.0.2
 echo "172.31.0.2  cluster-endpoint" >> /etc/hosts
-
 ```
 
-### 添加 hostname 映射
+## 添加 hostname 映射
 
 这里要求各主机能 ping 通自己的 hostname 
 
@@ -74,9 +71,10 @@ echo "172.31.0.3  k8s-node1" >> /etc/hosts
 echo "172.31.0.4  k8s-node2" >> /etc/hosts
 ```
 
-### docker-ce-20.10.7 安装
+## docker-ce-20.10.7 安装
 
 ```sh
+# 主节点、从节点运行
 # 移除之前安装好的 docker
 sudo yum remove docker \
                   docker-client \
@@ -100,11 +98,13 @@ sudo systemctl enable docker
 
 ```
 
-### 环境准备
+## 环境准备
 
 1. 安装 kubernetes 需要进行以下设置，我也不知道为什么，官网就是这么说的，跟着做吧
 
 ```sh
+# 主节点、从节点运行
+
 # 将 SELinux 设置为 permissive 模式（相当于将其禁用）
 sudo setenforce 0
 sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
@@ -127,9 +127,11 @@ sudo sysctl --system
 
 ```
 
-### 安装 kubelet、kubeadm、kubectl 
+## 安装 kubelet、kubeadm、kubectl 
 
 ```sh
+# 主节点、从节点运行
+
 # 设置 yum 源
 cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
@@ -151,7 +153,9 @@ sudo systemctl enable --now kubelet
 
 ```
 
-### 安装相关镜像
+## 安装相关镜像
+
+### 主节点
 
 1. 这一步在国外不是必须的，因为后面会自动下载这些镜像
 2. 这里我们使用阿里云的镜像来代替原来的镜像
@@ -186,7 +190,20 @@ k8s.gcr.io/etcd:3.4.13-0
 k8s.gcr.io/coredns:1.7.0
 ```
 
-### 主节点初始化
+### 从节点
+
+1. 这一步在国外不是必须的，因为后面会自动下载这些镜像
+2. 这里我们使用阿里云的镜像来代替原来的镜像
+
+```sh
+# 在从节点安装镜像
+docker pull calico/node:v3.21.2
+docker pull registry.aliyuncs.com/google_containers/kube-proxy:v1.20.9
+docker pull registry.aliyuncs.com/google_containers/pause:3.2
+docker pull calico/pod2daemon-flexvol:v3.21.2
+```
+
+## 主节点初始化
 
 只有主节点需要初始化
 
@@ -217,7 +234,7 @@ kubeadm join cluster-endpoint:6443 --token ob55n2.owwcbxxjdix40zgu \
     --discovery-token-ca-cert-hash sha256:212a1f282b6ecbc35656702bc6c75c8638c66f6f5823b7bff49448f43b64ea30
 ```
 
-### 设置.kube/config
+## 设置.kube/config
 
 1. 根据安装成功的提示，我们需要运行下面的命令
 2. 只有主节点需要运行下面的命令
@@ -229,7 +246,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 ```
 
-### 安装网络组件
+## 安装网络组件
 
 1. 这里选择 [calico](https://docs.projectcalico.org/getting-started/kubernetes/self-managed-onprem/onpremises#install-calico-with-kubernetes-api-datastore-more-than-50-nodes) 
 2. 只有主节点需要安装网络组件
@@ -240,31 +257,6 @@ curl https://docs.projectcalico.org/manifests/calico.yaml -O
 
 kubectl apply -f calico.yaml
 
-```
-
-## 从节点
-
-### 初始化
-
-跟主节点一模一样：
-
-1. [添加 cluster-endpoint 映射](#添加 cluster-endpoint 映射) 
-2. [添加 hostname 映射](#添加 hostname 映射) 
-3. [docker-ce-20.10.7 安装](#docker-ce-20.10.7 安装) 
-4. [环境准备](#环境准备) 
-5. [安装 kubelet、kubeadm、kubectl](#安装 kubelet、kubeadm、kubectl) 
-
-### 安装相关镜像
-
-1. 这一步在国外不是必须的，因为后面会自动下载这些镜像
-2. 这里我们使用阿里云的镜像来代替原来的镜像
-
-```sh
-# 在从节点安装镜像
-docker pull calico/node:v3.21.2
-docker pull registry.aliyuncs.com/google_containers/kube-proxy:v1.20.9
-docker pull registry.aliyuncs.com/google_containers/pause:3.2
-docker pull calico/pod2daemon-flexvol:v3.21.2
 ```
 
 ## 从节点加入集群
