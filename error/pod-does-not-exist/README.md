@@ -45,6 +45,8 @@ error: unable to upgrade connection: pod does not exist
 
 ## 添加域名解析
 
+这里要求各主机能 ping 通自己的 hostname 
+
 ```
 [root@k8s-node1 ~]# echo "172.31.0.3  k8s-node1" >> /etc/hosts
 ```
