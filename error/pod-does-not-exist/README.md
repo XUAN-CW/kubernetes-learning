@@ -46,9 +46,14 @@ error: unable to upgrade connection: pod does not exist
 ## 添加域名解析
 
 ```
-[root@k8s-master ~]# echo "172.31.0.3  k8s-node1" >> /etc/hosts
-[root@k8s-master ~]# echo "172.31.0.4  k8s-node2" >> /etc/hosts
+[root@k8s-node1 ~]# echo "172.31.0.3  k8s-node1" >> /etc/hosts
 ```
+
+```
+[root@k8s-node2 ~]# echo "172.31.0.4  k8s-node2" >> /etc/hosts
+```
+
+
 
 ## 重启
 
