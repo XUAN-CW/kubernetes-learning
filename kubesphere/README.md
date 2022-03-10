@@ -38,6 +38,7 @@ kubernetes:v1.20.9
 ```sh
 # 在每个机器
 yum install -y nfs-utils
+
 ```
 
 ```sh
