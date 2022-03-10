@@ -50,6 +50,7 @@ hostnamectl set-hostname k8s-node2
 ```sh
 # 主节点、从节点都添加 master 域名映射，我这里的 master 为 172.31.0.2
 echo "172.31.0.2  cluster-endpoint" >> /etc/hosts
+
 ```
 
 ## 添加 hostname 映射
@@ -59,16 +60,19 @@ echo "172.31.0.2  cluster-endpoint" >> /etc/hosts
 ```sh
 # k8s-master 节点运行
 echo "172.31.0.2  k8s-master" >> /etc/hosts
+
 ```
 
 ```sh
 # k8s-node2 节点运行
 echo "172.31.0.3  k8s-node1" >> /etc/hosts
+
 ```
 
 ```sh
 # k8s-node2 节点运行
 echo "172.31.0.4  k8s-node2" >> /etc/hosts
+
 ```
 
 ## docker-ce-20.10.7 安装
