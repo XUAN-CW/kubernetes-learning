@@ -59,6 +59,15 @@ kubectl get svc -n ingress-nginx | awk '{printf "%-40s%-15s\n",$1,$5}'
 kubectl describe ingress ingress-wildcard-host
 ```
 
+## namespace
+
+```sh
+kubectl create namespace test-env #Create a namespace
+kubectl get namespace #Get a list of namespaces
+```
+
+
+
 # debug 手段
 
 [查看所有镜像](https://kubernetes.io/docs/tasks/access-application-cluster/list-all-running-container-images/#list-all-container-images-in-all-namespaces) 
@@ -67,5 +76,4 @@ kubectl describe ingress ingress-wildcard-host
 kubectl get pods --all-namespaces -o jsonpath="{.items[*].spec.containers[*].image}" |\
 tr -s '[[:space:]]' '\n'
 ```
-
 
