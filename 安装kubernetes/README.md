@@ -331,9 +331,9 @@ Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
 
 
 
+# 参考
 
-
-
+ [How To Setup Kubernetes Cluster Using Kubeadm.html](assets\references\How To Setup Kubernetes Cluster Using Kubeadm.html) 
 
 
 
