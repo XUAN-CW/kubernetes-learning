@@ -15,6 +15,10 @@ id: 1641199849546655200
 
  [kubectl-commands](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands) 
 
+# 辅助工具
+
+https://k8syaml.com/
+
 # 参考
 
  [云原生Java架构师的第一课K8s+Docker+KubeSphere+DevOps](https://www.bilibili.com/video/BV13Q4y1C7hS) 
