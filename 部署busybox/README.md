@@ -17,8 +17,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: busybox
-  labels:
-    app: web
 spec:
   selector:
     matchLabels:
@@ -29,7 +27,6 @@ spec:
   template:
     metadata:
       labels:
-        app: web
         octopusexport: OctopusExport
     spec:
       containers:
@@ -48,6 +45,8 @@ spec:
                       values:
                         - web
                 topologyKey: kubernetes.io/hostname
+
+
 ```
 
 
