@@ -24,3 +24,9 @@ https://k8syaml.com/
  [云原生Java架构师的第一课K8s+Docker+KubeSphere+DevOps](https://www.bilibili.com/video/BV13Q4y1C7hS) 
 
 [尚硅谷Kubernetes教程(K8s入门到精通)](https://www.bilibili.com/video/BV1w4411y7Go) 
+
+
+
+# 学习资源
+
+https://jhooq.com/categories/kubernetes/
