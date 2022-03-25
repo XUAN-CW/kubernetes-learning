@@ -30,3 +30,5 @@ https://k8syaml.com/
 # 学习资源
 
 https://jhooq.com/categories/kubernetes/
+
+https://devopscube.com/category/kubernetes/
