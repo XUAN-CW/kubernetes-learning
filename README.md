@@ -19,16 +19,16 @@ id: 1641199849546655200
 
 https://k8syaml.com/
 
-# 参考
-
- [云原生Java架构师的第一课K8s+Docker+KubeSphere+DevOps](https://www.bilibili.com/video/BV13Q4y1C7hS) 
-
-[尚硅谷Kubernetes教程(K8s入门到精通)](https://www.bilibili.com/video/BV1w4411y7Go) 
-
-
-
 # 学习资源
 
-https://jhooq.com/categories/kubernetes/
+## 视频
 
-https://devopscube.com/category/kubernetes/
+- [云原生Java架构师的第一课K8s+Docker+KubeSphere+DevOps](https://www.bilibili.com/video/BV13Q4y1C7hS) 
+
+- [尚硅谷Kubernetes教程(K8s入门到精通)](https://www.bilibili.com/video/BV1w4411y7Go) 
+
+## 网站
+
+- https://jhooq.com/categories/kubernetes/
+
+- https://devopscube.com/category/kubernetes/
