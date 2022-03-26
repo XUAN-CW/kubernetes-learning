@@ -29,6 +29,5 @@ https://k8syaml.com/
 
 ## 网站
 
-- https://jhooq.com/kubernetes-cheat-sheet/
 - https://jhooq.com/categories/kubernetes/
 - https://devopscube.com/category/kubernetes/
