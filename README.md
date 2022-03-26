@@ -31,3 +31,4 @@ https://k8syaml.com/
 
 - https://jhooq.com/categories/kubernetes/
 - https://devopscube.com/category/kubernetes/
+- https://www.tutorialspoint.com/kubernetes/index.htm
