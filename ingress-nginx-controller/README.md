@@ -1,5 +1,5 @@
 ---
-title: ingress-nginx安装
+title: ingress-nginx-controller
 tags: 
 - ingress-nginx
 - 安装
