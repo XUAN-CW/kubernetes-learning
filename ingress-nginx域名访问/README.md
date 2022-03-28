@@ -138,6 +138,14 @@ ingress-nginx-controller-admission      443/TCP
 2. http://baz.bar.foo.com:32485/foo (nginx 404 Not Found) 
 3. http://foo.com:32485/foo (nginx 404 Not Found) 
 
+# 直接暴露80端口
+
+```
+kubectl patch svc ingress-nginx-controller -n ingress-nginx  -p '{"spec": {"type": "LoadBalancer", "externalIPs":["172.31.0.2"]}}'
+```
+
+ [Load Balancer Service type for Kubernetes.html](assets\references\Load Balancer Service type for Kubernetes.html) 
+
 # 参考
 
  [Ingress _ Kubernetes.html](assets/references/Ingress _ Kubernetes.html) 
