@@ -32,3 +32,5 @@ https://k8syaml.com/
 - https://jhooq.com/categories/kubernetes/
 - https://devopscube.com/category/kubernetes/
 - https://www.tutorialspoint.com/kubernetes/index.htm
+- https://blog.zuolinux.com/categories/K8S-%E5%AE%9E%E6%88%98%E7%AC%94%E8%AE%B0.html
+
