@@ -79,17 +79,7 @@ spec:
   resources:
     requests:
       storage: 500Mi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mysql-c
-spec:
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 500Mi
+--
 ```
 
 # MySQL
