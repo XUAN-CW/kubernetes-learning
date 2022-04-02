@@ -72,14 +72,13 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql-data
+  name: mysql-data-pvc
 spec:
   accessModes:
   - ReadWriteOnce
   resources:
     requests:
       storage: 500Mi
-
 ```
 
 # MySQL
@@ -95,7 +94,7 @@ spec:
   selector:
     matchLabels:
       app: mysql-app
-  replicas: 3
+  replicas: 1
   updateStrategy:
     type: OnDelete
   serviceName: mysql-service
