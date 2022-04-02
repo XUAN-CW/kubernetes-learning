@@ -50,6 +50,13 @@ mount -t nfs 172.31.0.2:/nfs/data /nfs/data
 
 # PV
 
+```sh
+# 每台 NFS 相关的机器都执行
+mkdir -p /nfs/data/mysql
+```
+
+
+
 ```yaml
 apiVersion: v1
 kind: PersistentVolume
