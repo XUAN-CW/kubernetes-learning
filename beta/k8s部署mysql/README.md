@@ -101,16 +101,24 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: mysql-app
+      octopusexport: OctopusExport
   replicas: 1
   updateStrategy:
     type: RollingUpdate
   serviceName: mysql-service
+  podManagementPolicy: OrderedReady
   template:
     metadata:
       labels:
         app: mysql-app
+        octopusexport: OctopusExport
     spec:
+      dnsPolicy: Default
+      hostNetwork: true
+      volumes:
+        - name: mysql-data-volume
+          persistentVolumeClaim:
+            claimName: mysql-data-pvc
       containers:
         - name: mysql
           image: 'mysql:5.7.30'
@@ -122,6 +130,11 @@ spec:
               value: root
             - name: MYSQL_ROOT_PASSWORD
               value: root
+          volumeMounts:
+            - name: mysql-data-volume
+              mountPath: /var/lib/mysql
+              subPath: mysql
+
 
 ```
 
