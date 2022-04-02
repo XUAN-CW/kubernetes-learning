@@ -18,21 +18,16 @@ metadata:
 spec:
   selector:
     matchLabels:
-      octopusexport: OctopusExport
+      app: mysql-app
   replicas: 3
   updateStrategy:
     type: OnDelete
   serviceName: mysql-service
-  podManagementPolicy: OrderedReady
-  volumeClaimTemplates: []
   template:
     metadata:
       labels:
         app: mysql-app
-        octopusexport: OctopusExport
     spec:
-      dnsPolicy: Default
-      hostNetwork: true
       containers:
         - name: mysql
           image: 'mysql:5.7.30'
