@@ -48,6 +48,55 @@ mount -t nfs 172.31.0.2:/nfs/data /nfs/data
 
 ```
 
+## 配置默认存储
+
+主节点中 apply [sc.yaml](assets\data\sc.yaml) ，需要修改两个地方，其他不用修改：
+
+```yaml
+# 1. 指定自己nfs服务器地址
+spec.template.spec.containers[0].env[1].value: 172.31.0.2
+
+# 2. 指定自己nfs服务器地址
+spec.template.spec.volumes[0].nfs.server: 172.31.0.2
+```
+
+然后 apply ： 
+
+```sh
+kubectl apply -f sc.yaml
+```
+
+### 测试(选做)
+
+1. 新创建 pvc.yaml 文件：
+
+```yaml
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nginx-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 200Mi
+```
+
+2. 然后 apply：
+
+```sh
+kubectl apply -f pvc.yaml
+```
+
+3. 最后查看 pvc ：
+
+```sh
+kubectl get pvc
+```
+
+## 
+
 # PV
 
 ```sh
