@@ -72,11 +72,11 @@ kind: PersistentVolumeClaim
 metadata:
   name: pvc0001
 spec:
-  accessModes:  # PVC也需要定义访问模式，不过它的模式一定是和现有PV相同或者是它的子集，否则匹配不到PV
+  accessModes:
   - ReadWriteOnce
-  resources: # 定义资源要求PV满足这个PVC的要求才会被匹配到
+  resources:
     requests:
-      storage: 500Mi  # 定义要求有多大空间
+      storage: 500Mi
 ```
 
 
