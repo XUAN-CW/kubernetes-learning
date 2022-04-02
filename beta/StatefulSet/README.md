@@ -21,7 +21,7 @@ spec:
       app: mysql-app
   replicas: 1
   updateStrategy:
-    type: OnDelete
+    type: RollingUpdate
   serviceName: mysql-service
   template:
     metadata:
