@@ -48,5 +48,6 @@ showmount -e 172.31.0.2
 mkdir -p /nfs/data
 
 mount -t nfs 172.31.0.2:/nfs/data /nfs/data
+
 ```
 
