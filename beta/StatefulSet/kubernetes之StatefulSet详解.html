@@ -1,0 +1,353 @@
+<!DOCTYPE html> <html style lang=zh-cn><!--
+ Page saved with SingleFile 
+ url: https://www.cnblogs.com/tylerzhou/p/11027559.html 
+ saved date: Sat Apr 02 2022 16:43:54 GMT+0800 (中国标准时间)
+--><meta charset=utf-8>
+<meta name=viewport content="width=device-width, initial-scale=1.0">
+<meta name=referrer content=origin-when-crossorigin>
+<meta name=description content="&amp;quot;系列目录&amp;quot; 概述 RC、Deployment、DaemonSet都是面向无状态的服务，它们所管理的Pod的IP、名字，启停顺序等都是随机的，而StatefulSet是什么？顾名思">
+<meta property=og:description content="&amp;quot;系列目录&amp;quot; 概述 RC、Deployment、DaemonSet都是面向无状态的服务，它们所管理的Pod的IP、名字，启停顺序等都是随机的，而StatefulSet是什么？顾名思">
+<meta http-equiv=Cache-Control content=no-transform>
+<meta http-equiv=Cache-Control content=no-siteapp>
+<meta http-equiv=X-UA-Compatible content="IE=edge">
+<title>kubernetes之StatefulSet详解 - 周国通 - 博客园</title>
+<style>:not(.cnblogs_code):not(.cnblogs_Highlighter)>pre:not([class*="language-"]):not([highlighted]):not(.hljs):not([class*="brush:"]){background:rgb(245,245,245);padding:5px;border:0.8px solid rgb(204,204,204);border-radius:3px;border-color:transparent;color:rgb(68,68,68);font-family:"Courier New",sans-serif}:not(.cnblogs_code):not(.cnblogs_Highlighter)>pre:not([highlighted]):not([class*="brush:"]) code:not(.hljs){background:rgb(245,245,245)!important;border-color:transparent!important}.navbar{display:flex;flex-direction:column;align-items:center;background-color:#fff;padding-left:40px;padding-right:40px;padding-top:5px;padding-bottom:5px}.cnblogs-markdown :not(pre,div,td)>code,.blogpost-body :not(pre,div,td)>code{font-family:"Courier New",sans-serif;font-size:12px;padding:0 5px;line-height:1.8;margin:0 3px;display:inline-block;overflow-x:auto;vertical-align:middle;border-radius:3px;background-color:#f6f6f6;color:#e83e8c}pre,pre code,pre code *{transition-duration:.2s;transition-property:background-color,border-color,border-radius,padding-top,padding-bottom,margin-top,margin-bottom,color,opacity}.hljs-engine pre{transition-property:color,opacity,padding-top,padding-bottom,margin-top,margin-bottom,height}.hljs-engine pre code{transition-property:color,opacity,border-color,padding-top,padding-bottom,margin-top,margin-bottom,height}.cnblogs-markdown pre code{line-height:1.5;margin:0;white-space:pre-wrap}pre{overflow:auto}pre{margin-top:0;margin-bottom:0}blockquote{padding-right:10px;padding-top:5px;padding-bottom:5px;margin-top:10px;margin-bottom:10px}.blogpost-body blockquote{border-right:none;border-top:none;border-bottom:none;color:#555}#cnblogs_post_body{margin-bottom:20px}#cnblogs_post_body ul{margin-left:30px;padding-left:0}#cnblogs_post_body ul li{list-style-type:disc}#cnblogs_post_body table{border-collapse:collapse;word-break:break-word}#cnblogs_post_body .table-wrapper{display:block;overflow-x:auto}#cnblogs_post_body th{background-color:#fafafa}.blogpost-body th,.blogpost-body td{border:1px solid #c0c0c0;border-collapse:collapse;padding:8px 14px;min-width:50px}#cnblogs_post_body{word-break:break-word}#cnblogs_post_body>pre,#cnblogs_post_body p{margin:10px auto}#cnblogs_post_body p{text-indent:0}.vertical-middle>*{vertical-align:middle}@keyframes fadeIn{0%{opacity:0}100%{opacity:var(--cnb-code-toolbar-initial-opacity)}}pre:fullscreen,pre:fullscreen code{box-sizing:border-box;border-radius:0;height:100vh;width:100vw}@keyframes modal-open{0%{height:0;opacity:0}95%{height:505px}100%{height:auto;opacity:1}}:root{--cnblogs-toc-bg-color:rgba(245,245,245,.98);--cnblogs-toc-highlight-color:rgba(255,255,255,.9);--cnblogs-toc-color:#000}@keyframes wb-fade-in{0%{opacity:0}to{opacity:.85}}pre code.hljs{display:block;overflow-x:auto;padding:1em}.hljs{color:#444}.hljs-number{color:#800}.hljs-operator{color:#ab5656}@-webkit-keyframes ui-dialog-loading{0%{-webkit-transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg)}}@keyframes ui-dialog-loading{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}*{margin:0;padding:0}html{height:100%}body{background:#f0eef5;color:#7d8b8d;font-family:'PingFang SC','Microsoft YaHei','Helvetica Neue','Helvetica','Arial',sans-serif;font-size:14px;line-height:25px;min-height:101%}table{border-spacing:0;max-width:850px}a:link{color:#000;text-decoration:none}a:hover{color:#f60;text-decoration:underline}.clear{clear:both}#main{display:flex;max-width:1200px;margin:20px auto 0;clear:both}.postDesc a:link{color:#a3a3a3}.postDesc a:hover{color:#9ab26b;text-decoration:none}body,div,h1,li{margin:0;padding:0}#home{margin:0 auto}#mainContent{flex:0 1 880px;background:none;overflow:visible;text-overflow:ellipsis;max-width:880px;word-break:break-all}#mainContent .forFlow{float:none;width:100%}.postDesc{clear:both;float:none;text-align:left}.postDesc a{color:#999}#topics{background:#fff;overflow:hidden;padding:20px;border:1px solid #dedede}#topics .postTitle{font-size:28px;font-weight:400;margin-bottom:20px;line-height:1.8;color:#333}#topics .postTitle a{color:#333}#topics .postBody blockquote{border:none;border-left:5px solid #ddd;padding-left:10px}#topics .postBody blockquote p{margin:0;padding:0;color:#777}#topics .postBody pre{white-space:pre-wrap}.postTitle a:link{color:#7e8c8d}.postTitle a:hover{color:#0e90d2;text-decoration:none}#cnblogs_post_body{color:#333;line-height:1.8}#cnblogs_post_body p a:hover,#cnblogs_post_body ol li a:hover,#cnblogs_post_body ul li a:hover{border-bottom:1px dotted #9ab26b}#cnblogs_post_body ul{margin:0 0 1em 40px;padding:0}#topics .postDesc{font-size:14px;color:#777;line-height:200%;margin:10px 0}#topics .postDesc a:hover{color:#9ab26b}#sideBar{flex:0 0 300px;width:300px;margin:0 20px;float:left;-o-text-overflow:ellipsis;text-overflow:ellipsis;overflow:visible;word-break:break-all}#cnblogs_post_body a:link{text-decoration:underline}.hljs{background:#f5f5f5;font-family:"Courier New",sans-serif;font-size:13px;border:1px solid #ccc;border-radius:3px}.hljs-comment,.hljs-variable{color:#008000}.hljs-keyword{color:#00f}.hljs-string{color:#a31515}.hljs-meta{color:#2b91af}.hljs-attr{color:#f00}.hljs-bullet{color:#00b0e8}#main h2{background:#3d97cb;border-radius:6px 6px 6px 6px;color:white;font-family:"微软雅黑","宋体","黑体",Arial;font-size:17px;font-weight:bold;height:25px;line-height:25px;margin:15px 0!important;padding:5px 0 5px 20px;text-shadow:2px 2px 3px #222;width:97%}#topics .postBody blockquote{margin:20px 0;padding:15px 20px 15px 60px;background:#FFFFA3 url(data:image/png;base64,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) no-repeat 9px 0px;font-size:15px;font-family:'Microsoft Yahei';box-shadow:0 0 8px #AAA;clear:both}</style>
+<style media="only screen and (max-width: 767px)">body{font-size:14px!important;-webkit-text-size-adjust:none}.forpc{display:none!important}#cnblogs_post_body table{display:block;overflow-x:scroll;-webkit-overflow-scrolling:regular;max-height:800px}#cnblogs_post_body table::-webkit-scrollbar-track{-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);border-radius:10px;background-color:#f5f5f5}#cnblogs_post_body table::-webkit-scrollbar{width:12px;background-color:#f5f5f5}#cnblogs_post_body table::-webkit-scrollbar-thumb{border-radius:10px;-webkit-box-shadow:inset 0 0 6px rgba(0,0,0,.3);background-color:#555}.navbar{display:none}#main{width:auto;flex-wrap:wrap}#mainContent{width:auto;float:none;max-width:100%}#sideBar{width:auto;margin-left:10px;margin-right:10px;float:none}#mainContent .forFlow{width:auto}</style>
+<link type=application/rss+xml rel=alternate href=https://www.cnblogs.com/tylerzhou/rss>
+<link type=application/rsd+xml rel=EditURI href=https://www.cnblogs.com/tylerzhou/rsd.xml>
+<link type=application/wlwmanifest+xml rel=wlwmanifest href=https://www.cnblogs.com/tylerzhou/wlwmanifest.xml>
+<link id=favicon rel="shortcut icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PGRlZnM+PGNsaXBQYXRoIGlkPSJwcmVmaXhfX2NsaXAtcGF0aCI+PHBhdGggY2xhc3M9InByZWZpeF9fY2xzLTEiIGQ9Ik0yOS40OCAyNS4yNGMtLjE2LTEuODktLjA4LTEuNS0uMjQtMy4xNmE3Mi4yNCA3Mi4yNCAwIDAwLTItMTAuMzdMMjYgNi4yNWwtMi42IDUuNDEtLjQ0Ljg5cS0uMjQuNDgtLjU0IDFhMjAuNDMgMjAuNDMgMCAwMS0xLjI0IDEuODQgMjAuMDggMjAuMDggMCAwMS0zLjA4IDMuMjQgMTkuNzIgMTkuNzIgMCAwMS0zLjg3IDIuNTNjLS43Mi4zMy0xLjQ1LjcxLTIuMjMgMS0uMzQuMTQtMS4xOS40NC0xLjkzLjY2YTIuNTUgMi41NSAwIDAxLTEuMDctLjNjLS4zNC0xLS44My0yLjI0LTEuMi0zLjE5LS41LTEuMjUtMS0yLjUtMS41MS0zLjczYTU5LjExIDU5LjExIDAgMDAtMy42Mi03LjI1IDU5LjgyIDU5LjgyIDAgMDAxLjUxIDcuOTRjLjMgMS4zLjcgMi41OCAxLjA1IDMuODdTNiAyMi43MSA2LjQ0IDI0YTEuNCAxLjQgMCAwMDEuMjkuOTNjMS4yOCAwIDIuNTcuMDYgMy44Ni4wNXMyLjU5IDAgMy44OC0uMTFhNTYgNTYgMCAwMDcuNzktLjg3Yy0xLjkyLS40OS03LjUtLjgxLTEwLjc5LTEuMDZhNDMgNDMgMCAwMDYuNTMtMS43IDI0LjA2IDI0LjA2IDAgMDA1LjM4LTMuNDVjLjcxLS42MiAxLjIxIDEuODggMi4zOSA1LjI3LjYyIDEuNjkuMzQgMSAxIDIuNjZzMS4zNyA0LjM4IDIuMTcgNmMtLjA3LTEuODItLjMxLTQuNjctLjQ2LTYuNDh6Ii8+PC9jbGlwUGF0aD48Y2xpcFBhdGggaWQ9InByZWZpeF9fY2xpcC1wYXRoLTIiPjxwYXRoIGNsYXNzPSJwcmVmaXhfX2Nscy0xIiBkPSJNMjAuOTIgMy40NmE0LjI1IDQuMjUgMCAwMS4zMSA1Ljg2IDMuOTEgMy45MSAwIDAxLTUuNjYuMjQgNC4yNSA0LjI1IDAgMDEtLjMxLTUuODYgMy45MSAzLjkxIDAgMDE1LjY2LS4yNG0xLjM1LTEuNTRhNS44OSA1Ljg5IDAgMDAtOC41My4zNiA2LjQxIDYuNDEgMCAwMC40OCA4LjgzIDUuOTEgNS45MSAwIDAwOC41My0uMzYgNi40MSA2LjQxIDAgMDAtLjQ4LTguODN6Ii8+PC9jbGlwUGF0aD48c3R5bGU+LnByZWZpeF9fY2xzLTF7ZmlsbDojM2UzYTM5fUBtZWRpYSAocHJlZmVycy1jb2xvci1zY2hlbWU6ZGFyayl7LnByZWZpeF9fY2xzLTF7ZmlsbDojZWZlZmVmfX08L3N0eWxlPjwvZGVmcz48ZyBzdHlsZT0iaXNvbGF0aW9uOmlzb2xhdGUiPjxnIGlkPSJwcmVmaXhfX2xheWVyXzEiIGRhdGEtbmFtZT0ibGF5ZXIgMSI+PHBhdGggY2xhc3M9InByZWZpeF9fY2xzLTEiIGQ9Ik0yOS40OCAyNS4yNGMtLjE2LTEuODktLjA4LTEuNS0uMjQtMy4xNmE3Mi4yNCA3Mi4yNCAwIDAwLTItMTAuMzdMMjYgNi4yNWwtMi42IDUuNDEtLjQ0Ljg5cS0uMjQuNDgtLjU0IDFhMjAuNDMgMjAuNDMgMCAwMS0xLjI0IDEuODQgMjAuMDggMjAuMDggMCAwMS0zLjA4IDMuMjQgMTkuNzIgMTkuNzIgMCAwMS0zLjg3IDIuNTNjLS43Mi4zMy0xLjQ1LjcxLTIuMjMgMS0uMzQuMTQtMS4xOS40NC0xLjkzLjY2YTIuNTUgMi41NSAwIDAxLTEuMDctLjNjLS4zNC0xLS44My0yLjI0LTEuMi0zLjE5LS41LTEuMjUtMS0yLjUtMS41MS0zLjczYTU5LjExIDU5LjExIDAgMDAtMy42Mi03LjI1IDU5LjgyIDU5LjgyIDAgMDAxLjUxIDcuOTRjLjMgMS4zLjcgMi41OCAxLjA1IDMuODdTNiAyMi43MSA2LjQ0IDI0YTEuNCAxLjQgMCAwMDEuMjkuOTNjMS4yOCAwIDIuNTcuMDYgMy44Ni4wNXMyLjU5IDAgMy44OC0uMTFhNTYgNTYgMCAwMDcuNzktLjg3Yy0xLjkyLS40OS03LjUtLjgxLTEwLjc5LTEuMDZhNDMgNDMgMCAwMDYuNTMtMS43IDI0LjA2IDI0LjA2IDAgMDA1LjM4LTMuNDVjLjcxLS42MiAxLjIxIDEuODggMi4zOSA1LjI3LjYyIDEuNjkuMzQgMSAxIDIuNjZzMS4zNyA0LjM4IDIuMTcgNmMtLjA3LTEuODItLjMxLTQuNjctLjQ2LTYuNDh6Ii8+PGcgY2xpcC1wYXRoPSJ1cmwoI3ByZWZpeF9fY2xpcC1wYXRoKSI+PHBhdGggY2xhc3M9InByZWZpeF9fY2xzLTEiIGQ9Ik0tLjg3LS43OGgzNC40MnYzMy4wN0gtLjg3eiIvPjwvZz48cGF0aCBjbGFzcz0icHJlZml4X19jbHMtMSIgZD0iTTIwLjkyIDMuNDZhNC4yNSA0LjI1IDAgMDEuMzEgNS44NiAzLjkxIDMuOTEgMCAwMS01LjY2LjI0IDQuMjUgNC4yNSAwIDAxLS4zMS01Ljg2IDMuOTEgMy45MSAwIDAxNS42Ni0uMjRtMS4zNS0xLjU0YTUuODkgNS44OSAwIDAwLTguNTMuMzYgNi40MSA2LjQxIDAgMDAuNDggOC44MyA1LjkxIDUuOTEgMCAwMDguNTMtLjM2IDYuNDEgNi40MSAwIDAwLS40OC04LjgzeiIvPjxnIGNsaXAtcGF0aD0idXJsKCNwcmVmaXhfX2NsaXAtcGF0aC0yKSI+PHBhdGggY2xhc3M9InByZWZpeF9fY2xzLTEiIGQ9Ik0tLjg3LS43OGgzNC40MnYzMy4wN0gtLjg3eiIvPjwvZz48L2c+PC9nPjwvc3ZnPg==" type=image/svg+xml><style>.sf-hidden{display:none!important}</style><link rel=canonical href=https://www.cnblogs.com/tylerzhou/p/11027559.html><meta http-equiv=content-security-policy content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:;"></head>
+<body class="skin-codinglife has-navbar hljs-engine">
+ <a name=top></a>
+ <div id=top_nav class="navbar forpc">
+ <nav id=nav_main class="navbar-main sf-hidden">
+ 
+ 
+ </nav>
+ </div>
+ 
+ 
+<div id=home>
+<div id=header class=sf-hidden>
+ 
+ 
+</div>
+<div id=main>
+ <div id=mainContent>
+ <div class=forFlow>
+ <div id=post_detail>
+ 
+ <div id=topics>
+ <div class=post>
+ <h1 class=postTitle>
+ 
+<a id=cb_post_title_url class="postTitle2 vertical-middle" href=https://www.cnblogs.com/tylerzhou/p/11027559.html>
+ <span role=heading aria-level=2>kubernetes之StatefulSet详解</span>
+ 
+</a><button class="cnblogs-toc-button sf-hidden" title=显示目录导航 aria-expanded=false></button>
+ </h1>
+ <div class=clear></div>
+ <div class=postBody>
+ <div id=cnblogs_post_body class="blogpost-body cnblogs-markdown">
+<blockquote>
+<p><a href=https://www.cnblogs.com/tylerzhou/p/10969041.html target=_blank rel=noopener>系列目录</a></p>
+</blockquote>
+<h2 id=概述>概述<button class="cnblogs-toc-button sf-hidden" title=显示目录导航 aria-expanded=false></button></h2>
+<p>RC、Deployment、DaemonSet都是面向无状态的服务，它们所管理的Pod的IP、名字，启停顺序等都是随机的，而StatefulSet是什么？顾名思义，有状态的集合，管理所有有状态的服务，比如MySQL、MongoDB集群等。<br>
+StatefulSet本质上是Deployment的一种变体，在v1.9版本中已成为GA版本，它为了解决有状态服务的问题，它所管理的Pod拥有固定的Pod名称，启停顺序，在StatefulSet中，Pod名字称为网络标识(hostname)，还必须要用到共享存储。<br>
+在Deployment中，与之对应的服务是service，而在StatefulSet中与之对应的headless service，headless service，即无头服务，与service的区别就是它没有Cluster IP，解析它的名称时将返回该Headless Service对应的全部Pod的Endpoint列表。<br>
+除此之外，StatefulSet在Headless Service的基础上又为StatefulSet控制的每个Pod副本创建了一个DNS域名，这个域名的格式为：</p>
+<blockquote>
+<p>$(podname).(headless server name)<br>
+FQDN： $(podname).(headless server name).namespace.svc.cluster.local</p>
+</blockquote>
+<h2 id=statefulset示例>StatefulSet示例<button class="cnblogs-toc-button sf-hidden" title=显示目录导航 aria-expanded=false></button></h2>
+<p>接下来看一些示例，演示下上面所说的特性，以加深理解</p>
+<pre highlighted=true><code class="language-yml hljs language-yaml"><span class=hljs-attr>apiVersion:</span> <span class=hljs-string>v1</span>
+<span class=hljs-attr>kind:</span> <span class=hljs-string>Service</span>
+<span class=hljs-attr>metadata:</span>
+  <span class=hljs-attr>name:</span> <span class=hljs-string>nginx</span>
+  <span class=hljs-attr>labels:</span>
+    <span class=hljs-attr>app:</span> <span class=hljs-string>nginx</span>
+<span class=hljs-attr>spec:</span>
+  <span class=hljs-attr>ports:</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>port:</span> <span class=hljs-number>80</span>
+    <span class=hljs-attr>name:</span> <span class=hljs-string>web</span>
+  <span class=hljs-attr>clusterIP:</span> <span class=hljs-string>None</span>
+  <span class=hljs-attr>selector:</span>
+    <span class=hljs-attr>app:</span> <span class=hljs-string>nginx</span>
+<span class=hljs-meta>---</span>
+<span class=hljs-attr>apiVersion:</span> <span class=hljs-string>apps/v1</span>
+<span class=hljs-attr>kind:</span> <span class=hljs-string>StatefulSet</span>
+<span class=hljs-attr>metadata:</span>
+  <span class=hljs-attr>name:</span> <span class=hljs-string>web</span>
+<span class=hljs-attr>spec:</span>
+  <span class=hljs-attr>selector:</span>
+    <span class=hljs-attr>matchLabels:</span>
+      <span class=hljs-attr>app:</span> <span class=hljs-string>nginx</span> <span class=hljs-comment># has to match .spec.template.metadata.labels</span>
+  <span class=hljs-attr>serviceName:</span> <span class=hljs-string>"nginx"</span>  <span class=hljs-comment>#声明它属于哪个Headless Service.</span>
+  <span class=hljs-attr>replicas:</span> <span class=hljs-number>3</span> <span class=hljs-comment># by default is 1</span>
+  <span class=hljs-attr>template:</span>
+    <span class=hljs-attr>metadata:</span>
+      <span class=hljs-attr>labels:</span>
+        <span class=hljs-attr>app:</span> <span class=hljs-string>nginx</span> <span class=hljs-comment># has to match .spec.selector.matchLabels</span>
+    <span class=hljs-attr>spec:</span>
+      <span class=hljs-attr>terminationGracePeriodSeconds:</span> <span class=hljs-number>10</span>
+      <span class=hljs-attr>containers:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>name:</span> <span class=hljs-string>nginx</span>
+        <span class=hljs-attr>image:</span> <span class=hljs-string>k8s.gcr.io/nginx-slim:0.8</span>
+        <span class=hljs-attr>ports:</span>
+        <span class=hljs-bullet>-</span> <span class=hljs-attr>containerPort:</span> <span class=hljs-number>80</span>
+          <span class=hljs-attr>name:</span> <span class=hljs-string>web</span>
+        <span class=hljs-attr>volumeMounts:</span>
+        <span class=hljs-bullet>-</span> <span class=hljs-attr>name:</span> <span class=hljs-string>www</span>
+          <span class=hljs-attr>mountPath:</span> <span class=hljs-string>/usr/share/nginx/html</span>
+  <span class=hljs-attr>volumeClaimTemplates:</span>   <span class=hljs-comment>#可看作pvc的模板</span>
+  <span class=hljs-bullet>-</span> <span class=hljs-attr>metadata:</span>
+      <span class=hljs-attr>name:</span> <span class=hljs-string>www</span>
+    <span class=hljs-attr>spec:</span>
+      <span class=hljs-attr>accessModes:</span> [ <span class=hljs-string>"ReadWriteOnce"</span> ]
+      <span class=hljs-attr>storageClassName:</span> <span class=hljs-string>"gluster-heketi"</span>  <span class=hljs-comment>#存储类名，改为集群中已存在的</span>
+      <span class=hljs-attr>resources:</span>
+        <span class=hljs-attr>requests:</span>
+          <span class=hljs-attr>storage:</span> <span class=hljs-string>1Gi</span>
+</code></pre>
+<p>通过该配置文件，可看出StatefulSet的三个组成部分：</p>
+<ul>
+<li>Headless Service：名为nginx，用来定义Pod网络标识( DNS domain)。</li>
+<li>StatefulSet：定义具体应用，名为Nginx，有三个Pod副本，并为每个Pod定义了一个域名。</li>
+<li>volumeClaimTemplates： 存储卷申请模板，创建PVC，指定pvc名称大小，将自动创建pvc，且pvc必须由存储类供应。</li>
+</ul>
+<blockquote>
+<p><strong>为什么需要 headless service 无头服务？</strong><br>
+在用Deployment时，每一个Pod名称是没有顺序的，是随机字符串，因此是Pod名称是无序的，但是在statefulset中要求必须是有序 ，每一个pod不能被随意取代，pod重建后pod名称还是一样的。而pod IP是变化的，所以是以Pod名称来识别。pod名称是pod唯一性的标识符，必须持久稳定有效。这时候要用到无头服务，它可以给每个Pod一个唯一的名称 。</p>
+</blockquote>
+<blockquote>
+<p><strong>为什么需要volumeClaimTemplate？</strong> 对于有状态的副本集都会用到持久存储，对于分布式系统来讲，它的最大特点是数据是不一样的，所以各个节点不能使用同一存储卷，每个节点有自已的专用存储，但是如果在Deployment中的Pod template里定义的存储卷，是所有副本集共用一个存储卷，数据是相同的，因为是基于模板来的 ，而statefulset中每个Pod都要自已的专有存储卷，所以statefulset的存储卷就不能再用Pod模板来创建了，于是statefulSet使用volumeClaimTemplate，称为卷申请模板，它会为每个Pod生成不同的pvc，并绑定pv， 从而实现各pod有专用存储。这就是为什么要用volumeClaimTemplate的原因。</p>
+</blockquote>
+<p>创建：</p>
+<pre highlighted=true><code class="hljs language-powershell"><span class=hljs-variable>$</span> kubectl create <span class=hljs-operator>-f</span> nginx.yaml 
+service <span class=hljs-string>"nginx"</span> created
+statefulset <span class=hljs-string>"web"</span> created
+</code></pre>
+<p>看下这三个Pod创建过程：</p>
+<pre highlighted=true><code class="hljs language-sql">#第一个是创建web<span class=hljs-number>-0</span>
+$ kubectl <span class=hljs-keyword>get</span> pod
+web<span class=hljs-number>-0</span>                     <span class=hljs-number>1</span><span class=hljs-operator>/</span><span class=hljs-number>1</span>       ContainerCreating   <span class=hljs-number>0</span>          <span class=hljs-number>51</span>s
+
+#待web<span class=hljs-number>-0</span> <span class=hljs-keyword>running</span>且ready时，创建web<span class=hljs-number>-1</span>
+$ kubectl <span class=hljs-keyword>get</span> pod
+web<span class=hljs-number>-0</span>                     <span class=hljs-number>1</span><span class=hljs-operator>/</span><span class=hljs-number>1</span>       <span class=hljs-keyword>Running</span>             <span class=hljs-number>0</span>          <span class=hljs-number>51</span>s
+web<span class=hljs-number>-1</span>                     <span class=hljs-number>0</span><span class=hljs-operator>/</span><span class=hljs-number>1</span>       ContainerCreating   <span class=hljs-number>0</span>          <span class=hljs-number>42</span>s
+
+#待web<span class=hljs-number>-1</span> <span class=hljs-keyword>running</span>且ready时，创建web<span class=hljs-number>-2</span>
+$ kubectl <span class=hljs-keyword>get</span> pod
+web<span class=hljs-number>-0</span>                     <span class=hljs-number>1</span><span class=hljs-operator>/</span><span class=hljs-number>1</span>       <span class=hljs-keyword>Running</span>             <span class=hljs-number>0</span>          <span class=hljs-number>1</span>m
+web<span class=hljs-number>-1</span>                     <span class=hljs-number>1</span><span class=hljs-operator>/</span><span class=hljs-number>1</span>       <span class=hljs-keyword>Running</span>             <span class=hljs-number>0</span>          <span class=hljs-number>45</span>s
+web<span class=hljs-number>-2</span>                     <span class=hljs-number>1</span><span class=hljs-operator>/</span><span class=hljs-number>1</span>       ContainerCreating   <span class=hljs-number>0</span>          <span class=hljs-number>36</span>s
+
+#最后三个Pod全部<span class=hljs-keyword>running</span>且ready
+$ kubectl <span class=hljs-keyword>get</span> pod
+NAME                      READY     STATUS    RESTARTS   AGE
+web<span class=hljs-number>-0</span>                     <span class=hljs-number>1</span><span class=hljs-operator>/</span><span class=hljs-number>1</span>       <span class=hljs-keyword>Running</span>   <span class=hljs-number>0</span>          <span class=hljs-number>4</span>m
+web<span class=hljs-number>-1</span>                     <span class=hljs-number>1</span><span class=hljs-operator>/</span><span class=hljs-number>1</span>       <span class=hljs-keyword>Running</span>   <span class=hljs-number>0</span>          <span class=hljs-number>3</span>m
+web<span class=hljs-number>-2</span>                     <span class=hljs-number>1</span><span class=hljs-operator>/</span><span class=hljs-number>1</span>       <span class=hljs-keyword>Running</span>   <span class=hljs-number>0</span>          <span class=hljs-number>1</span>m
+</code></pre>
+<p>根据volumeClaimTemplates自动创建的PVC</p>
+<pre highlighted=true><code class="hljs language-x86asm">$ kubectl get pvc
+NAME              STATUS    VOLUME                                  CAPACITY   ACCESS MODES   STORAGECLASS     AGE
+www-web-<span class=hljs-number>0</span>         <span class=hljs-keyword>Bound</span>     pvc-ecf003f3-<span class=hljs-number>828d</span>-11e8-<span class=hljs-number>8815</span>-000c29774d39   2G        RWO          gluster-heketi   7m
+www-web-<span class=hljs-number>1</span>         <span class=hljs-keyword>Bound</span>     pvc-0615e33e-828e-11e8-<span class=hljs-number>8815</span>-000c29774d39   2G        RWO          gluster-heketi   6m
+www-web-<span class=hljs-number>2</span>         <span class=hljs-keyword>Bound</span>     pvc-43a97acf-828e-11e8-<span class=hljs-number>8815</span>-000c29774d39   2G        RWO          gluster-heketi   4m
+</code></pre>
+<blockquote>
+<p>如果集群中没有StorageClass的动态供应PVC的机制，也可以提前手动创建多个PV、PVC，手动创建的PVC名称必须符合之后创建的StatefulSet命名规则：(volumeClaimTemplates.name)-(pod_name)</p>
+</blockquote>
+<p>Statefulset名称为web 三个Pod副本: web-0，web-1,web-2，volumeClaimTemplates名称为：www，那么自动创建出来的PVC名称为www-web[0-2]，为每个Pod创建一个PVC。</p>
+<h2 id=规律总结>规律总结：<button class="cnblogs-toc-button sf-hidden" title=显示目录导航 aria-expanded=false></button></h2>
+<ul>
+<li>
+<p>匹配Pod name(网络标识)的模式为：$(statefulset名称)-$(序号)，比如上面的示例：web-0，web-1，web-2。</p>
+</li>
+<li>
+<p>StatefulSet为每个Pod副本创建了一个DNS域名，这个域名的格式为： $(podname).(headless server name)，也就意味着服务间是通过Pod域名来通信而非Pod IP，因为当Pod所在Node发生故障时，Pod会被飘移到其它Node上，Pod IP会发生变化，但是Pod域名不会有变化。</p>
+</li>
+<li>
+<p>StatefulSet使用Headless服务来控制Pod的域名，这个域名的FQDN为：$(service name).$(namespace).svc.cluster.local，其中，“cluster.local”指的是集群的域名。</p>
+</li>
+<li>
+<p>根据volumeClaimTemplates，为每个Pod创建一个pvc，pvc的命名规则匹配模式：(volumeClaimTemplates.name)-(pod_name)，比如上面的volumeMounts.name=www， Pod name=web-[0-2]，因此创建出来的PVC是www-web-0、www-web-1、www-web-2。</p>
+</li>
+<li>
+<p>删除Pod不会删除其pvc，手动删除pvc将自动释放pv。<br>
+关于Cluster Domain、headless service名称、StatefulSet 名称如何影响StatefulSet的Pod的DNS域名的示例：</p>
+</li>
+</ul>
+<div class=table-wrapper><table>
+<thead>
+<tr>
+<th>Cluster Domain</th>
+<th>Service (ns/name)</th>
+<th>StatefulSet (ns/name)</th>
+<th>StatefulSet Domain</th>
+<th>Pod DNS</th>
+<th>Pod Hostname</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cluster.local</td>
+<td>default/nginx</td>
+<td>default/web</td>
+<td>nginx.default.svc.cluster.local</td>
+<td>web-{0..N-1}.nginx.default.svc.cluster.local</td>
+<td>web-{0..N-1}</td>
+</tr>
+<tr>
+<td>cluster.local</td>
+<td>foo/nginx</td>
+<td>foo/web</td>
+<td>nginx.foo.svc.cluster.local</td>
+<td>web-{0..N-1}.nginx.foo.svc.cluster.local</td>
+<td>web-{0..N-1}</td>
+</tr>
+<tr>
+<td>kube.local</td>
+<td>foo/nginx</td>
+<td>foo/web</td>
+<td>nginx.foo.svc.kube.local</td>
+<td>web-{0..N-1}.nginx.foo.svc.kube.local</td>
+<td>web-{0..N-1}</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id=statefulset的启停顺序>Statefulset的启停顺序：<button class="cnblogs-toc-button sf-hidden" title=显示目录导航 aria-expanded=false></button></h2>
+<ul>
+<li>
+<p>有序部署：部署StatefulSet时，如果有多个Pod副本，它们会被顺序地创建（从0到N-1）并且，在下一个Pod运行之前所有之前的Pod必须都是Running和Ready状态。</p>
+</li>
+<li>
+<p>有序删除：当Pod被删除时，它们被终止的顺序是从N-1到0。</p>
+</li>
+<li>
+<p>有序扩展：当对Pod执行扩展操作时，与部署一样，它前面的Pod必须都处于Running和Ready状态</p>
+</li>
+</ul>
+<h2 id=statefulset-pod管理策略>Statefulset Pod管理策略：<button class="cnblogs-toc-button sf-hidden" title=显示目录导航 aria-expanded=false></button></h2>
+<p>在v1.7以后，通过允许修改Pod排序策略，同时通过.spec.podManagementPolicy字段确保其身份的唯一性。</p>
+<ul>
+<li>OrderedReady：上述的启停顺序，默认设置。</li>
+<li>Parallel：告诉StatefulSet控制器并行启动或终止所有Pod，并且在启动或终止另一个Pod之前不等待前一个Pod变为Running and Ready或完全终止。</li>
+</ul>
+<h2 id=statefulset使用场景>StatefulSet使用场景：<button class="cnblogs-toc-button sf-hidden" title=显示目录导航 aria-expanded=false></button></h2>
+<ul>
+<li>
+<p>稳定的持久化存储，即Pod重新调度后还是能访问到相同的持久化数据，基于PVC来实现。</p>
+</li>
+<li>
+<p>稳定的网络标识符，即Pod重新调度后其PodName和HostName不变。</p>
+</li>
+<li>
+<p>有序部署，有序扩展，基于init containers来实现。</p>
+</li>
+<li>
+<p>有序收缩。</p>
+</li>
+</ul>
+<h2 id=更新策略>更新策略<button class="cnblogs-toc-button sf-hidden" title=显示目录导航 aria-expanded=false></button></h2>
+<p>在Kubernetes 1.7及更高版本中，通过.spec.updateStrategy字段允许配置或禁用Pod、labels、source request/limits、annotations自动滚动更新功能。</p>
+<ul>
+<li>
+<p><strong>OnDelete</strong>：通过.spec.updateStrategy.type 字段设置为OnDelete，StatefulSet控制器不会自动更新StatefulSet中的Pod。用户必须手动删除Pod，以使控制器创建新的Pod。</p>
+</li>
+<li>
+<p><strong>RollingUpdate</strong>：通过.spec.updateStrategy.type 字段设置为RollingUpdate，实现了Pod的自动滚动更新，如果.spec.updateStrategy未指定，则此为默认策略。</p>
+</li>
+</ul>
+<p>StatefulSet控制器将删除并重新创建StatefulSet中的每个Pod。它将以Pod终止（从最大序数到最小序数）的顺序进行，一次更新每个Pod。在更新下一个Pod之前，必须等待这个Pod Running and Ready。</p>
+<ul>
+<li><strong>Partitions</strong>：通过指定 .spec.updateStrategy.rollingUpdate.partition 来对 RollingUpdate 更新策略进行分区，如果指定了分区，则当 StatefulSet 的 .spec.template 更新时，具有大于或等于分区序数的所有 Pod 将被更新。<br>
+具有小于分区的序数的所有 Pod 将不会被更新，即使删除它们也将被重新创建。如果 StatefulSet 的 .spec.updateStrategy.rollingUpdate.partition 大于其 .spec.replicas，则其 .spec.template 的更新将不会传播到 Pod。在大多数情况下，不需要使用分区。</li>
+</ul>
+</div>
+<div class=clear></div>
+<div id=blog_post_info_block role=contentinfo class=sf-hidden>
+ <div id=blog_post_info class=sf-hidden>
+</div>
+ 
+ 
+</div>
+ </div>
+ <div class=postDesc>posted @ 
+<span id=post-date>2019-06-15 14:42</span>&nbsp;
+<a href=https://www.cnblogs.com/tylerzhou/ class=sf-hidden>周国通</a>&nbsp;
+阅读(<span id=post_view_count>11929</span>)&nbsp;
+评论(<span id=post_comment_count>3</span>)&nbsp;
+<a href="https://i.cnblogs.com/EditPosts.aspx?postid=11027559" rel=nofollow>编辑</a>&nbsp;
+<a href=https://www.cnblogs.com/tylerzhou/p/11027559.html>收藏</a>&nbsp;
+<a href=https://www.cnblogs.com/tylerzhou/p/11027559.html>举报</a></div>
+ </div>
+ 
+ 
+ </div>
+</div>
+<a id=!comments></a>
+<div id=blog-comments-placeholder class=sf-hidden></div>
+<div id=comment_form class="commentform sf-hidden">
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+</div>
+ </div>
+ </div>
+ <div id=sideBar>
+ <div id=sideBarMain class=sf-hidden>
+ <div id=sidebar_news class="newsItem sf-hidden">
+<div id=blog-news class=sf-hidden>
+ 
+ <div id=profile_block class=sf-hidden>
+ 昵称：
+ 
+ 
+ 园龄：
+ 
+ 
+ 粉丝：
+ 
+ 
+ 关注：
+ 
+ 
+ 
+ </div>
+</div>
+</div>
+ 
+ <div id=leftcontentcontainer class=sf-hidden>
+ 
+ 
+ </div> 
+ </div>
+ </div>
+ <div class=clear></div>
+ </div>
+ <div class=clear></div>
+ <div id=footer class=sf-hidden>
+ 
+Copyright © 2022 周国通
+ </div>
+</div>
+ 
+ 
+ 
+ 
+ 
