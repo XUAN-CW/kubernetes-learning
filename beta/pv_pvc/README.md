@@ -8,7 +8,7 @@ id: 1648877142320744800
 
 # nfs文件系统
 
-### nfs-server
+## nfs-server
 
 ```sh
 # 在 nfs-server 执行以下命令,这里我的 nfs-server 是 172.31.0.2
