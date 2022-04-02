@@ -48,7 +48,7 @@ mount -t nfs 172.31.0.2:/nfs/data /nfs/data
 
 ```
 
-## 配置默认存储
+## 提供动态供应能力
 
 主节点中 apply [sc.yaml](assets\data\sc.yaml) ，需要修改两个地方，其他不用修改：
 
