@@ -30,20 +30,20 @@ exportfs -r
 
 #检查配置是否生效
 exportfs
+
 ```
 
 ## nfs-client
 
 ```sh
-
 yum install -y nfs-utils
-# 在从节点执行
-# nfs-client 的地址是 172.31.0.2
+# nfs-server 的地址是 172.31.0.2
 showmount -e 172.31.0.2 
 
 mkdir -p /nfs/data
 
 mount -t nfs 172.31.0.2:/nfs/data /nfs/data
+
 ```
 
 
