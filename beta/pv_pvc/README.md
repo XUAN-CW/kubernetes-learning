@@ -46,7 +46,23 @@ mount -t nfs 172.31.0.2:/nfs/data /nfs/data
 
 ```
 
+# PV
 
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv0001 
+spec:
+  capacity:
+    storage: 5Gi 
+  accessModes:
+  - ReadWriteOnce 
+  nfs: 
+    path: /nfs/data
+    server: 172.31.0.2
+  persistentVolumeReclaimPolicy: Retain 
+```
 
 
 
