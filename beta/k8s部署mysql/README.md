@@ -61,7 +61,7 @@ spec:
   accessModes:
   - ReadWriteOnce 
   nfs: 
-    path: /nfs/data
+    path: /nfs/data/mysql
     server: 172.31.0.2
   persistentVolumeReclaimPolicy: Retain 
 ```
