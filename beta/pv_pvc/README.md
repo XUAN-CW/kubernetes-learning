@@ -11,8 +11,7 @@ id: 1648877142320744800
 ### nfs-server
 
 ```sh
-# 在主节点
-# 在master 执行以下命令 
+# 在 nfs-server 执行以下命令,这里我的 nfs-server 是 172.31.0.2
 echo "/nfs/data/ *(insecure,rw,sync,no_root_squash)" > /etc/exports
 
 
