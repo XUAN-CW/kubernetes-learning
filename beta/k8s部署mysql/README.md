@@ -81,5 +81,49 @@ spec:
       storage: 500Mi
 ```
 
+# MySQL
+
+```yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-set
+  labels:
+    app: mysql-app
+spec:
+  selector:
+    matchLabels:
+      app: mysql-app
+  replicas: 3
+  updateStrategy:
+    type: OnDelete
+  serviceName: mysql-service
+  template:
+    metadata:
+      labels:
+        app: mysql-app
+    spec:
+      containers:
+        - name: mysql
+          image: 'mysql:5.7.30'
+          ports:
+            - name: mysql-port
+              containerPort: 3306
+          env:
+            - name: MYSQL_RANDOM_ROOT_PASSWORD
+              value: root
+            - name: MYSQL_ROOT_PASSWORD
+              value: root
+
+```
+
+
+
+
+
+
+
+
+
 
 
