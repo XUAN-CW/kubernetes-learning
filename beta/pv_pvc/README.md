@@ -46,3 +46,17 @@ mkdir -p /nfs/data
 mount -t nfs 172.31.0.2:/nfs/data /nfs/data
 ```
 
+
+
+
+
+# 参考
+
+ [Persistent storage using NFS.html](assets\references\Persistent storage using NFS.html) 
+
+ [PV、PVC、StorageClass讲解.html](assets\references\PV、PVC、StorageClass讲解.html) 
+
+ [NFS pv部署.html](assets\references\NFS pv部署.html) 
+
+
+
