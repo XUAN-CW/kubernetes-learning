@@ -19,7 +19,7 @@ spec:
   selector:
     matchLabels:
       app: mysql-app
-  replicas: 3
+  replicas: 1
   updateStrategy:
     type: OnDelete
   serviceName: mysql-service
