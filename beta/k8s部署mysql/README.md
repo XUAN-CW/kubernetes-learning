@@ -50,7 +50,7 @@ mount -t nfs 172.31.0.2:/nfs/data /nfs/data
 
 ## 提供动态供应能力
 
-主节点中 apply [sc.yaml](assets\data\sc.yaml) ，需要修改两个地方，其他不用修改：
+根据 [官网](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner) 资料修改后得到 [sc.yaml](assets\data\sc.yaml) ， 主节点中 apply [sc.yaml](assets\data\sc.yaml) ，需要修改两个地方，其他不用修改：
 
 ```yaml
 # 1. 指定自己nfs服务器地址
