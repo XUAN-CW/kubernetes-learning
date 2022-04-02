@@ -79,7 +79,7 @@ spec:
   resources:
     requests:
       storage: 500Mi
---
+
 ```
 
 # MySQL
