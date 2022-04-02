@@ -95,8 +95,6 @@ kubectl apply -f pvc.yaml
 kubectl get pvc
 ```
 
-## 
-
 # PV
 
 ```sh
@@ -123,68 +121,58 @@ spec:
   persistentVolumeReclaimPolicy: Retain 
 ```
 
-# PVC
-
-```yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mysql-data-pvc
-spec:
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 500Mi
-```
-
 # MySQL
 
 ```yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  ports:
+  - port: 80
+    name: web
+  clusterIP: None
+  selector:
+    app: nginx
+---
+
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: mysql-set
-  labels:
-    app: mysql-app
+  name: web
 spec:
   selector:
     matchLabels:
-      octopusexport: OctopusExport
-  replicas: 1
-  updateStrategy:
-    type: RollingUpdate
-  serviceName: mysql-service
-  podManagementPolicy: OrderedReady
+      app: nginx # has to match .spec.template.metadata.labels
+  serviceName: "nginx"  #声明它属于哪个Headless Service.
+  replicas: 3 # by default is 1
   template:
     metadata:
       labels:
-        app: mysql-app
-        octopusexport: OctopusExport
+        app: nginx # has to match .spec.selector.matchLabels
     spec:
-      dnsPolicy: Default
-      hostNetwork: true
-      volumes:
-        - name: mysql-data-volume
-          persistentVolumeClaim:
-            claimName: mysql-data-pvc
+      terminationGracePeriodSeconds: 10
       containers:
-        - name: mysql
-          image: 'mysql:5.7.30'
-          ports:
-            - name: mysql-port
-              containerPort: 3306
-          env:
-            - name: MYSQL_RANDOM_ROOT_PASSWORD
-              value: root
-            - name: MYSQL_ROOT_PASSWORD
-              value: root
-          volumeMounts:
-            - name: mysql-data-volume
-              mountPath: /var/lib/mysql
-              subPath: mysql
-
-
+      - name: nginx
+        image: nginx:1.16.1
+        ports:
+        - containerPort: 80
+          name: web
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:   #可看作pvc的模板
+  - metadata:
+      name: www
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
 ```
 
 
