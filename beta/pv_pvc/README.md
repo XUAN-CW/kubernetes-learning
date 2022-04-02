@@ -66,7 +66,7 @@ spec:
 
 # PVC
 
-```sh
+```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
