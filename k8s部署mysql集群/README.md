@@ -16,10 +16,10 @@ yum install -y nfs-utils
 
 
 # 在master 执行以下命令 
-echo "/nfs/data/ *(insecure,rw,sync,no_root_squash)" > /etc/exports
+echo "/data/nfs/ *(insecure,rw,sync,no_root_squash)" > /etc/exports
 
 # 执行以下命令，启动 nfs 服务;创建共享目录
-mkdir -p /nfs/data
+mkdir -p /data/nfs/
 
 
 # 在master执行
@@ -45,9 +45,9 @@ yum install -y nfs-utils
 
 showmount -e 172.31.0.2
 
-mkdir -p /nfs/data
+mkdir -p /data/nfs/
 
-mount -t nfs 172.31.0.2:/nfs/data /nfs/data
+mount -t nfs 172.31.0.2:/data/nfs/ /data/nfs/
 
 ```
 
