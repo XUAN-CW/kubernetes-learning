@@ -34,6 +34,7 @@ exportfs -r
 
 #检查配置是否生效
 exportfs
+
 ```
 
 ## 从节点
