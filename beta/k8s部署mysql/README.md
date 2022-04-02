@@ -54,7 +54,7 @@ mount -t nfs 172.31.0.2:/nfs/data /nfs/data
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv0001 
+  name: mysql-pv 
 spec:
   capacity:
     storage: 5Gi 
@@ -72,7 +72,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: pvc0001
+  name: mysql-pvc
 spec:
   accessModes:
   - ReadWriteOnce
