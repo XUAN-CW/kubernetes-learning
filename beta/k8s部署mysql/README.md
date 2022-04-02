@@ -95,32 +95,6 @@ kubectl apply -f pvc.yaml
 kubectl get pvc
 ```
 
-# PV
-
-```sh
-# 每台 NFS 相关的机器都执行
-mkdir -p /nfs/data/mysql
-
-```
-
-
-
-```yaml
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: mysql-pv 
-spec:
-  capacity:
-    storage: 5Gi 
-  accessModes:
-  - ReadWriteOnce 
-  nfs: 
-    path: /nfs/data/mysql
-    server: 172.31.0.2
-  persistentVolumeReclaimPolicy: Retain 
-```
-
 # MySQL
 
 ```yaml
