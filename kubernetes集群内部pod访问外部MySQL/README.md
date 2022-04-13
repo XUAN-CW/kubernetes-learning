@@ -38,7 +38,7 @@ metadata:
   namespace: default
 subsets:
   - addresses:
-    - ip: 192.168.18.10 #外部数据库地址
+    - ip: 101.34.161.147 #外部数据库地址
     ports:
     - port: 3306
 ```
