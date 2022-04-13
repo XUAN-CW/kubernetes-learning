@@ -80,6 +80,12 @@ kubectl get svc
 
 
 
+```
+mysql-dev.default.svc.cluster.local
+```
+
+
+
 ## nodePort
 
 ```yaml
