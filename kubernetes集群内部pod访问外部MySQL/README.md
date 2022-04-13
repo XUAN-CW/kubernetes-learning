@@ -75,7 +75,7 @@ kubectl get svc
 # 测试
 
 ```sh
-kubectl run busybox -it --image=busybox:1.28
+kubectl run busybox -it --rm --image=busybox:1.28
 ```
 
 ```sh
