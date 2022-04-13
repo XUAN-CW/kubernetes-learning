@@ -32,7 +32,7 @@ metadata:
   namespace: default
 subsets:
   - addresses:
-    - ip: 101.34.161.147 #外部数据库地址
+    - ip: 10.98.12.24 #外部数据库地址
     ports:
     - port: 3306
 ```
@@ -75,7 +75,7 @@ kubectl get svc
 # 测试
 
 ```sh
-kubectl run test-pod1 -it --image=busybox:1.28
+kubectl run busybox -it --image=busybox:1.28
 ```
 
 ```sh
