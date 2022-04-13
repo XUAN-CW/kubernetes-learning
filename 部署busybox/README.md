@@ -51,6 +51,50 @@ spec:
 
 
 
+# 一键部署
+
+```
+cat << EOF > busybox.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: busybox
+spec:
+  selector:
+    matchLabels:
+      octopusexport: OctopusExport
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        octopusexport: OctopusExport
+    spec:
+      containers:
+        - name: busybox
+          image: 'busybox:1.35-glibc'
+          command: ["/bin/sh", "-ce", "tail -f /dev/null"]
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - web
+                topologyKey: kubernetes.io/hostname
+EOF
+
+kubectl apply -f busybox.yaml
+kubectl get pod
+```
+
+
+
 # debug 过程
 
 ## busybox 直接部署
