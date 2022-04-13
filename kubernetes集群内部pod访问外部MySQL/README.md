@@ -84,6 +84,10 @@ kubectl get svc
 mysql-dev.default.svc.cluster.local
 ```
 
+```
+telnet mysql-dev.default.svc.cluster.local 3306
+```
+
 
 
 ## nodePort
