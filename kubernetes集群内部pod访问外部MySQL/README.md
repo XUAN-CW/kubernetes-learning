@@ -74,6 +74,8 @@ kubectl get svc
 
 # 测试
 
+## telnet
+
 ```sh
 kubectl run busybox -it --rm --image=busybox:1.28
 ```
@@ -86,8 +88,13 @@ ping mysql-dev.default.svc.cluster.local
 telnet mysql-dev.default.svc.cluster.local 3306
 ```
 
+## MySQL 
+
+此测试未完成，以后再说
+
 ```sh
- kubectl run  mysql  -it --rm --env MYSQL_ROOT_PASSWORD=root  --image=mysql:5.7.30
+# 
+# kubectl run  mysql  -itd --rm --env MYSQL_ROOT_PASSWORD=root  --image=mysql:5.7.30
 ```
 
 
