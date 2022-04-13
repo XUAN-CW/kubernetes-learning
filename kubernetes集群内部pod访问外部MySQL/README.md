@@ -78,50 +78,16 @@ kubectl apply -f mysql-service.yaml
 kubectl get svc
 ```
 
+# 测试
 
-
-```
+```sh
 ping mysql-dev.default.svc.cluster.local
 ```
 
-```
+```sh
 telnet mysql-dev.default.svc.cluster.local 3306
 ```
 
+# 参考
 
-
-## nodePort
-
-```yaml
-# mysql-nodePort.yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: mysql-nodeport
-  namespace: default
-spec:
- type: NodePort
- ports:
- - port: 30080          
-   targetPort: 3306
-   nodePort: 30006
- selector:
-  name: mysql-dev
-```
-
-```
-kubectl apply -f mysql-nodePort.yaml
-```
-
-```sh
-kubectl get svc
-```
-
-
-
-
-
-
-
-
-
+ [K8S集群内部pod访问外部mysql.html](assets\references\K8S集群内部pod访问外部mysql.html) 
