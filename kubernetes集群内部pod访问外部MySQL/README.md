@@ -86,6 +86,12 @@ ping mysql-dev.default.svc.cluster.local
 telnet mysql-dev.default.svc.cluster.local 3306
 ```
 
+```
+kubectl run  mysql  -it --rm  --image=mysql:5.7.30
+```
+
+
+
 # 参考
 
  [K8S集群内部pod访问外部mysql.html](assets\references\K8S集群内部pod访问外部mysql.html) 
