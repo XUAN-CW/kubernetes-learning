@@ -81,7 +81,7 @@ kubectl get svc
 
 
 ```
-mysql-dev.default.svc.cluster.local
+ping mysql-dev.default.svc.cluster.local
 ```
 
 ```
