@@ -57,7 +57,7 @@ metadata:
   name: mysql-dev
   namespace: default
 spec:
-  clusterIP: 10.96.2.128
+  clusterIP: None
   ports:
   - port: 3306
     targetPort: 3306
