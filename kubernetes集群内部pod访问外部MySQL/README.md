@@ -6,12 +6,6 @@ id: 1649835073316869800
 ---
 # 摘要
 
-
-
-
-
-
-
 # 外部MySQL
 
 ```sh
@@ -83,8 +77,6 @@ kubectl get svc
 ```sh
 kubectl run test-pod1 -it --image=busybox:1.28
 ```
-
-
 
 ```sh
 ping mysql-dev.default.svc.cluster.local
