@@ -86,8 +86,13 @@ ping mysql-dev.default.svc.cluster.local
 telnet mysql-dev.default.svc.cluster.local 3306
 ```
 
-```
-kubectl run  mysql  -it --rm  --image=mysql:5.7.30
+```sh
+kubectl run \
+  -it \
+  --rm \
+  --env MYSQL_ROOT_PASSWORD=root \
+  --name mysql \
+  --image=mysql:5.7.30
 ```
 
 
