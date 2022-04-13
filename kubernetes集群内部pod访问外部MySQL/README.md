@@ -80,11 +80,32 @@ kubectl get svc
 
 
 
+## nodePort
 
+```yaml
+# mysql-nodePort.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-nodeport
+  namespace: default
+spec:
+ type: NodePort
+ ports:
+ - port: 30080          
+   targetPort: 3306
+   nodePort: 30006
+ selector:
+  name: mysql-dev
+```
 
+```
+kubectl apply -f mysql-nodePort.yaml
+```
 
-
-
+```sh
+kubectl get svc
+```
 
 
 
