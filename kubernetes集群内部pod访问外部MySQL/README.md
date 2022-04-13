@@ -19,7 +19,7 @@ sudo docker run -d \
   mysql:5.7.30
 ```
 
-# endpoint
+# 外部MySQL映射到内部
 
 ## Endpoints
 
