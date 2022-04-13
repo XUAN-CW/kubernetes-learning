@@ -25,3 +25,56 @@ sudo docker run -d \
   mysql:5.7.30
 ```
 
+# endpoint
+
+## Endpoints
+
+```yaml
+# mysql-endpoints.yaml
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: mysql-dev
+  namespace: default
+subsets:
+  - addresses:
+    - ip: 192.168.18.10 #外部数据库地址
+    ports:
+    - port: 3306
+```
+
+```sh
+kubectl apply -f mysql-endpoints.yaml
+```
+
+```sh
+kubectl get endpoints
+```
+
+
+
+## service
+
+```yaml
+# mysql-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-dev
+  namespace: default
+spec:
+  clusterIP: None
+  ports:
+  - port: 3306
+    targetPort: 3306
+    protocol: TCP
+```
+
+```sh
+kubectl apply -f mysql-service.yaml
+```
+
+```sh
+kubectl get svc
+```
+
