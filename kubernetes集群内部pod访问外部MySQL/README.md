@@ -81,6 +81,12 @@ kubectl get svc
 # 测试
 
 ```sh
+kubectl run test-pod1 -it --image=busybox:1.28
+```
+
+
+
+```sh
 ping mysql-dev.default.svc.cluster.local
 ```
 
