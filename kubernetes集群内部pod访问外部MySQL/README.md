@@ -56,7 +56,7 @@ kubectl get endpoints
 ## service
 
 ```yaml
-# mysql-service.yaml
+# mysql-service.yaml 
 apiVersion: v1
 kind: Service
 metadata:
