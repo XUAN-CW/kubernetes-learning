@@ -78,3 +78,19 @@ kubectl apply -f mysql-service.yaml
 kubectl get svc
 ```
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
