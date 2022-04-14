@@ -54,7 +54,7 @@ spec:
 # 一键部署
 
 ```sh
-kubectl run test-pod2 -it --rm --image=busybox:1.28
+kubectl run -it --rm --image=busybox:1.28 --restart=Never busybox -- /bin/sh
 ```
 
 
