@@ -60,7 +60,7 @@ docker run -it --rm \
   -p 9001:8080 \
   --name scm-test \
   springboot-connect-mysql:1.0
- 
+
 ```
 
  http://192.168.18.10:9000/connect-mysql 
@@ -79,4 +79,53 @@ docker run -it --rm \
 ```
 
  http://192.168.18.10:9000/connect-mysql 
+
+# k8s
+
+```sh
+kubectl create deployment scm --image=springboot-connect-mysql:1.0  -env PARAMS="--spring.profiles.active=prod"
+
+```
+
+
+
+
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-connect-mysql
+spec:
+  selector:
+    matchLabels:
+      octopusexport: OctopusExport
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        octopusexport: OctopusExport
+    spec:
+      dnsPolicy: Default
+      hostNetwork: true
+      containers:
+        - name: scm
+          image: 'springboot-connect-mysql:1.0'
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PARAMS
+              value: '--spring.profiles.active=prod'
+
+```
+
+
+
+```
+kubectl expose deployment springboot-connect-mysql --port=8080 --target-port=8080
+```
+
+
 
