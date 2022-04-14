@@ -28,15 +28,15 @@ sudo docker run -d \
   --restart=always \
   --privileged=true \
   -e MYSQL_ROOT_PASSWORD=root \
-  --name mysql-t \
+  --name mysql-test \
   mysql:5.7.30
 ```
 
 
 
+# 编写代码
 
-
-
+# 创建镜像
 
 然后创建镜像：
 
