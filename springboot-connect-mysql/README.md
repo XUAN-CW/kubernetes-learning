@@ -12,3 +12,17 @@ id: 1649897522504865900
 kubectl create ns springboot-connect-mysql
 ```
 
+
+
+然后创建镜像：
+
+```sh
+docker image build -t springboot-initializr:1.0 -f Dockerfile .
+```
+
+最后运行：
+
+```sh
+docker run -itd -p 9000:8080 springboot-initializr:1.0
+```
+
