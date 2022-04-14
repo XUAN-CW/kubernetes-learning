@@ -94,7 +94,7 @@ telnet mysql-external.default.svc.cluster.local 3306
 
 ```sh
 # 
-# kubectl run  mysql  -itd --rm --env MYSQL_ROOT_PASSWORD=root  --image=mysql:5.7.30
+kubectl run -it --rm --image=mysql:5.7.30 --restart=Never mysql-client -- mysql -h mysql-external.default.svc.cluster.local -u root -p root
 ```
 
 
