@@ -81,11 +81,11 @@ kubectl run busybox -it --rm --image=busybox:1.28
 ```
 
 ```sh
-ping mysql-dev.default.svc.cluster.local
+ping mysql-external.default.svc.cluster.local
 ```
 
 ```sh
-telnet mysql-dev.default.svc.cluster.local 3306
+telnet mysql-external.default.svc.cluster.local 3306
 ```
 
 ## MySQL 
