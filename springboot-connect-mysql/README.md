@@ -36,7 +36,7 @@ sudo docker run -d \
 
 # 编写代码
 
-# 创建镜像
+# 创建 docker 镜像
 
 ```sh
 # 创建镜像
