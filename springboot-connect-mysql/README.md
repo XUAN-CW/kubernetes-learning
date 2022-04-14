@@ -82,14 +82,7 @@ docker run -it --rm \
 
 # k8s
 
-```sh
-kubectl create deployment scm --image=springboot-connect-mysql:1.0  -env PARAMS="--spring.profiles.active=prod"
-
-```
-
-
-
-
+## Deployment
 
 ```yaml
 apiVersion: apps/v1
@@ -121,11 +114,27 @@ spec:
 
 ```
 
-
+## service
 
 ```
 kubectl expose deployment springboot-connect-mysql --port=8080 --target-port=8080
 ```
+
+## 访问
+
+```sh
+kubectl describe svc springboot-connect-mysql
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
