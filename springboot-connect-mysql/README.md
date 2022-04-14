@@ -8,6 +8,36 @@ id: 1649897522504865900
 
 
 
+# 环境
+
+```sql
+#简单启动
+sudo docker run -d \
+  -p 3306:3306 \
+  --restart=always \
+  --privileged=true \
+  -e MYSQL_ROOT_PASSWORD=root \
+  --name mysql-dev \
+  mysql:5.7.30
+```
+
+```sh
+#简单启动
+sudo docker run -d \
+  -p 3307:3306 \
+  --restart=always \
+  --privileged=true \
+  -e MYSQL_ROOT_PASSWORD=root \
+  --name mysql-t \
+  mysql:5.7.30
+```
+
+
+
+
+
+
+
 然后创建镜像：
 
 ```sh
