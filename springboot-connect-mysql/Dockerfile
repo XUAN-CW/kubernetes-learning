@@ -2,8 +2,7 @@
 # FROM openjdk:8-jdk-alpine
 # 测试时用这个，工具比较多
 FROM openjdk:8u312-oraclelinux8
-ARG JAR_FILE
-COPY ${JAR_FILE} app.jar
+COPY springboot-connect-mysql-0.0.1-SNAPSHOT.jar app.jar
 #docker run -e PARAMS="--server.port 9090"
 ENV PARAMS="--spring.profiles.active=test"
-ENTRYPOINT ["java","-jar","/app.jar ${PARAMS}"]
+ENTRYPOINT ["/bin/sh","-c","java -jar app.jar ${PARAMS}"]
