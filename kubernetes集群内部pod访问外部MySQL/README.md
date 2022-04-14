@@ -28,7 +28,7 @@ sudo docker run -d \
 apiVersion: v1
 kind: Endpoints
 metadata:
-  name: mysql-dev
+  name: mysql
   namespace: default
 subsets:
   - addresses:
