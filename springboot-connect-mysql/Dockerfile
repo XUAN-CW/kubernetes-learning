@@ -4,5 +4,6 @@
 FROM openjdk:8u312-oraclelinux8
 COPY springboot-connect-mysql-0.0.1-SNAPSHOT.jar app.jar
 #docker run -e PARAMS="--spring.profiles.active=prod"
+EXPOSE 8080
 ENV PARAMS="--spring.profiles.active=test"
 ENTRYPOINT ["/bin/sh","-c","java -jar app.jar ${PARAMS}"]
