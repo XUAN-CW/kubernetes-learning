@@ -54,6 +54,6 @@ docker run -it --rm -p 9000:8080 springboot-connect-mysql:1.0
 
 
 
+## 测试
 
-
- http://10.98.12.24:9000/connect-mysql 
+ http://192.168.18.10:9000/connect-mysql 
