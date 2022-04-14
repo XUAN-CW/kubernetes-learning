@@ -77,7 +77,7 @@ kubectl get svc
 ## telnet
 
 ```sh
-kubectl run busybox -it --rm --image=busybox:1.28
+kubectl run -it --rm --image=busybox:1.28 --restart=Never busybox -- /bin/sh
 ```
 
 ```sh
