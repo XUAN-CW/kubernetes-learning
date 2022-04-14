@@ -42,9 +42,6 @@ sudo docker run -d \
 # 创建镜像
 docker image rm springboot-connect-mysql:1.0
 docker image build -t springboot-connect-mysql:1.0 -f Dockerfile .
-# 运行
-docker container rm -f springboot-connect-mysql:1.0
-docker run -it --rm -p 9000:8080 springboot-connect-mysql:1.0
 
 ```
 
@@ -54,4 +51,31 @@ docker run -it --rm -p 9000:8080 springboot-connect-mysql:1.0
 
 ## 测试
 
+### test
+
+```sh
+# 运行
+docker container rm -f scm-test
+docker run -it --rm \
+  -p 9001:8080 \
+  --name scm-test \
+  springboot-connect-mysql:1.0
+```
+
  http://192.168.18.10:9000/connect-mysql 
+
+### dev
+
+```sh
+# 运行
+docker container rm -f scm-dev
+docker run -it --rm \
+  -p 9000:8080  \
+  --name scm-dev \
+  -e PARAMS="--spring.profiles.active=dev" \
+  springboot-connect-mysql:1.0
+
+```
+
+
+
