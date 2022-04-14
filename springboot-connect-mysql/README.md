@@ -6,7 +6,9 @@ id: 1649897522504865900
 ---
 # 摘要
 
+待看的解决方案：
 
+https://stackoverflow.com/questions/60964196/how-does-spring-boot-connect-localhost-mysql-in-k8s
 
 # 环境
 
