@@ -16,6 +16,15 @@ spring:
   profiles: test
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.21.70:3306/information_schema?serverTimezone=GMT%2B8&characterEncoding=utf-8
+    username: root
+    password: root
+
+---
+spring:
+  profiles: prod
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://mysql-external.default.svc.cluster.local:3306/information_schema?serverTimezone=GMT%2B8&characterEncoding=utf-8
     username: root
     password: root
