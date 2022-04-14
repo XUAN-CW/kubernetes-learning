@@ -126,7 +126,9 @@ kubectl expose deployment springboot-connect-mysql --port=8080 --target-port=808
 kubectl describe svc springboot-connect-mysql
 ```
 
+ http://172.31.0.4:8080/connect-mysql 
 
+# 
 
 
 
