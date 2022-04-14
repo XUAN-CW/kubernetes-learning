@@ -1,8 +1,9 @@
 # FROM java:8
-FROM openjdk:8-jdk-alpine
+# FROM openjdk:8-jdk-alpine
 # 测试时用这个，工具比较多
-# FROM openjdk:8u312-oraclelinux8
-COPY springboot-connect-mysql-0.0.1-SNAPSHOT.jar app.jar
-# 这个地方要与配置文件中的 server.port 一致
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM openjdk:8u312-oraclelinux8
+ARG JAR_FILE
+COPY ${JAR_FILE} app.jar
+#docker run -e PARAMS="--server.port 9090"
+ENV PARAMS="--spring.profiles.active=test"
+ENTRYPOINT ["java","-jar","/app.jar ${PARAMS}"]

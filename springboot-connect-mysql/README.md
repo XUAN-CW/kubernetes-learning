@@ -14,16 +14,20 @@ kubectl create ns springboot-connect-mysql
 
 
 
+
+
 然后创建镜像：
 
 ```sh
+docker image rm springboot-connect-mysql:1.0
 docker image build -t springboot-connect-mysql:1.0 -f Dockerfile .
 ```
 
 最后运行：
 
 ```sh
-docker run -itd -p 9000:8080 springboot-connect-mysql:1.0
+docker container rm -f springboot-connect-mysql:1.0
+docker run -it --rm -p 9000:8080 springboot-connect-mysql:1.0
 ```
 
 
