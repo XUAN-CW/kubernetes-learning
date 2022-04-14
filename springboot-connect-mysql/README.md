@@ -8,14 +8,6 @@ id: 1649897522504865900
 
 
 
-```
-kubectl create ns springboot-connect-mysql
-```
-
-
-
-
-
 然后创建镜像：
 
 ```sh
