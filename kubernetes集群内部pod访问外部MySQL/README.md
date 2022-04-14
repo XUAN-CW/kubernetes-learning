@@ -28,7 +28,7 @@ sudo docker run -d \
 apiVersion: v1
 kind: Endpoints
 metadata:
-  name: mysql
+  name: mysql-external
   namespace: default
 subsets:
   - addresses:
@@ -54,7 +54,7 @@ kubectl get endpoints
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql-dev
+  name: mysql-external
   namespace: default
 spec:
   clusterIP: None
