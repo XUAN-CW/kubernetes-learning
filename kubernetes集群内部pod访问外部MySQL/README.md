@@ -57,11 +57,11 @@ metadata:
   name: mysql-external
   namespace: default
 spec:
-  clusterIP: None
   ports:
   - port: 3306
     targetPort: 3306
     protocol: TCP
+
 ```
 
 ```sh
