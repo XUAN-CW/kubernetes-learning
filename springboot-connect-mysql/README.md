@@ -120,6 +120,12 @@ spec:
 kubectl expose deployment springboot-connect-mysql --port=8080 --target-port=8080
 ```
 
+```
+kubectl delete svc springboot-connect-mysql
+```
+
+
+
 ## 访问
 
 ```sh
