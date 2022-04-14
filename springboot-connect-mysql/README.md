@@ -8,7 +8,13 @@ id: 1649897522504865900
 
 待看的解决方案：
 
-https://stackoverflow.com/questions/60964196/how-does-spring-boot-connect-localhost-mysql-in-k8s
+https://stackoverflow.com/questions/60964196/how-does-spring-boot-connect-localhost-mysql-in-k8s 
+
+https://github.com/ashutoshsahoo/spring-boot-kubernetes-mysql
+
+https://docs.openshift.com/dedicated/3/dev_guide/integrating_external_services.html
+
+https://www.youtube.com/watch?v=fvpq4jqtuZ8
 
 # 环境
 
