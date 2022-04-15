@@ -148,7 +148,28 @@ kubectl describe svc springboot-connect-mysql
 
 
 ```
-curl  http://loc:8080/connect-mysql 
+curl  http://localhost:8080/connect-mysql 
+```
+
+
+
+
+
+# 常用
+
+```
+curl springboot-connect-mysql.default.svc.cluster.local
+```
+
+```
+curl 10.96.252.17
+```
+
+
+
+```
+kubectl get pod 
+kubectl exec -it -- bin/sh
 ```
 
 
