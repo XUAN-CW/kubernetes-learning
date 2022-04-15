@@ -143,13 +143,13 @@ kubectl describe svc springboot-connect-mysql
 
  http://172.31.0.4:8080/connect-mysql 
 
-# 
 
 
 
 
-
-
+```
+curl  http://loc:8080/connect-mysql 
+```
 
 
 
