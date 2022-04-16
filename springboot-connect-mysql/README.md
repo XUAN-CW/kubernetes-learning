@@ -174,5 +174,7 @@ kubectl exec -it -- bin/sh
 
 
 
-
+```
+kubectl run -it --rm --image=busybox:1.28 --restart=Never busybox -- /bin/sh
+```
 
