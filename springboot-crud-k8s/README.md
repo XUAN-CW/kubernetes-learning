@@ -52,7 +52,7 @@ kubectl delete -f crud-internal-mysql.yaml
 kubectl apply -f crud-internal-mysql.yaml
 
 
-kubectl get s
+kubectl get svc
 
 
 
