@@ -8,6 +8,19 @@ id: 1649835073316869800
 
 # 外部MySQL
 
+## IP 地址要求
+
+```
+[root@k8s-master in]# kubectl cluster-info dump | grep -m 1 service-cluster-ip-range
+                            "--service-cluster-ip-range=10.96.0.0/16",
+[root@k8s-master in]# kubectl cluster-info dump | grep -m 1 cluster-cidr
+                            "--cluster-cidr=192.168.0.0/16",
+```
+
+
+
+## 部署
+
 ```sh
 #简单启动
 sudo docker run -d \
@@ -18,6 +31,18 @@ sudo docker run -d \
   --name mysql \
   mysql:5.7.30
 ```
+
+
+
+
+
+
+
+
+
+
+
+
 
 # 外部MySQL映射到内部
 
