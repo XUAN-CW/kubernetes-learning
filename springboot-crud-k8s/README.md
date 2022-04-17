@@ -28,7 +28,7 @@ docker image build -t springboot-crud-k8s:1.0 -f Dockerfile .
 
 ## 部署 MySQL
 
-
+如果部署失败，检查 pv 
 
 
 
