@@ -6,9 +6,7 @@ id: 1649897522504865900
 ---
 # 摘要
 
-通过实践有用的方案：
-
-https://www.youtube.com/watch?v=pIPji3_rYPY  资料  [springboot-crud-k8.7z](assets\references\springboot-crud-k8.7z) 
+基于通过实践有用的方案：[Kubernetes Tutorial | Run & Deploy Spring Boot CRUD Application With MySQL on K8S | JavaTechie](https://www.youtube.com/watch?v=pIPji3_rYPY ) （资料 [springboot-crud-k8.7z](assets\references\springboot-crud-k8.7z) ） 实现 Kubernetes 中 spring boot 连接 MySQL
 
 # 环境
 
