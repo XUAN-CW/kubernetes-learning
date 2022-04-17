@@ -64,3 +64,8 @@ kubectl get svc
 
 
 
+```
+kubectl delete -f .
+rm -rf  /nfs/data/*
+```
+
