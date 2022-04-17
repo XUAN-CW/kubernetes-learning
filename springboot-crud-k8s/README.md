@@ -24,7 +24,7 @@ docker image build -t springboot-crud-k8s:1.0 -f Dockerfile .
 
 # 准备 PV
 
-
+自行准备 NFS ，我这里使用 [pv.yaml](internal-mysql\pv.yaml) 
 
 
 
