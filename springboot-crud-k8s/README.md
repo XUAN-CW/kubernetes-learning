@@ -28,9 +28,7 @@ docker image build -t springboot-crud-k8s:1.0 -f Dockerfile .
 
 ## 部署 MySQL
 
-如果部署失败，检查 pv 
-
-
+如果部署失败，检查 PV 。不知道为什么，我部署失败后，删除 PV 并清空 PV 的挂载点，重新部署由成功了
 
 # 常用命令
 
