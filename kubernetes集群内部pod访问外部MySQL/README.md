@@ -24,7 +24,6 @@ sudo docker run -d \
 ## Endpoints
 
 ```yaml
-# mysql-endpoints.yaml
 apiVersion: v1
 kind: Endpoints
 metadata:
@@ -35,34 +34,23 @@ subsets:
     - ip: 10.98.12.24 #外部数据库地址
     ports:
     - port: 3306
-```
-
-```sh
-kubectl apply -f mysql-endpoints.yaml
-```
-
-```sh
-kubectl get endpoints
-```
-
-
-
-## service
-
-```yaml
-# mysql-service.yaml 
+---
 apiVersion: v1
 kind: Service
 metadata:
   name: mysql-external
   namespace: default
 spec:
+  type: ClusterIP
   ports:
   - port: 3306
     targetPort: 3306
     protocol: TCP
 
+
 ```
+
+
 
 ```sh
 kubectl apply -f mysql-service.yaml
@@ -99,18 +87,3 @@ telnet mysql-external.default.svc.cluster.local 3306
 ```
 
 
-
-## MySQL 
-
-此测试未完成，以后再说
-
-```sh
-# 
-kubectl run -it --rm --env MYSQL_ROOT_PASSWORD=root --image=mysql:5.7.30 --restart=Never mysql-client -- mysql -h mysql-external.default.svc.cluster.local -u root -p root
-```
-
-
-
-# 参考
-
- [K8S集群内部pod访问外部mysql.html](assets\references\K8S集群内部pod访问外部mysql.html) 
