@@ -36,6 +36,8 @@ docker image build -t springboot-crud-k8s:1.0 -f Dockerfile .
 kubectl delete -f pv.yaml
 kubectl apply -f pv.yaml
 
+kubectl get pv
+
 kubectl delete -f mysql-configMap.yaml
 kubectl apply -f mysql-configMap.yaml
 
