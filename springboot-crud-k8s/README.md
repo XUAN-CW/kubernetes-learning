@@ -45,8 +45,7 @@ kubectl apply -f mysql-secrets.yaml
 kubectl delete -f mysql-deployment.yaml
 kubectl apply -f mysql-deployment.yaml
 
-kubectl delete -f mysql-deployment.yaml
-kubectl apply -f mysql-deployment.yaml
+kubectl get pod
 
 kubectl delete -f crud-internal-mysql.yaml
 kubectl apply -f crud-internal-mysql.yaml
