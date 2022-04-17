@@ -14,8 +14,6 @@ https://github.com/ashutoshsahoo/spring-boot-kubernetes-mysql
 
 https://docs.openshift.com/dedicated/3/dev_guide/integrating_external_services.html
 
-https://www.youtube.com/watch?v=fvpq4jqtuZ8 
-
 https://www.cnblogs.com/microestc/p/13255086.html
 
 通过实践有用的方案：
