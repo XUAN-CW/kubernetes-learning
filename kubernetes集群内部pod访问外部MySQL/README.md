@@ -10,11 +10,14 @@ id: 1649835073316869800
 
 ## IP 地址要求
 
+外部 MySQL 的 IP 地址不能在 kubernetes 的 **service-cluster-ip-range** 和 **cluster-cidr** 范围内， **service-cluster-ip-range** 和 **cluster-cidr** 查看方法如下：
+
 ```
-[root@k8s-master in]# kubectl cluster-info dump | grep -m 1 service-cluster-ip-range
+[root@k8s-master ~]# kubectl cluster-info dump | grep -m 1 service-cluster-ip-range
                             "--service-cluster-ip-range=10.96.0.0/16",
-[root@k8s-master in]# kubectl cluster-info dump | grep -m 1 cluster-cidr
+[root@k8s-master ~]# kubectl cluster-info dump | grep -m 1 cluster-cidr
                             "--cluster-cidr=192.168.0.0/16",
+
 ```
 
 
