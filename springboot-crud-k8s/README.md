@@ -22,7 +22,7 @@ docker image build -t springboot-crud-k8s:1.0 -f Dockerfile .
 
 
 
-
+# 准备 PV
 
 
 
