@@ -30,5 +30,37 @@ docker image build -t springboot-crud-k8s:1.0 -f Dockerfile .
 
 
 
+# 常用命令
+
+```
+kubectl delete -f pv.yaml
+kubectl apply -f pv.yaml
+
+kubectl delete -f mysql-configMap.yaml
+kubectl apply -f mysql-configMap.yaml
+
+kubectl delete -f mysql-secrets.yaml
+kubectl apply -f mysql-secrets.yaml
+
+kubectl delete -f mysql-deployment.yaml
+kubectl apply -f mysql-deployment.yaml
+
+kubectl delete -f mysql-deployment.yaml
+kubectl apply -f mysql-deployment.yaml
+
+kubectl delete -f crud-internal-mysql.yaml
+kubectl apply -f crud-internal-mysql.yaml
+
+
+kubectl get s
+
+
+
+
+
+```
+
+
+
 
 

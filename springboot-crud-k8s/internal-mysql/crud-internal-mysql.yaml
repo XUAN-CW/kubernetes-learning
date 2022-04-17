@@ -33,13 +33,13 @@ spec:
             - name: DB_USERNAME  # Setting Database username from Secret
               valueFrom :
                 secretKeyRef :
-                  name : mysql-secrets
+                  name : internal-mysql-secrets
                   key :  username
 
             - name: DB_PASSWORD # Setting Database password from Secret
               valueFrom :
                 secretKeyRef :
-                  name : mysql-secrets
+                  name : internal-mysql-secrets
                   key :  password
 
 ---
