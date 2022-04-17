@@ -64,18 +64,6 @@ spec:
 
 ```
 
-这里说一下我踩过的坑：
-
-1. 注意外部数据库地址是否在 `service-cidr` 与 `pod-network-cidr` 范围内。
-
-
-
-
-
-
-
-
-
 # 测试
 
 ## ping
