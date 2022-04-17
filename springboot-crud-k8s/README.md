@@ -16,3 +16,19 @@ Run & Deploy Spring Boot CRUD Application With MySQL on K8S。
 mvn clean package -Dmaven.test.skip=true 
 ```
 
+```
+docker image build -t springboot-crud-k8s:1.0 -f Dockerfile .
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
