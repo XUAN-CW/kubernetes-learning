@@ -20,7 +20,7 @@ https://www.cnblogs.com/microestc/p/13255086.html
 
 通过实践有用的方案：
 
-https://www.youtube.com/watch?v=pIPji3_rYPY 
+https://www.youtube.com/watch?v=pIPji3_rYPY  资料  [springboot-crud-k8.7z](assets\references\springboot-crud-k8.7z) 
 
 # 环境
 
