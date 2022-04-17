@@ -48,6 +48,7 @@ kubectl delete -f mysql-deployment.yaml
 kubectl apply -f mysql-deployment.yaml
 
 kubectl get pod
+kubectl describe deployment mysql
 
 kubectl delete -f crud-internal-mysql.yaml
 kubectl apply -f crud-internal-mysql.yaml
