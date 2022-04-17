@@ -21,7 +21,7 @@ sudo docker run -d \
 
 # 外部MySQL映射到内部
 
-## Endpoints
+参考 [Integrating External Services.html](assets\references\Integrating External Services.html) 
 
 ```yaml
 apiVersion: v1
@@ -56,13 +56,19 @@ spec:
 kubectl apply -f mysql-service.yaml
 ```
 
-```sh
-kubectl get svc
-```
+
+
+
+
+
+
+
+
+
 
 # 测试
 
-## telnet
+## ping
 
 ```sh
 kubectl run -it --rm --image=busybox:1.28 --restart=Never busybox -- /bin/sh
@@ -72,18 +78,9 @@ kubectl run -it --rm --image=busybox:1.28 --restart=Never busybox -- /bin/sh
 ping mysql-external.default.svc.cluster.local
 ```
 
-或者：
-
-```sh
-kubectl run -it --rm --image=busybox:1.28 --restart=Never busybox -- ping mysql-external.default.svc.cluster.local
-```
-
-
-
----
+## telnet
 
 ```sh
 telnet mysql-external.default.svc.cluster.local 3306
 ```
-
 
