@@ -59,42 +59,13 @@ sudo docker run -d \
   mysql:5.7.30
 ```
 
+## 外部MySQL映射到内部
 
+参考 [Integrating External Services.html](assets\references\Integrating External Services.html) 得到  [external-mysql.yaml](external-mysql\external-mysql.yaml) 
 
-# 外部MySQL映射到内部
+## 测试
 
-参考 [Integrating External Services.html](assets\references\Integrating External Services.html) 
-
-```yaml
-apiVersion: v1
-kind: Endpoints
-metadata:
-  name: external-mysql
-  namespace: default
-subsets:
-  - addresses:
-    - ip: 10.98.12.24 #外部数据库地址
-    ports:
-    - port: 3306
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: external-mysql
-  namespace: default
-spec:
-  type: ClusterIP
-  ports:
-  - port: 3306
-    targetPort: 3306
-    protocol: TCP
-
-
-```
-
-# 测试
-
-## ping
+### ping
 
 ```sh
 kubectl run -it --rm --image=busybox:1.28 --restart=Never busybox -- /bin/sh
@@ -104,7 +75,7 @@ kubectl run -it --rm --image=busybox:1.28 --restart=Never busybox -- /bin/sh
 ping mysql-external.default.svc.cluster.local
 ```
 
-## telnet
+### telnet
 
 ```sh
 telnet mysql-external.default.svc.cluster.local 3306
