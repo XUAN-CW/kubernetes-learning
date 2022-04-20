@@ -72,13 +72,13 @@ kubectl run -it --rm --image=busybox:1.28 --restart=Never busybox -- /bin/sh
 ```
 
 ```sh
-ping mysql-external.default.svc.cluster.local
+ping external-mysql.default.svc.cluster.local
 ```
 
 ### telnet
 
 ```sh
-telnet mysql-external.default.svc.cluster.local 3306
+telnet external-mysql.default.svc.cluster.local 3306
 ```
 
 
