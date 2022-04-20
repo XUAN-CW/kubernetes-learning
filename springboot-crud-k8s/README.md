@@ -69,7 +69,7 @@ sudo docker run -d \
 apiVersion: v1
 kind: Endpoints
 metadata:
-  name: mysql-external
+  name: external-mysql
   namespace: default
 subsets:
   - addresses:
@@ -80,7 +80,7 @@ subsets:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql-external
+  name: external-mysql
   namespace: default
 spec:
   type: ClusterIP
