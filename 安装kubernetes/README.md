@@ -51,6 +51,7 @@ hostnamectl set-hostname k8s-node2
 # 主节点、从节点都添加 master 域名映射，我这里的 master 为 172.31.0.2
 echo "172.31.0.2  cluster-endpoint" >> /etc/hosts
 
+ping cluster-endpoint
 ```
 
 ## 添加 hostname 映射
@@ -129,6 +130,8 @@ EOF
 # 生效
 sudo sysctl --system
 
+# To clear up the firewall rules for an external firewall, you can use this command
+sudo iptables -F 
 ```
 
 ## 安装 kubelet、kubeadm、kubectl 
