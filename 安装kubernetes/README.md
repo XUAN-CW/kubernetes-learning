@@ -129,9 +129,6 @@ EOF
 
 # 生效
 sudo sysctl --system
-
-# To clear up the firewall rules for an external firewall, you can use this command
-sudo iptables -F 
 ```
 
 ## 安装 kubelet、kubeadm、kubectl 
@@ -332,7 +329,50 @@ Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
 
 
 
+## connect: no route to host
 
+### 表现
+
+如果出现从节点链接不上子节点，那可能就是网络出问题了，会有下面的表现
+
+```
+[root@k8s-node1 ~]# kubeadm join cluster-endpoint:6443 --token as0p1b.gngpce4upd7hwy3t     --discover  y-token-ca-cert-hash sha256:6a026748b0a16966abafc22bdbbc44e34052fb49e3addaed94ca81ae7ee4502722
+[preflight] Running pre-flight checks
+        [WARNING IsDockerSystemdCheck]: detected "cgroupfs" as the Docker cgroup driver. The recomm  ended driver is "systemd". Please follow the guide at https://kubernetes.io/docs/setup/cri/
+        [WARNING SystemVerification]: this Docker version is not on the list of validated versions:   20.10.7. Latest validated version: 19.03
+error execution phase preflight: couldn't validate the identity of the API Server: expected a 32 by  te SHA-256 hash, found 33 bytes
+To see the stack trace of this error execute with --v=5 or higher
+[root@centos7 ~]# kubeadm join cluster-endpoint:6443 --token as0p1b.gngpce4upd7hwy3t     --discover  y-token-ca-cert-hash sha256:6a026748b0a16966abafc22bdbbc44e34052fb49e3addaed94ca81ae7ee45027
+[preflight] Running pre-flight checks
+        [WARNING IsDockerSystemdCheck]: detected "cgroupfs" as the Docker cgroup driver. The recomm  ended driver is "systemd". Please follow the guide at https://kubernetes.io/docs/setup/cri/
+        [WARNING SystemVerification]: this Docker version is not on the list of validated versions:   20.10.7. Latest validated version: 19.03
+error execution phase preflight: couldn't validate the identity of the API Server: Get "https://clu  ster-endpoint:6443/api/v1/namespaces/kube-public/configmaps/cluster-info?timeout=10s": dial tcp 172  .31.0.2:6443: connect: no route to host
+To see the stack trace of this error execute with --v=5 or higher
+
+```
+
+### 原因
+
+使用下面的命令测试，发现连接不上
+
+```
+[root@k8s-node1 ~]# nc -zv 172.31.0.4 6443
+Ncat: Version 7.50 ( https://nmap.org/ncat )
+Ncat: Connection refused.
+
+```
+
+### 解决方法
+
+```sh
+# To clear up the firewall rules for an external firewall, you can use this command
+
+sudo iptables -F 
+```
+
+### 参考
+
+ [‘No Route to Host’ Error in Linux.html](assets\references\‘No Route to Host’ Error in Linux.html) 
 
 # 参考
 
